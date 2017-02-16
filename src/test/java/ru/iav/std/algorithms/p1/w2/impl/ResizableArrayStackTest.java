@@ -5,11 +5,11 @@ import ru.iav.std.algorithms.p1.w2.Stack;
 /**
  * Created by takoe on 16.02.17.
  */
-public class SingleLinkedStackTest extends StackTest {
+public class ResizableArrayStackTest extends StackTest {
 
     @Override
     <Item> Stack<Item> newStack() {
-        return new SingleLinkedStack<Item>();
+        return new ResizableArrayStack<Item>();
     }
 
 }
