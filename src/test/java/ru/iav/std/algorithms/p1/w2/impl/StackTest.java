@@ -50,6 +50,11 @@ public abstract class StackTest {
         assertTrue(stack.isEmpty());
     }
 
+    @Test
+    public void testPerformance() throws Exception {
+        // TODO implement
+    }
+
     abstract <Item> Stack<Item> newStack();
 
 }
