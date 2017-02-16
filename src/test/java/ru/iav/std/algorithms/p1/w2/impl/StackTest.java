@@ -36,7 +36,7 @@ public abstract class StackTest {
 
     @Test
     public void shouldStaySilentAndReturnNullIfEmptyStackPopped() throws Exception {
-        assertNull(new SingleLinkedStack<>().pop());
+        assertNull(newStack().pop());
     }
 
     @Test
