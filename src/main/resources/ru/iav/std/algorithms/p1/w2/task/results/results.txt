@@ -1,0 +1,785 @@
+See the Assessment Guide for information on how to interpret this report.
+
+ASSESSMENT SUMMARY
+
+Compilation:  PASSED
+API:          PASSED
+
+Findbugs:     PASSED
+Checkstyle:   FAILED (16 warnings)
+
+Correctness:  35/43 tests passed
+Memory:       49/53 tests passed
+Timing:       94/110 tests passed
+
+Aggregate score: 85.17%
+[Compilation: 5%, API: 5%, Findbugs: 0%, Checkstyle: 0%, Correctness: 60%, Memory: 10%, Timing: 20%]
+
+ASSESSMENT DETAILS
+
+The following files were submitted:
+----------------------------------
+4.0K Feb 18 23:12 Deque.java
+1.1K Feb 18 23:12 Permutation.java
+3.6K Feb 18 23:12 RandomizedQueue.java
+
+
+********************************************************************************
+*  COMPILING
+********************************************************************************
+
+
+% javac Deque.java
+*-----------------------------------------------------------
+
+% javac RandomizedQueue.java
+*-----------------------------------------------------------
+
+% javac Permutation.java
+*-----------------------------------------------------------
+
+
+================================================================
+
+
+Checking the APIs of your programs.
+*-----------------------------------------------------------
+Deque:
+
+RandomizedQueue:
+
+Permutation:
+
+================================================================
+
+
+********************************************************************************
+*  CHECKING STYLE AND COMMON BUG PATTERNS
+********************************************************************************
+
+
+% findbugs *.class
+*-----------------------------------------------------------
+
+================================================================
+
+
+% checkstyle *.java
+*-----------------------------------------------------------
+Deque.java:13:14: The instance (or static) variable 'next' must be private. [VisibilityModifier]
+Deque.java:13:20: The instance (or static) variable 'prev' must be private. [VisibilityModifier]
+Deque.java:14:14: The instance (or static) variable 'item' must be private. [VisibilityModifier]
+Deque.java:25:21: '{' is not followed by whitespace. [WhitespaceAround]
+Deque.java:25:21: '}' is not preceded with whitespace. [WhitespaceAround]
+Deque.java:55:26: Inner assignments should be avoided. [InnerAssignment]
+Deque.java:69:26: Inner assignments should be avoided. [InnerAssignment]
+Deque.java:165:45: '{' is not followed by whitespace. [WhitespaceAround]
+Deque.java:165:45: '}' is not preceded with whitespace. [WhitespaceAround]
+RandomizedQueue.java:4: Do not use static imports. [AvoidStaticImport]
+RandomizedQueue.java:5: Do not use static imports. [AvoidStaticImport]
+RandomizedQueue.java:14:30: The constant 'initialCapacity' must be ALL_UPPERCASE, with words separated by underscores. [ConstantName]
+RandomizedQueue.java:63:11: 'if' is not followed by whitespace. [WhitespaceAfter]
+RandomizedQueue.java:103:23: Do not suppress warnings in this course. [SuppressWarnings]
+RandomizedQueue.java:149:45: '{' is not followed by whitespace. [WhitespaceAround]
+RandomizedQueue.java:149:45: '}' is not preceded with whitespace. [WhitespaceAround]
+Checkstyle ends with 16 errors.
+
+================================================================
+
+
+********************************************************************************
+*  TESTING CORRECTNESS
+********************************************************************************
+
+Testing correctness of Deque
+*-----------------------------------------------------------
+Running 16 total tests.
+
+Tests 1-6 make random calls to addFirst(), addLast(), removeFirst(),
+removeLast(), isEmpty(), and size(). The probabilities of each
+operation are (p1, p2, p3, p4, p5, p6), respectively.
+
+Test 1: Calls to addFirst(), addLast(), and size()
+  *    5 random calls (0.4, 0.4, 0.0, 0.0, 0.0, 0.2)
+  *   50 random calls (0.4, 0.4, 0.0, 0.0, 0.0, 0.2)
+  *  500 random calls (0.4, 0.4, 0.0, 0.0, 0.0, 0.2)
+  * 1000 random calls (0.4, 0.4, 0.0, 0.0, 0.0, 0.2)
+==> passed
+
+Test 2: Calls to addFirst(), removeFirst(), and isEmpty()
+  *    5 random calls (0.8, 0.0, 0.1, 0.0, 0.1, 0.0)
+  *   50 random calls (0.8, 0.0, 0.1, 0.0, 0.1, 0.0)
+  *  500 random calls (0.8, 0.0, 0.1, 0.0, 0.1, 0.0)
+  * 1000 random calls (0.8, 0.0, 0.1, 0.0, 0.1, 0.0)
+  *    5 random calls (0.1, 0.0, 0.8, 0.0, 0.1, 0.0)
+  *   50 random calls (0.1, 0.0, 0.8, 0.0, 0.1, 0.0)
+  *  500 random calls (0.1, 0.0, 0.8, 0.0, 0.1, 0.0)
+  * 1000 random calls (0.1, 0.0, 0.8, 0.0, 0.1, 0.0)
+==> passed
+
+Test 3: Calls to addFirst(), removeLast(), and isEmpty()
+  *    5 random calls (0.8, 0.0, 0.0, 0.1, 0.1, 0.0)
+  *   50 random calls (0.8, 0.0, 0.0, 0.1, 0.1, 0.0)
+  *  500 random calls (0.8, 0.0, 0.0, 0.1, 0.1, 0.0)
+  * 1000 random calls (0.8, 0.0, 0.0, 0.1, 0.1, 0.0)
+  *    5 random calls (0.1, 0.0, 0.0, 0.8, 0.1, 0.0)
+  *   50 random calls (0.1, 0.0, 0.0, 0.8, 0.1, 0.0)
+  *  500 random calls (0.1, 0.0, 0.0, 0.8, 0.1, 0.0)
+  * 1000 random calls (0.1, 0.0, 0.0, 0.8, 0.1, 0.0)
+==> passed
+
+Test 4: Calls to addLast(), removeLast(), and isEmpty()
+  *    5 random calls (0.0, 0.8, 0.0, 0.1, 0.1, 0.0)
+  *   50 random calls (0.0, 0.8, 0.0, 0.1, 0.1, 0.0)
+  *  500 random calls (0.0, 0.8, 0.0, 0.1, 0.1, 0.0)
+  * 1000 random calls (0.0, 0.8, 0.0, 0.1, 0.1, 0.0)
+  *    5 random calls (0.0, 0.1, 0.0, 0.8, 0.1, 0.0)
+  *   50 random calls (0.0, 0.1, 0.0, 0.8, 0.1, 0.0)
+  *  500 random calls (0.0, 0.1, 0.0, 0.8, 0.1, 0.0)
+  * 1000 random calls (0.0, 0.1, 0.0, 0.8, 0.1, 0.0)
+==> passed
+
+Test 5: Calls to addLast(), removeFirst(), and isEmpty()
+  *    5 random calls (0.0, 0.8, 0.1, 0.0, 0.1, 0.0)
+  *   50 random calls (0.0, 0.8, 0.1, 0.0, 0.1, 0.0)
+  *  500 random calls (0.0, 0.8, 0.1, 0.0, 0.1, 0.0)
+  * 1000 random calls (0.0, 0.8, 0.1, 0.0, 0.1, 0.0)
+  *    5 random calls (0.0, 0.1, 0.8, 0.0, 0.1, 0.0)
+  *   50 random calls (0.0, 0.1, 0.8, 0.0, 0.1, 0.0)
+  *  500 random calls (0.0, 0.1, 0.8, 0.0, 0.1, 0.0)
+  * 1000 random calls (0.0, 0.1, 0.8, 0.0, 0.1, 0.0)
+==> passed
+
+Test 6: Calls to addFirst(), addLast(), removeFirst(),
+        removeLast(), isEmpty(), and size().
+  *    5 random calls (0.3, 0.3, 0.1, 0.1, 0.1, 0.1)
+  *   50 random calls (0.3, 0.3, 0.1, 0.1, 0.1, 0.1)
+  *  500 random calls (0.3, 0.3, 0.1, 0.1, 0.1, 0.1)
+  * 1000 random calls (0.3, 0.3, 0.1, 0.1, 0.1, 0.1)
+  *    5 random calls (0.1, 0.1, 0.3, 0.3, 0.1, 0.1)
+  *   50 random calls (0.1, 0.1, 0.3, 0.3, 0.1, 0.1)
+  *  500 random calls (0.1, 0.1, 0.3, 0.3, 0.1, 0.1)
+  * 1000 random calls (0.1, 0.1, 0.3, 0.3, 0.1, 0.1)
+==> passed
+
+Test 7: Removing from an empty deque
+  * removeFirst()
+  * removeLast()
+==> passed
+
+Test 8: Create multiple deque objects at the same time
+==> passed
+
+Test 9: Check iterator() after calls only to addFirst()
+==> passed
+
+Test 10: Check iterator() after intermixed calls to addFirst(), addLast(),
+         removeFirst(), and removeLast()
+==> passed
+
+Test 11: Create two nested iterators to same deque
+  * n = 10
+  * n = 1000
+==> passed
+
+Test 12: Create two parallel iterators to same deque
+  * n = 10
+  * n = 1000
+==> passed
+
+Test 13: Create Deque objects of different parameterized types
+==> passed
+
+Test 14: Check that addFirst() and addLast() each throw a NullPointerException
+         when inserting null items
+==> passed
+
+Test 15: Check that remove() and next() throw the specified exceptions in iterator()
+==> passed
+
+Test 16: Check iterator() when Deque is empty
+==> passed
+
+
+Total: 16/16 tests passed!
+
+
+================================================================
+Testing correctness of RandomizedQueue
+*-----------------------------------------------------------
+Running 18 total tests.
+
+Tests 1-4 make random calls to enqueue(), dequeue(), sample(),
+isEmpty(), and size(). The probabilities of each operation are
+(p1, p2, p3, p4, p5), respectively.
+
+Test 1: check random calls to enqueue() and size()
+  *    5 random calls (0.8, 0.0, 0.0, 0.0, 0.2)
+  *   50 random calls (0.8, 0.0, 0.0, 0.0, 0.2)
+  *  500 random calls (0.8, 0.0, 0.0, 0.0, 0.2)
+  * 1000 random calls (0.8, 0.0, 0.0, 0.0, 0.2)
+==> passed
+
+Test 2: check random calls to enqueue() and dequeue()
+  *    5 random calls (0.7, 0.1, 0.0, 0.1, 0.1)
+  *   50 random calls (0.7, 0.1, 0.0, 0.1, 0.1)
+  *  500 random calls (0.7, 0.1, 0.0, 0.1, 0.1)
+  * 1000 random calls (0.7, 0.1, 0.0, 0.1, 0.1)
+  *    5 random calls (0.1, 0.7, 0.0, 0.1, 0.1)
+  *   50 random calls (0.1, 0.7, 0.0, 0.1, 0.1)
+  *  500 random calls (0.1, 0.7, 0.0, 0.1, 0.1)
+  * 1000 random calls (0.1, 0.7, 0.0, 0.1, 0.1)
+==> passed
+
+Test 3: check random calls to enqueue(), sample(), and size()
+  *    5 random calls (0.8, 0.0, 0.1, 0.0, 0.1)
+  *   50 random calls (0.8, 0.0, 0.1, 0.0, 0.1)
+  *  500 random calls (0.8, 0.0, 0.1, 0.0, 0.1)
+  * 1000 random calls (0.8, 0.0, 0.1, 0.0, 0.1)
+  *    5 random calls (0.1, 0.0, 0.8, 0.0, 0.1)
+  *   50 random calls (0.1, 0.0, 0.8, 0.0, 0.1)
+  *  500 random calls (0.1, 0.0, 0.8, 0.0, 0.1)
+  * 1000 random calls (0.1, 0.0, 0.8, 0.0, 0.1)
+==> passed
+
+Test 4: check random calls to enqueue(), dequeue(), sample(), isEmpty(), and size()
+  *    5 random calls (0.6, 0.1, 0.1, 0.1, 0.1)
+  *   50 random calls (0.6, 0.1, 0.1, 0.1, 0.1)
+  *  500 random calls (0.6, 0.1, 0.1, 0.1, 0.1)
+  * 1000 random calls (0.6, 0.1, 0.1, 0.1, 0.1)
+  *    5 random calls (0.1, 0.1, 0.6, 0.1, 0.1)
+  *   50 random calls (0.1, 0.1, 0.6, 0.1, 0.1)
+  *  500 random calls (0.1, 0.1, 0.6, 0.1, 0.1)
+  * 1000 random calls (0.1, 0.1, 0.6, 0.1, 0.1)
+==> passed
+
+Test 5: call dequeue() and sample() from an empty randomized queue
+  * dequeue()
+  * sample()
+==> passed
+
+Test 6: create multiple randomized queue objects at the same time
+==> passed
+
+Test 7: check that iterator() returns correct items after a sequence of
+        enqueue() operations
+==> passed
+
+Test 8: check that iterator() returns correct items after sequence of enqueue()
+        and dequeue() operations
+==> passed
+
+Test 9: create two nested iterators over the same randomized queue
+  * n = 10
+  * n = 1000
+==> passed
+
+Test 10: create two parallel iterators over the same randomized queue
+  * n = 10
+  * n = 1000
+==> passed
+
+Test 11: create two iterators over different randomized queues
+==> passed
+
+Test 12: create RandomizedQueue objects of different parameterized types
+==> passed
+
+Test 13: check randomness of sample() by enqueueing n items, repeatedly calling
+         sample(), and counting the frequency of each item
+  * n = 3, trials = 12000
+  * n = 5, trials = 12000
+  * n = 8, trials = 12000
+  * n = 10, trials = 12000
+==> passed
+
+Test 14: check randomness of dequeue() by enqueueing n items, dequeueing n items,
+         and seeing whether each of the n! permutations is equally likely
+  * n = 2, trials = 12000
+  * n = 3, trials = 12000
+  * n = 4, trials = 12000
+  * n = 5, trials = 12000
+==> passed
+
+Test 15: check randomness of iterator() by enqueueing n items, iterating over those
+         n items, and seeing whether each of the n! permutations is equally likely
+  * n = 2, trials = 12000
+  * n = 3, trials = 12000
+  * n = 4, trials = 12000
+  * n = 5, trials = 12000
+==> passed
+
+Test 16: check that NullPointerException is thrown when inserting null items
+==> passed
+
+Test 17: check that remove() and next() throw the specified exceptions in iterator()
+==> passed
+
+Test 18: check iterator() when RandomizedQueue is empty
+==> passed
+
+
+Total: 18/18 tests passed!
+
+
+================================================================
+********************************************************************************
+*  TESTING CORRECTNESS (substituting reference RandomizedQueue and Deque)
+********************************************************************************
+
+Testing correctness of Permutation
+*-----------------------------------------------------------
+Tests 1-5 call the main() function directly, resetting standard input
+before each call.
+
+Running 9 total tests.
+
+Test 1a: check formatting for sample inputs from assignment specification
+  % java Permutation 3 < distinct.txt
+    java.util.NoSuchElementException: randomized queue underflow
+
+    RandomizedQueue.dequeue(RandomizedQueue.java:96)
+    Permutation.printStringsUniformlyAtRandom(Permutation.java:28)
+    Permutation.main(Permutation.java:35)
+    UtilCOS.execute(UtilCOS.java:139)
+    TestPermutation.checkFormatting(TestPermutation.java:28)
+    TestPermutation.test1a(TestPermutation.java:194)
+    TestPermutation.main(TestPermutation.java:298)
+
+    - student solution threw an exception
+    - reference solution did not throw an exception
+
+  % java Permutation 3 < distinct.txt
+    java.util.NoSuchElementException: randomized queue underflow
+
+    RandomizedQueue.dequeue(RandomizedQueue.java:96)
+    Permutation.printStringsUniformlyAtRandom(Permutation.java:28)
+    Permutation.main(Permutation.java:35)
+    UtilCOS.execute(UtilCOS.java:139)
+    TestPermutation.checkFormatting(TestPermutation.java:28)
+    TestPermutation.test1a(TestPermutation.java:195)
+    TestPermutation.main(TestPermutation.java:298)
+
+    - student solution threw an exception
+    - reference solution did not throw an exception
+
+  % java Permutation 8 < duplicates.txt
+    java.util.NoSuchElementException: randomized queue underflow
+
+    RandomizedQueue.dequeue(RandomizedQueue.java:96)
+    Permutation.printStringsUniformlyAtRandom(Permutation.java:28)
+    Permutation.main(Permutation.java:35)
+    UtilCOS.execute(UtilCOS.java:139)
+    TestPermutation.checkFormatting(TestPermutation.java:28)
+    TestPermutation.test1a(TestPermutation.java:196)
+    TestPermutation.main(TestPermutation.java:298)
+
+    - student solution threw an exception
+    - reference solution did not throw an exception
+
+==> FAILED
+
+Test 1b: check formatting for other inputs
+  % java Permutation 8 < mediumTale.txt
+    java.util.NoSuchElementException: randomized queue underflow
+
+    RandomizedQueue.dequeue(RandomizedQueue.java:96)
+    Permutation.printStringsUniformlyAtRandom(Permutation.java:28)
+    Permutation.main(Permutation.java:35)
+    UtilCOS.execute(UtilCOS.java:139)
+    TestPermutation.checkFormatting(TestPermutation.java:28)
+    TestPermutation.test1b(TestPermutation.java:202)
+    TestPermutation.main(TestPermutation.java:299)
+
+    - student solution threw an exception
+    - reference solution did not throw an exception
+
+  % java Permutation 0 < distinct.txt
+  [no output]
+
+==> FAILED
+
+Test 2: check that main() reads all data from standard input
+  * filename = distinct.txt, k = 3
+    java.util.NoSuchElementException: randomized queue underflow
+
+    RandomizedQueue.dequeue(RandomizedQueue.java:96)
+    Permutation.printStringsUniformlyAtRandom(Permutation.java:28)
+    Permutation.main(Permutation.java:35)
+    UtilCOS.execute(UtilCOS.java:139)
+    UtilCOS.execute(UtilCOS.java:126)
+    UtilCOS.consumesStdIn(UtilCOS.java:164)
+    TestPermutation.checkConsumesStdIn(TestPermutation.java:40)
+    TestPermutation.test2(TestPermutation.java:209)
+    TestPermutation.main(TestPermutation.java:300)
+
+  * filename = distinct.txt, k = 3
+    java.util.NoSuchElementException: randomized queue underflow
+
+    RandomizedQueue.dequeue(RandomizedQueue.java:96)
+    Permutation.printStringsUniformlyAtRandom(Permutation.java:28)
+    Permutation.main(Permutation.java:35)
+    UtilCOS.execute(UtilCOS.java:139)
+    UtilCOS.execute(UtilCOS.java:126)
+    UtilCOS.consumesStdIn(UtilCOS.java:164)
+    TestPermutation.checkConsumesStdIn(TestPermutation.java:40)
+    TestPermutation.test2(TestPermutation.java:210)
+    TestPermutation.main(TestPermutation.java:300)
+
+  * filename = duplicates.txt, k = 8
+    java.util.NoSuchElementException: randomized queue underflow
+
+    RandomizedQueue.dequeue(RandomizedQueue.java:96)
+    Permutation.printStringsUniformlyAtRandom(Permutation.java:28)
+    Permutation.main(Permutation.java:35)
+    UtilCOS.execute(UtilCOS.java:139)
+    UtilCOS.execute(UtilCOS.java:126)
+    UtilCOS.consumesStdIn(UtilCOS.java:164)
+    TestPermutation.checkConsumesStdIn(TestPermutation.java:40)
+    TestPermutation.test2(TestPermutation.java:211)
+    TestPermutation.main(TestPermutation.java:300)
+
+  * filename = mediumTale.txt, k = 8
+    java.util.NoSuchElementException: randomized queue underflow
+
+    RandomizedQueue.dequeue(RandomizedQueue.java:96)
+    Permutation.printStringsUniformlyAtRandom(Permutation.java:28)
+    Permutation.main(Permutation.java:35)
+    UtilCOS.execute(UtilCOS.java:139)
+    UtilCOS.execute(UtilCOS.java:126)
+    UtilCOS.consumesStdIn(UtilCOS.java:164)
+    TestPermutation.checkConsumesStdIn(TestPermutation.java:40)
+    TestPermutation.test2(TestPermutation.java:212)
+    TestPermutation.main(TestPermutation.java:300)
+
+==> FAILED
+
+Test 3a: check that main() prints each item from the sequence at most once
+         (for inputs with no duplicate strings)
+  * filename = distinct.txt, k = 3
+    java.util.NoSuchElementException: randomized queue underflow
+
+    RandomizedQueue.dequeue(RandomizedQueue.java:96)
+    Permutation.printStringsUniformlyAtRandom(Permutation.java:28)
+    Permutation.main(Permutation.java:35)
+    UtilCOS.execute(UtilCOS.java:139)
+    UtilCOS.execute(UtilCOS.java:126)
+    TestPermutation.checkStringFrequencies(TestPermutation.java:62)
+    TestPermutation.test3a(TestPermutation.java:220)
+    TestPermutation.main(TestPermutation.java:301)
+
+  * filename = distinct.txt, k = 1
+  * filename = distinct.txt, k = 9
+    java.util.NoSuchElementException: randomized queue underflow
+
+    RandomizedQueue.dequeue(RandomizedQueue.java:96)
+    Permutation.printStringsUniformlyAtRandom(Permutation.java:28)
+    Permutation.main(Permutation.java:35)
+    UtilCOS.execute(UtilCOS.java:139)
+    UtilCOS.execute(UtilCOS.java:126)
+    TestPermutation.checkStringFrequencies(TestPermutation.java:62)
+    TestPermutation.test3a(TestPermutation.java:222)
+    TestPermutation.main(TestPermutation.java:301)
+
+  * filename = permutation6.txt, k = 6
+    java.util.NoSuchElementException: randomized queue underflow
+
+    RandomizedQueue.dequeue(RandomizedQueue.java:96)
+    Permutation.printStringsUniformlyAtRandom(Permutation.java:28)
+    Permutation.main(Permutation.java:35)
+    UtilCOS.execute(UtilCOS.java:139)
+    UtilCOS.execute(UtilCOS.java:126)
+    TestPermutation.checkStringFrequencies(TestPermutation.java:62)
+    TestPermutation.test3a(TestPermutation.java:223)
+    TestPermutation.main(TestPermutation.java:301)
+
+  * filename = permutation10.txt, k = 10
+    java.util.NoSuchElementException: randomized queue underflow
+
+    RandomizedQueue.dequeue(RandomizedQueue.java:96)
+    Permutation.printStringsUniformlyAtRandom(Permutation.java:28)
+    Permutation.main(Permutation.java:35)
+    UtilCOS.execute(UtilCOS.java:139)
+    UtilCOS.execute(UtilCOS.java:126)
+    TestPermutation.checkStringFrequencies(TestPermutation.java:62)
+    TestPermutation.test3a(TestPermutation.java:224)
+    TestPermutation.main(TestPermutation.java:301)
+
+==> FAILED
+
+Test 3b: check that main() prints each item from the sequence at most once
+         (for inputs with duplicate strings)
+  * filename = duplicates.txt, k = 8
+    java.util.NoSuchElementException: randomized queue underflow
+
+    RandomizedQueue.dequeue(RandomizedQueue.java:96)
+    Permutation.printStringsUniformlyAtRandom(Permutation.java:28)
+    Permutation.main(Permutation.java:35)
+    UtilCOS.execute(UtilCOS.java:139)
+    UtilCOS.execute(UtilCOS.java:126)
+    TestPermutation.checkStringFrequencies(TestPermutation.java:62)
+    TestPermutation.test3b(TestPermutation.java:232)
+    TestPermutation.main(TestPermutation.java:302)
+
+  * filename = duplicates.txt, k = 3
+    java.util.NoSuchElementException: randomized queue underflow
+
+    RandomizedQueue.dequeue(RandomizedQueue.java:96)
+    Permutation.printStringsUniformlyAtRandom(Permutation.java:28)
+    Permutation.main(Permutation.java:35)
+    UtilCOS.execute(UtilCOS.java:139)
+    UtilCOS.execute(UtilCOS.java:126)
+    TestPermutation.checkStringFrequencies(TestPermutation.java:62)
+    TestPermutation.test3b(TestPermutation.java:233)
+    TestPermutation.main(TestPermutation.java:302)
+
+  * filename = permutation8.txt, k = 6
+    java.util.NoSuchElementException: randomized queue underflow
+
+    RandomizedQueue.dequeue(RandomizedQueue.java:96)
+    Permutation.printStringsUniformlyAtRandom(Permutation.java:28)
+    Permutation.main(Permutation.java:35)
+    UtilCOS.execute(UtilCOS.java:139)
+    UtilCOS.execute(UtilCOS.java:126)
+    TestPermutation.checkStringFrequencies(TestPermutation.java:62)
+    TestPermutation.test3b(TestPermutation.java:234)
+    TestPermutation.main(TestPermutation.java:302)
+
+  * filename = permutation8.txt, k = 2
+    java.util.NoSuchElementException: randomized queue underflow
+
+    RandomizedQueue.dequeue(RandomizedQueue.java:96)
+    Permutation.printStringsUniformlyAtRandom(Permutation.java:28)
+    Permutation.main(Permutation.java:35)
+    UtilCOS.execute(UtilCOS.java:139)
+    UtilCOS.execute(UtilCOS.java:126)
+    TestPermutation.checkStringFrequencies(TestPermutation.java:62)
+    TestPermutation.test3b(TestPermutation.java:235)
+    TestPermutation.main(TestPermutation.java:302)
+
+  * filename = tinyTale.txt, k = 10
+    java.util.NoSuchElementException: randomized queue underflow
+
+    RandomizedQueue.dequeue(RandomizedQueue.java:96)
+    Permutation.printStringsUniformlyAtRandom(Permutation.java:28)
+    Permutation.main(Permutation.java:35)
+    UtilCOS.execute(UtilCOS.java:139)
+    UtilCOS.execute(UtilCOS.java:126)
+    TestPermutation.checkStringFrequencies(TestPermutation.java:62)
+    TestPermutation.test3b(TestPermutation.java:236)
+    TestPermutation.main(TestPermutation.java:302)
+
+==> FAILED
+
+Test 3c: check that main() prints each item from the sequence at most once
+         (for inputs with newlines)
+  * filename = mediumTale.txt, k = 10
+    java.util.NoSuchElementException: randomized queue underflow
+
+    RandomizedQueue.dequeue(RandomizedQueue.java:96)
+    Permutation.printStringsUniformlyAtRandom(Permutation.java:28)
+    Permutation.main(Permutation.java:35)
+    UtilCOS.execute(UtilCOS.java:139)
+    UtilCOS.execute(UtilCOS.java:126)
+    TestPermutation.checkStringFrequencies(TestPermutation.java:62)
+    TestPermutation.test3c(TestPermutation.java:244)
+    TestPermutation.main(TestPermutation.java:303)
+
+  * filename = mediumTale.txt, k = 20
+    java.util.NoSuchElementException: randomized queue underflow
+
+    RandomizedQueue.dequeue(RandomizedQueue.java:96)
+    Permutation.printStringsUniformlyAtRandom(Permutation.java:28)
+    Permutation.main(Permutation.java:35)
+    UtilCOS.execute(UtilCOS.java:139)
+    UtilCOS.execute(UtilCOS.java:126)
+    TestPermutation.checkStringFrequencies(TestPermutation.java:62)
+    TestPermutation.test3c(TestPermutation.java:245)
+    TestPermutation.main(TestPermutation.java:303)
+
+  * filename = tale.txt, k = 10
+    java.util.NoSuchElementException: randomized queue underflow
+
+    RandomizedQueue.dequeue(RandomizedQueue.java:96)
+    Permutation.printStringsUniformlyAtRandom(Permutation.java:28)
+    Permutation.main(Permutation.java:35)
+    UtilCOS.execute(UtilCOS.java:139)
+    UtilCOS.execute(UtilCOS.java:126)
+    TestPermutation.checkStringFrequencies(TestPermutation.java:62)
+    TestPermutation.test3c(TestPermutation.java:247)
+    TestPermutation.main(TestPermutation.java:303)
+
+  * filename = tale.txt, k = 50
+    java.util.NoSuchElementException: randomized queue underflow
+
+    RandomizedQueue.dequeue(RandomizedQueue.java:96)
+    Permutation.printStringsUniformlyAtRandom(Permutation.java:28)
+    Permutation.main(Permutation.java:35)
+    UtilCOS.execute(UtilCOS.java:139)
+    UtilCOS.execute(UtilCOS.java:126)
+    TestPermutation.checkStringFrequencies(TestPermutation.java:62)
+    TestPermutation.test3c(TestPermutation.java:248)
+    TestPermutation.main(TestPermutation.java:303)
+
+==> FAILED
+
+Test 4: check main() when k = 0
+  * filename = distinct.txt, k = 0
+  * filename = distinct.txt, k = 0
+==> passed
+
+Test 5a: check that permutations are uniformly random
+         (for inputs with no duplicate strings)
+  * filename = permutation4.txt, k = 1
+
+            value  observed  expected   2*O*ln(O/E)
+        -------------------------------------------
+                A      1000     250.0       2772.59
+                B         0     250.0          0.00
+                C         0     250.0          0.00
+                D         0     250.0          0.00
+        -------------------------------------------
+                       1000    1000.0       2772.59
+
+    G-statistic = 2772.59 (p-value = 0.000000, reject if p-value <= 0.0001)
+    Note: a correct solution will fail this test by bad luck 1 time in 10,000.
+
+  * filename = permutation4.txt, k = 2
+    java.util.NoSuchElementException: randomized queue underflow
+
+    RandomizedQueue.dequeue(RandomizedQueue.java:96)
+    Permutation.printStringsUniformlyAtRandom(Permutation.java:28)
+    Permutation.main(Permutation.java:35)
+    UtilCOS.execute(UtilCOS.java:139)
+    UtilCOS.execute(UtilCOS.java:126)
+    TestPermutation.checkRandomnessOfPermutation(TestPermutation.java:149)
+    TestPermutation.test5a(TestPermutation.java:267)
+    TestPermutation.main(TestPermutation.java:305)
+
+  * filename = permutation4.txt, k = 3
+    java.util.NoSuchElementException: randomized queue underflow
+
+    RandomizedQueue.dequeue(RandomizedQueue.java:96)
+    Permutation.printStringsUniformlyAtRandom(Permutation.java:28)
+    Permutation.main(Permutation.java:35)
+    UtilCOS.execute(UtilCOS.java:139)
+    UtilCOS.execute(UtilCOS.java:126)
+    TestPermutation.checkRandomnessOfPermutation(TestPermutation.java:149)
+    TestPermutation.test5a(TestPermutation.java:268)
+    TestPermutation.main(TestPermutation.java:305)
+
+  * filename = permutation4.txt, k = 4
+    java.util.NoSuchElementException: randomized queue underflow
+
+    RandomizedQueue.dequeue(RandomizedQueue.java:96)
+    Permutation.printStringsUniformlyAtRandom(Permutation.java:28)
+    Permutation.main(Permutation.java:35)
+    UtilCOS.execute(UtilCOS.java:139)
+    UtilCOS.execute(UtilCOS.java:126)
+    TestPermutation.checkRandomnessOfPermutation(TestPermutation.java:149)
+    TestPermutation.test5a(TestPermutation.java:269)
+    TestPermutation.main(TestPermutation.java:305)
+
+  * filename = permutation6.txt, k = 2
+    java.util.NoSuchElementException: randomized queue underflow
+
+    RandomizedQueue.dequeue(RandomizedQueue.java:96)
+    Permutation.printStringsUniformlyAtRandom(Permutation.java:28)
+    Permutation.main(Permutation.java:35)
+    UtilCOS.execute(UtilCOS.java:139)
+    UtilCOS.execute(UtilCOS.java:126)
+    TestPermutation.checkRandomnessOfPermutation(TestPermutation.java:149)
+    TestPermutation.test5a(TestPermutation.java:270)
+    TestPermutation.main(TestPermutation.java:305)
+
+==> FAILED
+
+Test 5b: check that permutations are uniformly random
+         (for inputs with duplicate strings)
+  * filename = permutation5.txt, k = 1
+
+            value  observed  expected   2*O*ln(O/E)
+        -------------------------------------------
+                A      1000     600.0       1021.65
+                B         0     400.0          0.00
+        -------------------------------------------
+                       1000    1000.0       1021.65
+
+    G-statistic = 1021.65 (p-value = 0.000000, reject if p-value <= 0.0001)
+    Note: a correct solution will fail this test by bad luck 1 time in 10,000.
+
+  * filename = permutation5.txt, k = 2
+    java.util.NoSuchElementException: randomized queue underflow
+
+    RandomizedQueue.dequeue(RandomizedQueue.java:96)
+    Permutation.printStringsUniformlyAtRandom(Permutation.java:28)
+    Permutation.main(Permutation.java:35)
+    UtilCOS.execute(UtilCOS.java:139)
+    UtilCOS.execute(UtilCOS.java:126)
+    TestPermutation.checkRandomnessOfPermutation(TestPermutation.java:149)
+    TestPermutation.test5b(TestPermutation.java:279)
+    TestPermutation.main(TestPermutation.java:306)
+
+  * filename = permutation5.txt, k = 3
+    java.util.NoSuchElementException: randomized queue underflow
+
+    RandomizedQueue.dequeue(RandomizedQueue.java:96)
+    Permutation.printStringsUniformlyAtRandom(Permutation.java:28)
+    Permutation.main(Permutation.java:35)
+    UtilCOS.execute(UtilCOS.java:139)
+    UtilCOS.execute(UtilCOS.java:126)
+    TestPermutation.checkRandomnessOfPermutation(TestPermutation.java:149)
+    TestPermutation.test5b(TestPermutation.java:280)
+    TestPermutation.main(TestPermutation.java:306)
+
+  * filename = duplicates.txt, k = 3
+    java.util.NoSuchElementException: randomized queue underflow
+
+    RandomizedQueue.dequeue(RandomizedQueue.java:96)
+    Permutation.printStringsUniformlyAtRandom(Permutation.java:28)
+    Permutation.main(Permutation.java:35)
+    UtilCOS.execute(UtilCOS.java:139)
+    UtilCOS.execute(UtilCOS.java:126)
+    TestPermutation.checkRandomnessOfPermutation(TestPermutation.java:149)
+    TestPermutation.test5b(TestPermutation.java:281)
+    TestPermutation.main(TestPermutation.java:306)
+
+  * filename = permutation8.txt, k = 2
+    java.util.NoSuchElementException: randomized queue underflow
+
+    RandomizedQueue.dequeue(RandomizedQueue.java:96)
+    Permutation.printStringsUniformlyAtRandom(Permutation.java:28)
+    Permutation.main(Permutation.java:35)
+    UtilCOS.execute(UtilCOS.java:139)
+    UtilCOS.execute(UtilCOS.java:126)
+    TestPermutation.checkRandomnessOfPermutation(TestPermutation.java:149)
+    TestPermutation.test5b(TestPermutation.java:282)
+    TestPermutation.main(TestPermutation.java:306)
+
+==> FAILED
+
+Total: 1/9 tests passed!
+
+
+================================================================
+********************************************************************************
+*  MEMORY
+********************************************************************************
+
+Computing memory of Permutation
+*-----------------------------------------------------------
+Running 2 total tests.
+
+Test 1: Check that only one Deque or RandomizedQueue object is created
+  * filename = distinct.txt, n = 9, k = 1
+  * filename = distinct.txt, n = 9, k = 2
+    java.util.NoSuchElementException: randomized queue underflow
+
+    RandomizedQu
+
+...
+
+WARNING: the grading output was truncated due to excessive length.
+Typically, this is because you have a method that has an unanticipated side effect
+(such as printing to standard output or throwing an exception). A large amount of output
+can also arise from failing many tests.
