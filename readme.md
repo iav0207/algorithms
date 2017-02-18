@@ -17,3 +17,12 @@ The program solves a percolation problem and measures probability threshold for 
 via Monte Carlo simulation.
 A brief model description and simulation details can be seen at the page:
 http://coursera.cs.princeton.edu/algs4/assignments/percolation.html
+
+## Task two: Queues
+
+### Specification
+The code implements Deque and Randomized queue data structures.
+Also, there is an executable Permutation program, returning given strings
+in random order.
+A description can be seen at the page:
+http://coursera.cs.princeton.edu/algs4/assignments/queues.html
