@@ -30,9 +30,9 @@ public class ResizableArrayStack<Item> implements Stack<Item> {
     @Override
     public Item pop() {
         if (isEmpty()) return null;
-        if (needToCompress()) compress();
         Item itemToRemove = s[--n];
         s[n + 1] = null;
+        if (needToCompress()) compress();
         return itemToRemove;
     }
 
