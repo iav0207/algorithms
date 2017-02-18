@@ -60,9 +60,8 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
         verifyNotEmpty();
         int i = randomIndex();
         Item itemToDequeue = s[i];
-        s[i] = s[tail];
-        s[tail] = null;
-        tail--;
+        s[i] = s[--tail];
+        s[tail + 1] = null;
         if(needToCompress()) compress();
         return itemToDequeue;
     }

@@ -4,12 +4,15 @@ import org.testng.annotations.Test;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
+import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.IntStream;
 
 import static edu.princeton.cs.algs4.StdStats.mean;
 import static edu.princeton.cs.algs4.StdStats.stddev;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertFalse;
+import static org.testng.Assert.assertNotNull;
 import static org.testng.Assert.assertTrue;
 import static ru.iav.std.algorithms.util.PerformanceTester.measureAverageExecutionTime;
 
@@ -17,6 +20,8 @@ import static ru.iav.std.algorithms.util.PerformanceTester.measureAverageExecuti
  * Created by takoe on 18.02.17.
  */
 public class RandomizedQueueTest {
+
+    private Random random = ThreadLocalRandom.current();
 
     @Test(expectedExceptions = NullPointerException.class)
     public void shouldThrowNpeIfClientAddsNullItem() {
@@ -51,6 +56,17 @@ public class RandomizedQueueTest {
             assertTrue(false);
         }
         iterator.next();
+    }
+
+    @Test(expectedExceptions = NoSuchElementException.class)
+    public void shouldNotReturnNull() {
+        RandomizedQueue<Integer> queue = new RandomizedQueue<>();
+        for (int i = 0; i < 5; i++) {
+            queue.enqueue(i);
+        }
+        for (int i = 0; i < 20; i++) {
+            assertNotNull(random.nextBoolean() ? queue.dequeue() : queue.sample(), String.format("\ni = %d\n", i));
+        }
     }
 
     @Test
