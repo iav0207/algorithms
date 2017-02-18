@@ -98,6 +98,8 @@ public class DequeTest {
 
     @Test
     public void testSize() {
+        assertEquals(generateDeque().size(), 100);
+
         Deque<Integer> deque = new Deque<>();
         assertEquals(deque.size(), 0);
         deque.addLast(1);
@@ -106,7 +108,10 @@ public class DequeTest {
         deque.removeFirst();
         assertEquals(deque.size(), 2);
 
-        assertEquals(generateDeque().size(), 100);
+        deque.addFirst(1);
+        deque.addLast(18);
+        deque.removeLast();
+        assertEquals(deque.size(), 3);
     }
 
     private Deque<Integer> generateDeque() {

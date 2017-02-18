@@ -98,7 +98,11 @@ public class Deque<Item> implements Iterable<Item> {
         Item itemToRemove = first.item;
         if (last.prev == first) last.prev = null;
         first = first.next;
-        if (first == null) last = null;
+        if (first == null) {
+            last = null;
+        } else {
+            first.prev = null;
+        }
         return itemToRemove;
     }
 
@@ -111,7 +115,11 @@ public class Deque<Item> implements Iterable<Item> {
         Item itemToRemove = last.item;
         if (first.next == last) first.next = null;
         last = last.prev;
-        if (last == null) first = null;
+        if (last == null) {
+            first = null;
+        } else {
+            last.next = null;
+        }
         return itemToRemove;
     }
 
