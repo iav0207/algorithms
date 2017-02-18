@@ -19,7 +19,7 @@ import static org.testng.Assert.assertTrue;
 public class DequeTest {
 
     @Test(expectedExceptions = NullPointerException.class)
-    public void shouldThrowMpeIfClientAddsNullItemFirst() {
+    public void shouldThrowNpeIfClientAddsNullItemFirst() {
         new Deque<Integer>().addFirst(null);
     }
 
