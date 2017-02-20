@@ -19,10 +19,23 @@ public abstract class SortTest {
 
     private static Random random = ThreadLocalRandom.current();
 
+    private static final int invocations = 1;
+
+    private static final int items = 10_000;
+
     protected abstract Sort sort();
 
-    @Test(dataProvider = "random")
-    public void shouldSort(List<Integer> list, Object ignore) throws Exception {
+    @Test(dataProvider = "random", invocationCount = invocations)
+    public void shouldSortRandomInput(List<Comparable<?>> list, Object ignore) throws Exception {
+        assertSorted(list);
+    }
+
+    @Test(dataProvider = "sorted", invocationCount = invocations)
+    public void shouldSortSortedInput(List<Comparable<?>> list, Object ignore) throws Exception {
+        assertSorted(list);
+    }
+
+    private void assertSorted(List<Comparable<?>> list) {
         Comparable[] a = list.toArray(new Comparable[list.size()]);
         sort().sort(a);
         assertTrue(isSorted(a));
@@ -39,10 +52,21 @@ public abstract class SortTest {
 
     @DataProvider(name = "random")
     public static Object[][] random() {
+        return new Object[][]{
+                {
+                        random.ints(items)
+                                .boxed()
+                                .collect(Collectors.toList()),
+                        null
+                }
+        };
+    }
+
+    @DataProvider(name = "sorted")
+    public static Object[][] sorted() {
         return new Object[][] {
                 {
-                        IntStream.generate(() -> random.nextInt())
-                                .limit(1000)
+                        IntStream.range(0, items)
                                 .boxed()
                                 .collect(Collectors.toList()),
                         null

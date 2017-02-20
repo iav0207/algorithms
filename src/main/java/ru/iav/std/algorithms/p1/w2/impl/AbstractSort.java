@@ -5,7 +5,7 @@ import ru.iav.std.algorithms.p1.w2.Sort;
 /**
  * Created by takoe on 20.02.17.
  */
-abstract class AbstractSort  implements Sort {
+public abstract class AbstractSort  implements Sort {
 
     @Override
     public void sort(Comparable[] a) {
@@ -15,11 +15,13 @@ abstract class AbstractSort  implements Sort {
 
     protected abstract void executeSorting(Comparable[] a);
 
-    boolean less(Comparable first, Comparable second) {
+    protected boolean less(Comparable first, Comparable second) {
+        if (first == null) return false;
+        if (second == null) return true;
         return first.compareTo(second) < 0;
     }
 
-    void swap(Object[] a, int i, int j) {
+    protected void swap(Object[] a, int i, int j) {
         Object swap = a[i];
         a[i] = a[j];
         a[j] = swap;
