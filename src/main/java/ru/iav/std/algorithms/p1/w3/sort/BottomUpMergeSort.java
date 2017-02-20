@@ -8,7 +8,7 @@ import static java.lang.Math.min;
 public class BottomUpMergeSort extends MergeSort {
 
     @Override
-    public void executeSorting(Comparable[] a) {
+    protected void executeSorting(Comparable[] a) {
         int n = a.length;
         Comparable[] aux = new Comparable[n];
         for (int size = 1; size < n - 1; size *= 2) {

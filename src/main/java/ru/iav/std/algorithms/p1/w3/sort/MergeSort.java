@@ -8,7 +8,7 @@ import ru.iav.std.algorithms.p1.w2.sort.AbstractSort;
 public class MergeSort extends AbstractSort {
 
     @Override
-    public void executeSorting(Comparable[] a) {
+    protected void executeSorting(Comparable[] a) {
         Comparable[] aux = new Comparable[a.length];
         sort(a, aux, 0, a.length - 1);
     }
@@ -21,7 +21,7 @@ public class MergeSort extends AbstractSort {
         merge(a, aux, lo, mid, hi);
     }
 
-    protected void merge(Comparable[] a, Comparable[] aux, int lo, int mid, int hi) {
+    void merge(Comparable[] a, Comparable[] aux, int lo, int mid, int hi) {
         System.arraycopy(a, lo, aux, lo, hi + 1 - lo);
         int i = lo;
         int j = mid + 1;
