@@ -21,7 +21,7 @@ public class MergeSort extends AbstractSort {
         merge(a, aux, lo, mid, hi);
     }
 
-    private void merge(Comparable[] a, Comparable[] aux, int lo, int mid, int hi) {
+    protected void merge(Comparable[] a, Comparable[] aux, int lo, int mid, int hi) {
         System.arraycopy(a, lo, aux, lo, hi + 1 - lo);
         int i = lo;
         int j = mid + 1;
