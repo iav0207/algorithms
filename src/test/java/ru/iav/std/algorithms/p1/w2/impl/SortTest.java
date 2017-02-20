@@ -21,7 +21,7 @@ public abstract class SortTest {
 
     protected abstract Sort sort();
 
-    @Test(dataProvider = "sortData")
+    @Test(dataProvider = "random")
     public void shouldSort(List<Integer> list, Object ignore) throws Exception {
         Comparable[] a = list.toArray(new Comparable[list.size()]);
         sort().sort(a);
@@ -37,8 +37,8 @@ public abstract class SortTest {
         return true;
     }
 
-    @DataProvider(name = "sortData")
-    public static Object[][] sortData() {
+    @DataProvider(name = "random")
+    public static Object[][] random() {
         return new Object[][] {
                 {
                         IntStream.generate(() -> random.nextInt())
