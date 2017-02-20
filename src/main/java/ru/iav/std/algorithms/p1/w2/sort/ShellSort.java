@@ -1,4 +1,4 @@
-package ru.iav.std.algorithms.p1.w2.impl;
+package ru.iav.std.algorithms.p1.w2.sort;
 
 /**
  * Created by takoe on 20.02.17.

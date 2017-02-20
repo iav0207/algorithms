@@ -1,4 +1,4 @@
-package ru.iav.std.algorithms.p1.w2.impl;
+package ru.iav.std.algorithms.p1.w2.stack;
 
 import org.testng.annotations.Test;
 import ru.iav.std.algorithms.p1.w2.Stack;

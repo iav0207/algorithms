@@ -1,4 +1,4 @@
-package ru.iav.std.algorithms.p1.w3;
+package ru.iav.std.algorithms.p1.w3.sort;
 
 import static java.lang.Math.min;
 

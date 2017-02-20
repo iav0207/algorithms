@@ -1,6 +1,6 @@
-package ru.iav.std.algorithms.p1.w3;
+package ru.iav.std.algorithms.p1.w3.sort;
 
-import ru.iav.std.algorithms.p1.w2.impl.AbstractSort;
+import ru.iav.std.algorithms.p1.w2.sort.AbstractSort;
 
 /**
  * Created by takoe on 20.02.17.
