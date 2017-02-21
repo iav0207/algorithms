@@ -1,20 +1,25 @@
-package ru.iav.std.algorithms.p1.w3.task; /******************************************************************************
+package ru.iav.std.algorithms.p1.w3.task;
+
+import edu.princeton.cs.algs4.StdDraw;
+
+import java.util.Comparator;
+
+/******************************************************************************
  *  Compilation:  javac ru.iav.std.algorithms.p1.w3.task.Point.java
  *  Execution:    java ru.iav.std.algorithms.p1.w3.task.Point
  *  Dependencies: none
- *  
+ *
  *  An immutable data type for points in the plane.
  *  For use on Coursera, Algorithms Part I programming assignment.
  *
  ******************************************************************************/
 
-import java.util.Comparator;
-import edu.princeton.cs.algs4.StdDraw;
-
 public class Point implements Comparable<Point> {
 
     private final int x;     // x-coordinate of this point
     private final int y;     // y-coordinate of this point
+
+    private final Comparator<Point> bySlopeComparator = new BySlopePointComparator();
 
     /**
      * Initializes a new point.
@@ -59,7 +64,16 @@ public class Point implements Comparable<Point> {
      * @return the slope between this point and the specified point
      */
     public double slopeTo(Point that) {
-        /* YOUR CODE HERE */
+        double yOffset = toDouble(that.y - this.y);
+        double xOffset = toDouble(that.x - this.x);
+        if (xOffset == 0 && yOffset == 0)   return Double.NEGATIVE_INFINITY;
+        if (yOffset == 0)                   return 0;
+        if (xOffset == 0)                   return Double.POSITIVE_INFINITY;
+        return yOffset / xOffset;
+    }
+
+    private static double toDouble(int value) {
+        return (double) value;
     }
 
     /**
@@ -75,7 +89,8 @@ public class Point implements Comparable<Point> {
      *         argument point
      */
     public int compareTo(Point that) {
-        /* YOUR CODE HERE */
+        int yCompare = Integer.compare(this.y, that.y);
+        return yCompare == 0 ? Integer.compare(this.x, that.x) : yCompare;
     }
 
     /**
@@ -85,9 +100,15 @@ public class Point implements Comparable<Point> {
      * @return the Comparator that defines this ordering on points
      */
     public Comparator<Point> slopeOrder() {
-        /* YOUR CODE HERE */
+        return bySlopeComparator;
     }
 
+    private class BySlopePointComparator implements Comparator<Point> {
+        @Override
+        public int compare(Point first, Point second) {
+            return Double.compare(slopeTo(first), slopeTo(second));
+        }
+    }
 
     /**
      * Returns a string representation of this point.
