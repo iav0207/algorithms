@@ -1,4 +1,13 @@
-package ru.iav.std.algorithms.p1.w1.task; /******************************************************************************
+package ru.iav.std.algorithms.p1.w1.task;
+
+import edu.princeton.cs.algs4.In;
+import edu.princeton.cs.algs4.StdDraw;
+
+import java.awt.*;
+import java.net.URL;
+import java.util.Objects;
+
+/******************************************************************************
  *  Compilation:  javac PercolationVisualizer.java
  *  Execution:    java PercolationVisualizer input.txt
  *  Dependencies: Percolation.java
@@ -15,13 +24,6 @@ package ru.iav.std.algorithms.p1.w1.task; /*************************************
  *  with with site (1, 1) in the upper left-hand corner.
  *
  ******************************************************************************/
-
-import edu.princeton.cs.algs4.In;
-import edu.princeton.cs.algs4.StdDraw;
-
-import java.awt.*;
-import java.net.URL;
-import java.util.Objects;
 
 public class PercolationVisualizer {
 
