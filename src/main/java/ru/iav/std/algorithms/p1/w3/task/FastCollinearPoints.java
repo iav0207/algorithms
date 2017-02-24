@@ -43,13 +43,18 @@ public class FastCollinearPoints {
             Arrays.sort(aux, p.slopeOrder());
             int i = 1;      // beginning with i = 1 because aux[i = 0] is always p itself
             int j = i + 1;
+            Double slopeI = (i < n) ? slope(p, i) : 0;
+            Double slopeJ = (j < n) ? slope(p, j) : 0;
+
             while (i < n - 2 && j < n) {
-                if (slope(p, j) != slope(p, i)) {
+                if (!slopeJ.equals(slopeI)) {
                     if (enoughPoints(i, j))
                         lazyLineSegments.add(newLazy(p, i, j));
                     i = j;
+                    slopeI = slopeJ;
                 }
                 j++;
+                if (j < n) slopeJ = slope(p, j);
             }
             assert j == n || i == max(1, n - 2);
             if (enoughPoints(i, j))
@@ -58,9 +63,9 @@ public class FastCollinearPoints {
         return mapToArray(lazyLineSegments);
     }
 
-    private double slope(Point p, int i) {
-        double slope = p.slopeTo(aux[i]);
-        if (slope == Double.NEGATIVE_INFINITY)
+    private Double slope(Point p, int i) {
+        Double slope = p.slopeTo(aux[i]);
+        if (slope.equals(Double.NEGATIVE_INFINITY))
             throw new IllegalArgumentException("There must be no duplicate points.");
         return slope;
     }
@@ -115,8 +120,8 @@ public class FastCollinearPoints {
         }
         @Override
         public int compareTo(LazyLineSegment that) {
-            int slopes = Double.compare(this.slope(), that.slope());
-            if (slopes != 0) return slopes;
+            int slopesDelta = Double.compare(this.slope(), that.slope());
+            if (slopesDelta != 0) return slopesDelta;
             if (isTheSameLine(that)) return 0;
             return this.min.compareTo(that.min);
         }
@@ -124,9 +129,9 @@ public class FastCollinearPoints {
             return isOnThisLine(that.min) && isOnThisLine(that.max);
         }
         private boolean isOnThisLine(Point p) {
-            double slopeMinToP = min.slopeTo(p);
-            return slopeMinToP == slope()
-                    || slopeMinToP == Double.NEGATIVE_INFINITY;
+            Double slopeMinToP = min.slopeTo(p);
+            return slopeMinToP.equals(slope())
+                    || slopeMinToP.equals(Double.NEGATIVE_INFINITY);
         }
         private double slope() {
             return min.slopeTo(max);
