@@ -9,7 +9,7 @@ public class CollinearPointsDrawerTest {
 
     @Test
     public void test() {
-        String inputFileName = "input300.txt";
+        String inputFileName = "input48.txt";
 
         run(inputFileName);
     }

@@ -37,11 +37,18 @@ public class CollinearPointsDrawer {
         StdDraw.show();
 
         // print and draw the line segments
+        StdOut.println("\nBRUTE\n========================");
         BruteCollinearPoints collinear = new BruteCollinearPoints(points);
         for (LineSegment segment : collinear.segments()) {
             StdOut.println(segment);
             segment.draw();
         }
+        StdOut.println("\nFAST\n========================");
+        FastCollinearPoints fastCollinear = new FastCollinearPoints(points);
+        for (LineSegment segment : fastCollinear.segments()) {
+            StdOut.println(segment);
+        }
+
         StdDraw.show();
     }
 

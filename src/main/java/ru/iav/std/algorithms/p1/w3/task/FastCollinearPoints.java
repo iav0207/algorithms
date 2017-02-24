@@ -27,10 +27,13 @@ public class FastCollinearPoints {
      */
     public FastCollinearPoints(Point[] points) {
         validate(points);
-        this.points = points;
-        aux = new Point[points.length];
-        System.arraycopy(points, 0, aux, 0, points.length);
+        this.points = defensiveCopy(points);
+        aux = defensiveCopy(points);
         segments = findDistinctSegments();
+    }
+
+    private static <T> T[] defensiveCopy(T[] array) {
+        return Arrays.copyOf(array, array.length);
     }
 
     private LineSegment[] findDistinctSegments() {
@@ -96,41 +99,37 @@ public class FastCollinearPoints {
      * The line segments
      */
     public LineSegment[] segments() {
-        return segments;
+        return defensiveCopy(segments);
     }
 
     private static class LazyLineSegment implements Comparable<LazyLineSegment> {
-        private SortedSet<Point> points;
+        private Point min, max;
         LazyLineSegment(Point p, Point... points) {
-            this.points = new TreeSet<>(Arrays.asList(points));
-            this.points.add(p);
+            SortedSet<Point> set = new TreeSet<>(Arrays.asList(points));
+            set.add(p);
+            min = set.first();
+            max = set.last();
         }
         LineSegment create() {
-            return new LineSegment(min(), max());
-        }
-        private Point min() {
-            return points.first();
-        }
-        private Point max() {
-            return points.last();
+            return new LineSegment(min, max);
         }
         @Override
         public int compareTo(LazyLineSegment that) {
             int slopes = Double.compare(this.slope(), that.slope());
             if (slopes != 0) return slopes;
             if (isTheSameLine(that)) return 0;
-            return this.min().compareTo(that.min());
+            return this.min.compareTo(that.min);
         }
         private boolean isTheSameLine(LazyLineSegment that) {
-            return isOnThisLine(that.min()) && isOnThisLine(that.max());
+            return isOnThisLine(that.min) && isOnThisLine(that.max);
         }
         private boolean isOnThisLine(Point p) {
-            double slopeMinToP = min().slopeTo(p);
+            double slopeMinToP = min.slopeTo(p);
             return slopeMinToP == slope()
                     || slopeMinToP == Double.NEGATIVE_INFINITY;
         }
         private double slope() {
-            return min().slopeTo(max());
+            return min.slopeTo(max);
         }
     }
 

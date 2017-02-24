@@ -14,7 +14,7 @@ import java.util.Objects;
  */
 public class BruteCollinearPoints {
 
-    private LineSegment[] segments = new LineSegment[] {};
+    private LineSegment[] segments;
 
     private Point[] points;
 
@@ -23,23 +23,28 @@ public class BruteCollinearPoints {
      */
     public BruteCollinearPoints(Point[] points) {
         validate(points);
-        this.points = points;
+        this.points = defensiveCopy(points);
         segments = findDistinctSegments();
+    }
+
+    private static <T> T[] defensiveCopy(T[] array) {
+        return Arrays.copyOf(array, array.length);
     }
 
     private LineSegment[] findDistinctSegments() {
         int n = points.length;
         List<LineSegment> segmentList = new LinkedList<>();
         List<Integer> excluded = new LinkedList<>();
-        OUTER: for (int p = 0; p < n - 3; p++) {
-            for (int q = p + 1; q < n - 2; q++) {
+        for (int p = 0; p < n - 3; p++) {
+            OUTER: for (int q = p + 1; q < n - 2; q++) {
                 double pqSlope = slope(p, q);
                 for (int r = q + 1; r < n - 1; r++) {
                     double prSlope = slope(p, r);
-//                    if (areEqual(pqSlope, prSlope) && !containsAny(excluded, p, q, r)) {
+//                    if (areEqual(pqSlope, prSlope) && !containsAtLeastTwo(excluded, p, q, r)) {
                     for (int s = r + 1; s < n; s++) {
                         double psSlope = slope(p, s);
-                        if (areEqual(pqSlope, prSlope, psSlope) && !containsAny(excluded, p, q, r, s)) {
+                        if (areEqual(pqSlope, prSlope, psSlope)
+                                && !containsAtLeastTwo(excluded, p, q, r, s)) {
                             segmentList.add(createLineSegment(p, q, r, s));
                             excluded.addAll(Arrays.asList(p, q, r, s));
                             continue OUTER;
@@ -52,11 +57,11 @@ public class BruteCollinearPoints {
         return segmentList.toArray(new LineSegment[segmentList.size()]);
     }
 
-    private boolean containsAny(List<Integer> list, int... ints) {
-        for (int value : ints) {
-            if (list.contains(value)) return true;
-        }
-        return false;
+    private boolean containsAtLeastTwo(List<Integer> list, int... ints) {
+        int count = 0;
+        for (int i : ints)
+            count += list.contains(i) ? 1 : 0;
+        return count > 1;
     }
 
     private double slope(int p, int q) {
@@ -105,7 +110,7 @@ public class BruteCollinearPoints {
      * The line segments
      */
     public LineSegment[] segments() {
-        return segments;
+        return defensiveCopy(segments);
     }
 
 }
