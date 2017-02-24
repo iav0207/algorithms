@@ -65,8 +65,8 @@ public class BruteCollinearPoints {
     }
 
     private double slope(int p, int q) {
-        Double slope = points[p].slopeTo(points[q]);
-        if (slope.equals(Double.NEGATIVE_INFINITY)) {
+        double slope = points[p].slopeTo(points[q]);
+        if (slope == Double.NEGATIVE_INFINITY) {
             throw new IllegalArgumentException("There must be no duplicate points.");
         }
         return slope;

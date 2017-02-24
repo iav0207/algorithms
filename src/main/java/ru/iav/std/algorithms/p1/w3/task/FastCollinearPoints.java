@@ -43,11 +43,11 @@ public class FastCollinearPoints {
             Arrays.sort(aux, p.slopeOrder());
             int i = 1;      // beginning with i = 1 because aux[i = 0] is always p itself
             int j = i + 1;
-            Double slopeI = (i < n) ? slope(p, i) : 0;
-            Double slopeJ = (j < n) ? slope(p, j) : 0;
+            double slopeI = (i < n) ? slope(p, i) : 0;
+            double slopeJ = (j < n) ? slope(p, j) : 0;
 
             while (i < n - 2 && j < n) {
-                if (!slopeJ.equals(slopeI)) {
+                if (!areEqual(slopeI, slopeJ)) {
                     if (enoughPoints(i, j))
                         lazyLineSegments.add(newLazy(p, i, j));
                     i = j;
@@ -63,9 +63,9 @@ public class FastCollinearPoints {
         return mapToArray(lazyLineSegments);
     }
 
-    private Double slope(Point p, int i) {
-        Double slope = p.slopeTo(aux[i]);
-        if (slope.equals(Double.NEGATIVE_INFINITY))
+    private double slope(Point p, int i) {
+        double slope = p.slopeTo(aux[i]);
+        if (slope == Double.NEGATIVE_INFINITY)
             throw new IllegalArgumentException("There must be no duplicate points.");
         return slope;
     }
@@ -129,13 +129,17 @@ public class FastCollinearPoints {
             return isOnThisLine(that.min) && isOnThisLine(that.max);
         }
         private boolean isOnThisLine(Point p) {
-            Double slopeMinToP = min.slopeTo(p);
-            return slopeMinToP.equals(slope())
-                    || slopeMinToP.equals(Double.NEGATIVE_INFINITY);
+            double slopeMinToP = min.slopeTo(p);
+            return areEqual(slopeMinToP, slope())
+                    || slopeMinToP == Double.NEGATIVE_INFINITY;
         }
         private double slope() {
             return min.slopeTo(max);
         }
+    }
+
+    private static boolean areEqual(double first, double second) {
+        return Double.compare(first, second) == 0;
     }
 
 }
