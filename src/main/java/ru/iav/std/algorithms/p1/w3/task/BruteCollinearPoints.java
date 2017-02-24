@@ -24,6 +24,10 @@ public class BruteCollinearPoints {
     public BruteCollinearPoints(Point[] points) {
         validate(points);
         this.points = points;
+        segments = findDistinctSegments();
+    }
+
+    private LineSegment[] findDistinctSegments() {
         int n = points.length;
         List<LineSegment> segmentList = new LinkedList<>();
         List<Integer> excluded = new LinkedList<>();
@@ -33,19 +37,19 @@ public class BruteCollinearPoints {
                 for (int r = q + 1; r < n - 1; r++) {
                     double prSlope = slope(p, r);
 //                    if (areEqual(pqSlope, prSlope) && !containsAny(excluded, p, q, r)) {
-                        for (int s = r + 1; s < n; s++) {
-                            double psSlope = slope(p, s);
-                            if (areEqual(pqSlope, prSlope, psSlope) && !containsAny(excluded, p, q, r, s)) {
-                                segmentList.add(createLineSegment(p, q, r, s));
-                                excluded.addAll(Arrays.asList(p, q, r, s));
-                                continue OUTER;
-                            }
+                    for (int s = r + 1; s < n; s++) {
+                        double psSlope = slope(p, s);
+                        if (areEqual(pqSlope, prSlope, psSlope) && !containsAny(excluded, p, q, r, s)) {
+                            segmentList.add(createLineSegment(p, q, r, s));
+                            excluded.addAll(Arrays.asList(p, q, r, s));
+                            continue OUTER;
                         }
+                    }
 //                    }
                 }
             }
         }
-        segments = segmentList.toArray(new LineSegment[segmentList.size()]);
+        return segmentList.toArray(new LineSegment[segmentList.size()]);
     }
 
     private boolean containsAny(List<Integer> list, int... ints) {

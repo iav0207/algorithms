@@ -6,34 +6,34 @@ import static org.testng.Assert.assertEquals;
 import static ru.iav.std.algorithms.p1.w3.task.CollinearPointsTestData.randomPoint;
 
 /**
- * Created by takoe on 21.02.17.
+ * Created by takoe on 22.02.17.
  */
-public class BruteCollinearPointsTest {
+public class FastCollinearPointsTest {
 
     @Test(expectedExceptions = NullPointerException.class)
     public void shouldThrowNpeIfConstructorArgumentIsNull() {
-        new BruteCollinearPoints(null);
+        new FastCollinearPoints(null);
     }
 
     @Test(expectedExceptions = NullPointerException.class)
     public void shouldThrowNpeIfConstructorArgumentContainsNull() {
-        new BruteCollinearPoints(new Point[] {randomPoint(), randomPoint(), null, randomPoint()});
+        new FastCollinearPoints(new Point[] {randomPoint(), randomPoint(), null, randomPoint()});
     }
 
     @Test(expectedExceptions = IllegalArgumentException.class)
     public void shouldThrowIllegalArgumentExceptionIfConstructorArgumentContainsRepeatedPoint() {
         Point[] points = new Point[] {randomPoint(), new Point(3, 6), randomPoint(), randomPoint(), new Point(3, 6)};
-        new BruteCollinearPoints(points);
+        new FastCollinearPoints(points);
     }
 
     @Test
     public void shouldConstructorBeSilentIfEverythingIsOk() {
-        new BruteCollinearPoints(new Point[] {randomPoint()});
+        new FastCollinearPoints(new Point[] {randomPoint()});
     }
 
     @Test(dataProvider = "inputs", dataProviderClass = CollinearPointsTestData.class)
     public void testSegmentsNum(Point[] given, int expectedSegmentsNum) {
-        assertEquals(new BruteCollinearPoints(given).numberOfSegments(), expectedSegmentsNum);
+        assertEquals(new FastCollinearPoints(given).numberOfSegments(), expectedSegmentsNum);
     }
 
 }
