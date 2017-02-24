@@ -14,7 +14,7 @@ public class QuickSort extends AbstractSort {
         sort(a, 0, a.length - 1);
     }
 
-    private void sort(Comparable[] a, int lo, int hi) {
+    protected void sort(Comparable[] a, int lo, int hi) {
         if (hi <= lo) return;
         int j = partition(a, lo, hi);
         sort(a, lo, j - 1);

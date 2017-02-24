@@ -21,6 +21,7 @@ public class SortTestData {
         return new Object[][]{
                 {
                         random.ints(items)
+//                                .map(i -> i % 1000)
                                 .boxed()
                                 .collect(Collectors.toList()),
                         null
