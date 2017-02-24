@@ -21,7 +21,7 @@ public class QuickSort extends AbstractSort {
         sort(a, j + 1, hi);
     }
 
-    private int partition(Comparable[] a, int lo, int hi) {
+    public int partition(Comparable[] a, int lo, int hi) {
         int i = lo;
         int j = hi + 1;
         while (true) {
