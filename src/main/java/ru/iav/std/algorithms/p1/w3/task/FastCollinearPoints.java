@@ -7,6 +7,8 @@ import java.util.Set;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
+import static java.lang.Math.max;
+
 /**
  *  Examines 4 points at a time and checks whether they all
  *  lie on the same line segment, returning all such line segments.
@@ -46,7 +48,7 @@ public class FastCollinearPoints {
                 }
                 j++;
             }
-            assert j == n;
+            assert j == n || i == max(1, n - 2);
             if (enoughPoints(i, j))
                 lazyLineSegments.add(newLazy(p, i, j));
         }

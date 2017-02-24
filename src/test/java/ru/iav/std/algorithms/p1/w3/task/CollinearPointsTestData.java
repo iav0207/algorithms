@@ -12,6 +12,33 @@ public class CollinearPointsTestData {
 
     private static Random random = ThreadLocalRandom.current();
 
+    @DataProvider(name = "containsNull")
+    public static Object[][] containsNull() {
+        return new Object[][]{
+                {new Point[]{
+                        randomPoint(),
+                        randomPoint(),
+                        null,
+                        randomPoint()
+                },
+                        null}
+        };
+    }
+
+    @DataProvider(name = "containsDuplicate")
+    public static Object[][] containsDuplicate() {
+        return new Object[][] {
+                {new Point[]{
+                        randomPoint(),
+                        new Point(3, 6),
+                        randomPoint(),
+                        randomPoint(),
+                        new Point(3, 6)
+                },
+                        null}
+        };
+    }
+
     @DataProvider(name = "inputs")
     public static Object[][] inputs() {
         return new Object[][] {
