@@ -27,13 +27,24 @@ public class CollinearPointsTestData {
 
     @DataProvider(name = "containsDuplicate")
     public static Object[][] containsDuplicate() {
-        return new Object[][] {
+        return new Object[][]{
                 {new Point[]{
                         randomPoint(),
                         new Point(3, 6),
                         randomPoint(),
                         randomPoint(),
                         new Point(3, 6)
+                },
+                        null},
+                {new Point[]{
+                        new Point(27336, 2045),
+                        new Point(25598, 39),
+                        new Point(27336, 2045)
+                },
+                        null},
+                {new Point[]{
+                        new Point(19179, 2641),
+                        new Point(19179, 2641)
                 },
                         null}
         };

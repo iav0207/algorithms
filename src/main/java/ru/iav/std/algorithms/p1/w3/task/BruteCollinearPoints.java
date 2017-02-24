@@ -1,9 +1,11 @@
 package ru.iav.std.algorithms.p1.w3.task;
 
 import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.Iterator;
 import java.util.Objects;
+import java.util.Set;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
 /**
  *  Examines 4 points at a time and checks whether they all
@@ -33,43 +35,44 @@ public class BruteCollinearPoints {
 
     private LineSegment[] findDistinctSegments() {
         int n = points.length;
-        List<LineSegment> segmentList = new LinkedList<>();
-        List<Integer> excluded = new LinkedList<>();
-        for (int p = 0; p < n - 3; p++) {
-            OUTER: for (int q = p + 1; q < n - 2; q++) {
+        SortedSet<LazyLineSegment> lazyLineSegments = new TreeSet<>();
+        for (int p = 0; p < n; p++) {
+            Q_LOOP: for (int q = p + 1; q < n; q++) {
                 double pqSlope = slope(p, q);
-                for (int r = q + 1; r < n - 1; r++) {
+                for (int r = q + 1; r < n; r++) {
                     double prSlope = slope(p, r);
-//                    if (areEqual(pqSlope, prSlope) && !containsAtLeastTwo(excluded, p, q, r)) {
+                    assertNotDuplicate(q, r);
                     for (int s = r + 1; s < n; s++) {
                         double psSlope = slope(p, s);
-                        if (areEqual(pqSlope, prSlope, psSlope)
-                                && !containsAtLeastTwo(excluded, p, q, r, s)) {
-                            segmentList.add(createLineSegment(p, q, r, s));
-                            excluded.addAll(Arrays.asList(p, q, r, s));
-                            continue OUTER;
+                        assertNotDuplicate(q, s);
+                        assertNotDuplicate(r, s);
+                        if (areEqual(pqSlope, prSlope, psSlope)) {
+                            lazyLineSegments.add(new LazyLineSegment(
+                                    points[p], points[q], points[r], points[s]));
+                            continue Q_LOOP; // assuming that input does not contain line segments of 5 or more points
                         }
                     }
-//                    }
                 }
             }
         }
-        return segmentList.toArray(new LineSegment[segmentList.size()]);
-    }
-
-    private boolean containsAtLeastTwo(List<Integer> list, int... ints) {
-        int count = 0;
-        for (int i : ints)
-            count += list.contains(i) ? 1 : 0;
-        return count > 1;
+        return mapToArray(lazyLineSegments);
     }
 
     private double slope(int p, int q) {
         double slope = points[p].slopeTo(points[q]);
         if (slope == Double.NEGATIVE_INFINITY) {
-            throw new IllegalArgumentException("There must be no duplicate points.");
+            throw duplicityException();
         }
         return slope;
+    }
+
+    private void assertNotDuplicate(int p, int q) {
+        if (points[p].slopeTo(points[q]) == Double.NEGATIVE_INFINITY)
+            throw duplicityException();
+    }
+
+    private static IllegalArgumentException duplicityException() {
+        return new IllegalArgumentException("There must be no duplicate points.");
     }
 
     private static boolean areEqual(double slopeOne, double slopeTwo, double... other) {
@@ -79,18 +82,13 @@ public class BruteCollinearPoints {
         return equal;
     }
 
-    private LineSegment createLineSegment(int... ids) {
-        int min = ids[0];
-        int max = min;
-        for (int i : ids) {
-            if (less(i, min)) min = i;
-            if (less(max, i)) max = i;
-        }
-        return new LineSegment(points[min], points[max]);
-    }
-
-    private boolean less(int i, int j) {
-        return points[i].compareTo(points[j]) < 0;
+    private static LineSegment[] mapToArray(Set<LazyLineSegment> set) {
+        LineSegment[] array = new LineSegment[set.size()];
+        Iterator<LazyLineSegment> iterator = set.iterator();
+        int i = 0;
+        while (iterator.hasNext())
+            array[i++] = iterator.next().create();
+        return array;
     }
 
     private static void validate(Point[] points) {
@@ -111,6 +109,46 @@ public class BruteCollinearPoints {
      */
     public LineSegment[] segments() {
         return defensiveCopy(segments);
+    }
+
+    private static class LazyLineSegment implements Comparable<LazyLineSegment> {
+        private Point min, max;
+
+        LazyLineSegment(Point... points) {
+            SortedSet<Point> set = new TreeSet<>(Arrays.asList(points));
+            min = set.first();
+            max = set.last();
+        }
+
+        LineSegment create() {
+            return new LineSegment(min, max);
+        }
+
+        @Override
+        public int compareTo(LazyLineSegment that) {
+            int slopesDelta = Double.compare(this.slope(), that.slope());
+            if (slopesDelta != 0) return slopesDelta;
+            if (isTheSameLine(that)) return 0;
+            return this.min.compareTo(that.min);
+        }
+
+        private boolean isTheSameLine(LazyLineSegment that) {
+            return isOnThisLine(that.min) && isOnThisLine(that.max);
+        }
+
+        private boolean isOnThisLine(Point p) {
+            double slopeMinToP = min.slopeTo(p);
+            return areEqual(slopeMinToP, slope())
+                    || slopeMinToP == Double.NEGATIVE_INFINITY;
+        }
+
+        private double slope() {
+            return min.slopeTo(max);
+        }
+    }
+
+    private static boolean areEqual(double first, double second) {
+        return Double.compare(first, second) == 0;
     }
 
 }
