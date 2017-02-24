@@ -26,3 +26,12 @@ Also, there is an executable Permutation program, returning given strings
 in random order.
 A description can be seen at the page:
 http://coursera.cs.princeton.edu/algs4/assignments/queues.html
+
+## Task three: Collinear points
+
+### Specification
+The program recognizes line patterns in a given set of points, e.g. given a set of _n_ distinct
+points in the plane, the algorithm finds every (maximal) line segment that connects a subset
+of 4 or more of the points.
+For mode detail description refer to
+http://coursera.cs.princeton.edu/algs4/assignments/collinear.html
