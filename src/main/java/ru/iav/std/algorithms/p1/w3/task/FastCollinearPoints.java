@@ -40,22 +40,17 @@ public class FastCollinearPoints {
             int j = i + 1;
             while (i < n - 2 && j < n) {
                 if (slope(p, j) != slope(p, i)) {
-                    if (enoughPoints(i, j)) {
-                        lazyLineSegments.add(new LazyLineSegment(p, Arrays.copyOfRange(aux, i, j)));
-                    }
+                    if (enoughPoints(i, j))
+                        lazyLineSegments.add(newLazy(p, i, j));
                     i = j;
                 }
                 j++;
             }
-            // j == n
+            assert j == n;
             if (enoughPoints(i, j))
-                lazyLineSegments.add(new LazyLineSegment(p, Arrays.copyOfRange(aux, i, j)));
+                lazyLineSegments.add(newLazy(p, i, j));
         }
         return mapToArray(lazyLineSegments);
-    }
-
-    private boolean enoughPoints(int i, int j) {
-        return j - i > 2;
     }
 
     private double slope(Point p, int i) {
@@ -63,6 +58,14 @@ public class FastCollinearPoints {
         if (slope == Double.NEGATIVE_INFINITY)
             throw new IllegalArgumentException("There must be no duplicate points.");
         return slope;
+    }
+
+    private boolean enoughPoints(int i, int j) {
+        return j - i > 2;
+    }
+
+    private LazyLineSegment newLazy(Point p, int i, int j) {
+        return new LazyLineSegment(p, Arrays.copyOfRange(aux, i, j));
     }
 
     private LineSegment[] mapToArray(Set<LazyLineSegment> set) {
