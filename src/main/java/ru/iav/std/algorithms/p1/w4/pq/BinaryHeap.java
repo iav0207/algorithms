@@ -1,42 +1,64 @@
 package ru.iav.std.algorithms.p1.w4.pq;
 
+import java.util.Arrays;
+
 /**
- * Created by takoe on 27.02.17.
+ * An implementation of max-priority queue data structure over a resizable array.
  */
 public class BinaryHeap<Key extends Comparable<Key>> implements MaxPQ<Key> {
 
-    private final Key[] a;
+    private static final int initialCapacity = 2;
+
+    private Key[] a;
 
     private int n;
 
     /**
-     *
-     * @param capacity
+     * Create a resizable array binary heap.
      */
-    @SuppressWarnings("unchecked")
-    public BinaryHeap(int capacity) {
-        if (capacity < 1) throw new IllegalArgumentException("Capacity must be positive.");
-        this.a = (Key[]) new Comparable[capacity + 1];
+    public BinaryHeap() {
+        this.a = initArray(initialCapacity);
     }
 
     /**
+     * Create a binary heap from an array of key elements.
+     * The heap then uses a defensive copy of a given array,
+     * which is, by the way, resizable.
      *
-     * @param key
+     * @param a array of comparable keys.
+     */
+    public BinaryHeap(Key[] a) {
+        this.a = Arrays.copyOf(a, a.length);
+    }
+
+    /**
+     * Store a new key in the heap, keeping the array heap-ordered.
+     * @param key an element to be added.
      */
     @Override
-    public void insert(Key key) {
-        if (n + 1 == a.length) throw new IllegalStateException("Capacity reached. The new element is not inserted.");
+    public void insert(Key key) throws IllegalStateException {
+        extendIfNeedTo();
         a[++n] = key;
         swim(n);
     }
 
+    /**
+     * Removes maximum key from the heap, rearranging the array
+     * to keep it heap-ordered.
+     * @return the maximum item currently in the heap.
+     * @throws IllegalStateException if the heap is empty.
+     */
     @Override
-    public Key deleteMax() {
-        if (isEmpty()) throw new IllegalStateException("The heap is empty. Nothing to delete.");
+    public Key deleteMax() throws IllegalStateException {
+        if (isEmpty())
+            throw new IllegalStateException("The heap is empty. Nothing to delete.");
+
         Key max = a[1];
         swap(1, n--);
         sink(1);
+
         a[n + 1] = null;
+        shrinkIfNeedTo();
         return max;
     }
 
@@ -88,6 +110,25 @@ public class BinaryHeap<Key extends Comparable<Key>> implements MaxPQ<Key> {
 
     private boolean less(int i, int j) {
         return a[i].compareTo(a[j]) < 0;
+    }
+
+    private void extendIfNeedTo() {
+        if (n + 1 >= a.length)
+            resize(a.length * 2);
+    }
+
+    private void shrinkIfNeedTo() {
+        if (n > 1 && n < a.length / 4)
+            resize(a.length / 2);
+    }
+
+    private void resize(int newCapacity) {
+        a = Arrays.copyOf(a, newCapacity + 1);
+    }
+
+    @SuppressWarnings("unchecked")
+    private Key[] initArray(int capacity) {
+        return (Key[]) new Comparable[capacity];
     }
 
 }
