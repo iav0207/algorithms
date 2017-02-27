@@ -80,26 +80,15 @@ public class BinaryHeap<Key extends Comparable<Key>> implements MaxPQ<Key> {
     }
 
     private void sink(int i) {
-        while (i <= n/2) {
-            int left = 2*i;
-            int right = 2*i + 1;
-            if (exists(right)) {
-                int maxChild = less(left, right) ? right : left;
-                if (less(i, maxChild)) {
-                    swap(i, maxChild);
-                    i = maxChild;
-                } else {
-                    break;
-                }
-            } else {
-                if (less(i, left))      swap(i, left);
-                i = left;
-            }
+        while (i <= n / 2) {
+            int j = 2 * i;
+            if (j < n && less(j, j+1))
+                j++;
+            if (!less(i, j))
+                break;
+            swap(i, j);
+            i = j;
         }
-    }
-
-    private boolean exists(int keyIndex) {
-        return keyIndex > 0 && keyIndex <= n;
     }
 
     private void swap(int i, int j) {

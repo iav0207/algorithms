@@ -21,9 +21,9 @@ public class BinaryHeapTest {
         new BinaryHeap<Integer>().deleteMax();
     }
 
-    @Test
+    @Test(invocationCount = 100)
     public void shouldReturnDescendingKeySequence() {
-        int n = 100;
+        int n = random.nextInt(100) + 1;
         MaxPQ<Integer> heap = new BinaryHeap<>();
         assertTrue(heap.isEmpty());
 
