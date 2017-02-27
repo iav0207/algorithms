@@ -1,6 +1,8 @@
 package ru.iav.std.algorithms.p1.w4.pq;
 
 import java.util.Arrays;
+import java.util.Objects;
+import java.util.stream.Stream;
 
 /**
  * An implementation of priority queue data structure over a resizable array.
@@ -26,9 +28,17 @@ abstract class BinaryHeap<Key extends Comparable<Key>> implements PriorityQueue<
      * which is, by the way, resizable.
      *
      * @param a array of comparable keys.
+     * @throws NullPointerException if argument is null or contains nulls.
      */
-    public BinaryHeap(Key[] a) {
-        this.a = Arrays.copyOf(a, a.length);
+    public BinaryHeap(Key[] a) throws NullPointerException {
+        validate(a);
+        this.a = initArray(a.length + 1);
+        Stream.of(a).forEach(this::insert);
+    }
+
+    private void validate(Key[] a) {
+        Objects.requireNonNull(a, "Input argument must be non-null.");
+        Stream.of(a).forEach(key -> Objects.requireNonNull(key, "Input array must not contain nulls."));
     }
 
     /**

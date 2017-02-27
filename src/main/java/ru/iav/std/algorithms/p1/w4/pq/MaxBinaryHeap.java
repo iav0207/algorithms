@@ -8,6 +8,20 @@ public class MaxBinaryHeap<Key extends Comparable<Key>>
         implements MaxPQ<Key> {
 
     /**
+     * {@inheritDoc}
+     */
+    public MaxBinaryHeap() {
+        super();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public MaxBinaryHeap(Key[] a) {
+        super(a);
+    }
+
+    /**
      * Removes maximum key from the heap, rearranging the array
      * to keep it heap-ordered.
      * @return the maximum item currently in the heap.

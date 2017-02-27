@@ -8,6 +8,20 @@ public class MinBinaryHeap<Key extends Comparable<Key>>
         implements MinPQ<Key> {
 
     /**
+     * {@inheritDoc}
+     */
+    public MinBinaryHeap() {
+        super();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public MinBinaryHeap(Key[] a) {
+        super(a);
+    }
+
+    /**
      * Removes minimum key from the heap, rearranging the array
      * to keep it heap-ordered.
      * @return the minimum item currently in the heap.

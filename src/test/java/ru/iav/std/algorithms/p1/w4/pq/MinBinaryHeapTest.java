@@ -13,6 +13,11 @@ public class MinBinaryHeapTest extends BinaryHeapTest {
     }
 
     @Override
+    BinaryHeap<Integer> initHeap(Integer[] array) {
+        return new MinBinaryHeap<>(array);
+    }
+
+    @Override
     void runDeletions(BinaryHeap<Integer> heap) {
         MinBinaryHeap<Integer> maxHeap = (MinBinaryHeap<Integer>) heap;
         Integer last = maxHeap.deleteMin();

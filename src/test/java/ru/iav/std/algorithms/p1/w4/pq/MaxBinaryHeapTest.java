@@ -13,6 +13,11 @@ public class MaxBinaryHeapTest extends BinaryHeapTest {
     }
 
     @Override
+    BinaryHeap<Integer> initHeap(Integer[] array) {
+        return new MaxBinaryHeap<>(array);
+    }
+
+    @Override
     void runDeletions(BinaryHeap<Integer> heap) {
         MaxBinaryHeap<Integer> maxHeap = (MaxBinaryHeap<Integer>) heap;
         Integer last = maxHeap.deleteMax();
