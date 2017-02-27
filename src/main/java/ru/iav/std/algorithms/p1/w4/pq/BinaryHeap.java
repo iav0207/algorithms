@@ -3,9 +3,9 @@ package ru.iav.std.algorithms.p1.w4.pq;
 import java.util.Arrays;
 
 /**
- * An implementation of max-priority queue data structure over a resizable array.
+ * An implementation of priority queue data structure over a resizable array.
  */
-public class BinaryHeap<Key extends Comparable<Key>> implements MaxPQ<Key> {
+abstract class BinaryHeap<Key extends Comparable<Key>> implements PriorityQueue<Key> {
 
     private static final int initialCapacity = 2;
 
@@ -43,13 +43,12 @@ public class BinaryHeap<Key extends Comparable<Key>> implements MaxPQ<Key> {
     }
 
     /**
-     * Removes maximum key from the heap, rearranging the array
+     * Removes root key from the heap, rearranging the array
      * to keep it heap-ordered.
-     * @return the maximum item currently in the heap.
+     * @return the root item of the heap.
      * @throws IllegalStateException if the heap is empty.
      */
-    @Override
-    public Key deleteMax() throws IllegalStateException {
+    protected Key deleteRoot() throws IllegalStateException {
         if (isEmpty())
             throw new IllegalStateException("The heap is empty. Nothing to delete.");
 
@@ -73,7 +72,7 @@ public class BinaryHeap<Key extends Comparable<Key>> implements MaxPQ<Key> {
     }
 
     private void swim(int i) {
-        while (i > 1 && less(i/2, i)) {
+        while (i > 1 && compare(i/2, i)) {
             swap(i/2, i);
             i /= 2;
         }
@@ -82,9 +81,9 @@ public class BinaryHeap<Key extends Comparable<Key>> implements MaxPQ<Key> {
     private void sink(int i) {
         while (i <= n / 2) {
             int j = 2 * i;
-            if (j < n && less(j, j+1))
+            if (j < n && compare(j, j+1))
                 j++;
-            if (!less(i, j))
+            if (!compare(i, j))
                 break;
             swap(i, j);
             i = j;
@@ -97,9 +96,11 @@ public class BinaryHeap<Key extends Comparable<Key>> implements MaxPQ<Key> {
         a[j] = swap;
     }
 
-    private boolean less(int i, int j) {
-        return a[i].compareTo(a[j]) < 0;
+    private boolean compare(int i, int j) {
+        return compare(a[i], a[j]);
     }
+
+    protected abstract boolean compare(Key a, Key b);
 
     private void extendIfNeedTo() {
         if (n + 1 >= a.length)
