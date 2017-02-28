@@ -33,5 +33,13 @@ http://coursera.cs.princeton.edu/algs4/assignments/queues.html
 The program recognizes line patterns in a given set of points, e.g. given a set of _n_ distinct
 points in the plane, the algorithm finds every (maximal) line segment that connects a subset
 of 4 or more of the points.
-For mode detail description refer to
+For more detail description refer to
 http://coursera.cs.princeton.edu/algs4/assignments/collinear.html
+
+## Task four: 8-Puzzle
+
+### Specification
+The program solves the 8-puzzle and its n-by-n-generalization problem using the A*-search algorithm.
+The implementation uses Priority Queue data structure to build a search tree for the problem solving.
+You can see the model description and details here:
+http://coursera.cs.princeton.edu/algs4/assignments/8puzzle.html
