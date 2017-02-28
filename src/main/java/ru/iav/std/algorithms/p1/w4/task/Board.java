@@ -157,37 +157,30 @@ public class Board {
     private int locateZero() {
         for (int i = 0; i < n; i++)
             for (int j = 0; j < n; j++)
-                if (blocks[i][j] == 0) {
+                if (blocks[i][j] == 0)
                     return goalValue(i, j);
-                }
         return -1;
     }
 
     private Board createTopNeighbor(int iZero, int jZero) {
-        int[][] newBlocks = copy(blocks);
-        swap(newBlocks, iZero, jZero, iZero - 1, jZero);
-        return makeMove(newBlocks);
+        return createNeighbor(iZero, jZero, iZero - 1, jZero);
     }
 
     private Board createBottomNeighbor(int iZero, int jZero) {
-        int[][] newBlocks = copy(blocks);
-        swap(newBlocks, iZero, jZero, iZero + 1, jZero);
-        return makeMove(newBlocks);
+        return createNeighbor(iZero, jZero, iZero + 1, jZero);
     }
 
     private Board createLeftNeighbor(int iZero, int jZero) {
-        int[][] newBlocks = copy(blocks);
-        swap(newBlocks, iZero, jZero, iZero, jZero - 1);
-        return makeMove(newBlocks);
+        return createNeighbor(iZero, jZero, iZero, jZero - 1);
     }
 
     private Board createRightNeighbor(int iZero, int jZero) {
-        int[][] newBlocks = copy(blocks);
-        swap(newBlocks, iZero, jZero, iZero, jZero + 1);
-        return makeMove(newBlocks);
+        return createNeighbor(iZero, jZero, iZero, jZero + 1);
     }
 
-    private Board makeMove(int[][] newBlocks) {
+    private Board createNeighbor(int iZero, int jZero, int iSwap, int jSwap) {
+        int[][] newBlocks = copy(blocks);
+        swap(newBlocks, iZero, jZero, iSwap, jSwap);
         return new Board(newBlocks);
     }
 
