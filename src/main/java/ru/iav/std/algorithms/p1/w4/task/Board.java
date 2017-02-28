@@ -14,21 +14,16 @@ public class Board {
 
     private final int[][] blocks;
 
-    private final int n, move;
+    private final int n;
 
     /**
      * Construct a board from an n-by-n array of blocks (where blocks[i][j] = block in row i, column j)
      * @param blocks
      */
     public Board(int[][] blocks) {
-        this(blocks, 0);
-    }
-
-    private Board(int[][] blocks, int move) {
         validate(blocks);       // performance?
         n = blocks.length;
         this.blocks = copy(blocks);
-        this.move = move;
     }
 
     private static void validate(int[][] inputMatrix) {
@@ -81,6 +76,7 @@ public class Board {
 
     private int distanceToGoalPosition(int i, int j) {
         int v = blocks[i][j];
+        if (v == 0) return 0;
         return abs(i - iGoal(v)) + abs(j - jGoal(v));
     }
 
@@ -96,13 +92,13 @@ public class Board {
         int k = 0;
         for (int i = 0; i < n; i++)
             for (int j = 0; j < n; j++)
-                if (blocks[i][j] != goalValue(i, j))
+                if (blocks[i][j] != 0 && blocks[i][j] != goalValue(i, j))
                     k++;
         return k;
     }
 
     private int jGoal(int v) {
-        return (v - 1) % n;
+        return v == 0 ? n - 1 : (v - 1) % n;
     }
 
     private int iGoal(int v) {
@@ -122,7 +118,7 @@ public class Board {
         if (twinBlocks[0][0] == 0)          swap(twinBlocks, 0, 1, 1, 1);
         else if (twinBlocks[0][1] == 0)     swap(twinBlocks, 0, 0, 1, 0);
         else                                swap(twinBlocks, 0, 0, 0, 1);
-        return new Board(twinBlocks, move);
+        return new Board(twinBlocks);
     }
 
     /**
@@ -192,7 +188,7 @@ public class Board {
     }
 
     private Board makeMove(int[][] newBlocks) {
-        return new Board(newBlocks, move + 1);
+        return new Board(newBlocks);
     }
 
     private static void swap(int[][] matrix, int i1, int j1, int i2, int j2) {
