@@ -15,27 +15,33 @@ import static java.util.Objects.requireNonNull;
 public class Solver {
 
     private static class Node implements Comparable<Node> {
-        final Node parent;
-        final Board board;
-        final int move;
-        static Node initial(Board board) {
-            return new Node(board, null, 0);
-        }
-        Node(Board board, Node parent, int move) {
+        private final Node parent;
+        private final Board board;
+        private final int move;
+
+        private Node(Board board, Node parent, int move) {
             this.board = board;
             this.parent = parent;
             this.move = move;
         }
+
+        static Node initial(Board board) {
+            return new Node(board, null, 0);
+        }
+
         public Node child(Board board) {
             return new Node(board, this, move + 1);
         }
+
         @Override
         public int compareTo(Node that) {
             return Integer.compare(this.manhattan(), that.manhattan());
         }
+
         private int hamming() {
             return board.hamming() + move;
         }
+
         private int manhattan() {
             return board.manhattan() + move;
         }
