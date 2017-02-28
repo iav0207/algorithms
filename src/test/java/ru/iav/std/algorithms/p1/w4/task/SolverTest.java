@@ -9,7 +9,7 @@ public class SolverTest {
 
     @Test
     public void test() {
-        String inputFileName = "puzzle10";
+        String inputFileName = "puzzle4x4-12";
         Solver.main(new String[]{inputFileName + ".txt"});
     }
 

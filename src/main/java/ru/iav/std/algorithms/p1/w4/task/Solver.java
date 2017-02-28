@@ -31,7 +31,7 @@ public class Solver {
         }
         @Override
         public int compareTo(Node that) {
-            return Integer.compare(this.hamming(), that.hamming());
+            return Integer.compare(this.manhattan(), that.manhattan());
         }
         private int hamming() {
             return board.hamming() + move;
