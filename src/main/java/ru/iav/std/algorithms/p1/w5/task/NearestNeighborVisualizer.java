@@ -16,11 +16,17 @@ import edu.princeton.cs.algs4.In;
 import edu.princeton.cs.algs4.Point2D;
 import edu.princeton.cs.algs4.StdDraw;
 
+import java.net.URL;
+
+import static java.util.Objects.requireNonNull;
+
 public class NearestNeighborVisualizer {
 
     public static void main(String[] args) {
-        String filename = args[0];
-        In in = new In(filename);
+
+        String inputFileName = args[0];
+        URL resource = NearestNeighborVisualizer.class.getResource(requireNonNull(inputFileName));
+        In in = new In(resource);
 
         StdDraw.enableDoubleBuffering();
 

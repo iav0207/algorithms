@@ -18,12 +18,17 @@ import edu.princeton.cs.algs4.Point2D;
 import edu.princeton.cs.algs4.RectHV;
 import edu.princeton.cs.algs4.StdDraw;
 
+import java.net.URL;
+
+import static java.util.Objects.requireNonNull;
+
 public class RangeSearchVisualizer {
 
     public static void main(String[] args) {
 
-        String filename = args[0];
-        In in = new In(filename);
+        String inputFileName = args[0];
+        URL resource = RangeSearchVisualizer.class.getResource(requireNonNull(inputFileName));
+        In in = new In(resource);
 
         StdDraw.enableDoubleBuffering();
 

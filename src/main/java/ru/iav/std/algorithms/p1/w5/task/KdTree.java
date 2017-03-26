@@ -2,7 +2,12 @@ package ru.iav.std.algorithms.p1.w5.task;
 
 import edu.princeton.cs.algs4.Point2D;
 import edu.princeton.cs.algs4.RectHV;
+import edu.princeton.cs.algs4.StdDraw;
 
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -18,7 +23,7 @@ public class KdTree {
     private abstract class Node {
 
         private final double key;
-        private final Point2D value;
+        final Point2D value;
         private Node left, right;
         private int size;
 
@@ -48,6 +53,30 @@ public class KdTree {
             if (cmp > -1 && left != null)   left.range(rect, set);
             if (cmp < 1 && right != null)   right.range(rect, set);
         }
+
+        public Set<Point2D> getAllPoints() {
+            return addPoints(new HashSet<>());
+        }
+
+        private Set<Point2D> addPoints(Set<Point2D> set) {
+            set.add(value);
+            if (left != null)   left.addPoints(set);
+            if (right != null)  right.addPoints(set);
+            return set;
+        }
+
+        public List<Line> getSubdivisionLines() {
+            return getSubdivisionLines(unitRect(), new ArrayList<>(size()));
+        }
+
+        List<Line> getSubdivisionLines(RectHV rect, List<Line> lines) {
+            lines.add(getSubdivisionLine(rect));
+            if (left != null)   left.getSubdivisionLines(cutRect(rect, left), lines);
+            if (right != null)  right.getSubdivisionLines(cutRect(rect, right), lines);
+            return lines;
+        }
+
+        abstract Line getSubdivisionLine(RectHV rect);
 
         public Point2D nearest(Point2D queryPoint) {
             return nearest(queryPoint, null, unitRect());
@@ -135,13 +164,26 @@ public class KdTree {
         }
 
         @Override
+        Line getSubdivisionLine(RectHV rect) {
+            return Line.vertical(value.x(), rect.ymin(), rect.ymax());
+        }
+
+        @Override
         RectHV cutRect(RectHV rect, Node child) {
             assert rect != null;
             assert child != null;
-            double minX = rect.xmin(), maxX = rect.xmax();
-            double middleX = child.value.x();
-            if (compareThisKeyTo(middleX) < 0)  minX = middleX;
-            else                                maxX = middleX;
+            
+            double minX = rect.xmin();
+            double maxX = rect.xmax();
+            double thisX = this.value.x();
+            double childX = child.value.x();
+            
+            assert minX <= thisX && thisX <= maxX;
+            assert minX <= childX && childX <= maxX;
+            
+            if (compareThisKeyTo(childX) < 0)   minX = thisX;
+            else                                maxX = thisX;
+            
             return new RectHV(minX, rect.ymin(), maxX, rect.ymax());
         }
 
@@ -170,16 +212,56 @@ public class KdTree {
         }
 
         @Override
+        Line getSubdivisionLine(RectHV rect) {
+            return Line.horizontal(value.y(), rect.xmin(), rect.xmax());
+        }
+
+        @Override
         RectHV cutRect(RectHV rect, Node child) {
             assert rect != null;
             assert child != null;
-            double minY = rect.ymin(), maxY = rect.ymax();
-            double middleY = child.value.y();
-            if (compareThisKeyTo(middleY) < 0)  minY = middleY;
-            else                                maxY = middleY;
+            
+            double minY = rect.ymin();
+            double maxY = rect.ymax();
+            double thisY = this.value.y();
+            double childY = child.value.y();
+            
+            assert minY <= thisY && thisY <= maxY;
+            assert minY <= childY && childY <= maxY;
+            
+            if (compareThisKeyTo(childY) < 0)   minY = thisY;
+            else                                maxY = thisY;
+
             return new RectHV(rect.xmin(), minY, rect.xmax(), maxY);
         }
 
+    }
+
+    private static class Line {
+        double x1, x2, y1, y2;
+        Color color = Color.BLACK;
+        Line(double x1, double x2, double y1, double y2) {
+            this.x1 = x1;
+            this.x2 = x2;
+            this.y1 = y1;
+            this.y2 = y2;
+        }
+        static Line vertical(double x, double y1, double y2) {
+            return new Line(x, x, y1, y2).withColor(StdDraw.RED);
+        }
+        static Line horizontal(double y, double x1, double x2) {
+            return new Line(x1, x2, y, y).withColor(StdDraw.BLUE);
+        }
+        Line withColor(Color color) {
+            this.color = color;
+            return this;
+        }
+        void draw() {
+            Color prev = StdDraw.getPenColor();
+            StdDraw.setPenColor(color);
+            StdDraw.line(x1, y1, x2, y2);
+            StdDraw.setPenColor(prev);
+        }
     }
 
     /**
@@ -248,6 +330,8 @@ public class KdTree {
      * This method need not be efficient—it is primarily for debugging.
      */
     public void draw() {
+        root.getAllPoints().forEach(Point2D::draw);
+        root.getSubdivisionLines().forEach(Line::draw);
     }
 
     /**
