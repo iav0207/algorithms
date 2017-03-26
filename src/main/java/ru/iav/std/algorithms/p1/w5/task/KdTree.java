@@ -28,7 +28,7 @@ public class KdTree {
         private int size = 1;
         private int localDuplicates = 1;
 
-        public Node(double key, Point2D value) {
+        Node(double key, Point2D value) {
             this.key = key;
             this.value = value;
         }
@@ -56,7 +56,7 @@ public class KdTree {
             if (cmp < 1 && right != null)   right.range(rect, set);
         }
 
-        public Set<Point2D> getAllPoints() {
+        Set<Point2D> getAllPoints() {
             return addPoints(new HashSet<>());
         }
 
@@ -67,7 +67,7 @@ public class KdTree {
             return set;
         }
 
-        public List<Line> getSubdivisionLines() {
+        List<Line> getSubdivisionLines() {
             return getSubdivisionLines(unitRect(), new ArrayList<>(size()));
         }
 
@@ -80,8 +80,8 @@ public class KdTree {
 
         abstract Line getSubdivisionLine(RectHV rect);
 
-        public Point2D nearest(Point2D queryPoint) {
-            return nearest(queryPoint, null, unitRect());
+        Point2D nearest(Point2D queryPoint) {
+            return nearest(queryPoint, this.value, unitRect());
         }
 
         private RectHV unitRect() {
@@ -89,8 +89,7 @@ public class KdTree {
         }
 
         private Point2D nearest(Point2D queryPoint, Point2D currentlyNearest, RectHV rect) {
-            if (currentlyNearest == null
-                    || queryPoint.distanceSquaredTo(this.value) < queryPoint.distanceSquaredTo(currentlyNearest))
+            if (queryPoint.distanceSquaredTo(this.value) < queryPoint.distanceSquaredTo(currentlyNearest))
                 currentlyNearest = this.value;
 
             if (left == null)
@@ -101,20 +100,39 @@ public class KdTree {
 
             RectHV leftRect = cutRect(rect, left);
             RectHV rightRect = cutRect(rect, right);
-            if (leftRect.distanceTo(queryPoint) < rightRect.distanceTo(queryPoint)) {
-                Point2D leftNearest = left.nearest(queryPoint, currentlyNearest, leftRect);
-                return leftNearest.equals(currentlyNearest) ?
-                        right.nearest(queryPoint, currentlyNearest, rightRect) : leftNearest;
-            } else {
-                Point2D rightNearest = right.nearest(queryPoint, currentlyNearest, rightRect);
-                return rightNearest.equals(currentlyNearest) ?
-                        left.nearest(queryPoint, currentlyNearest, leftRect) : rightNearest;
+
+            // pruning
+            double currentDistance = currentlyNearest.distanceTo(queryPoint);
+            if (currentDistance < leftRect.distanceTo(queryPoint))
+                return right.nearest(queryPoint, currentlyNearest, rightRect);
+            if (currentDistance < rightRect.distanceTo(queryPoint))
+                return left.nearest(queryPoint, currentlyNearest, leftRect);
+
+            // going down the branch lying at the query point side first
+            int cmp = whereToGoNext(queryPoint);
+            if (cmp > 0) {
+                // going to the left
+                currentlyNearest = left.nearest(queryPoint, currentlyNearest, leftRect);
+                // pruning again
+                if (currentlyNearest.distanceTo(queryPoint) < rightRect.distanceTo(queryPoint))
+                    return currentlyNearest;
+                else    // going to the right
+                    return right.nearest(queryPoint, currentlyNearest, rightRect);
+            } else if (cmp < 0) {
+                // going to the right
+                currentlyNearest = right.nearest(queryPoint, currentlyNearest, rightRect);
+                // pruning again
+                if (currentlyNearest.distanceTo(queryPoint) < leftRect.distanceTo(queryPoint))
+                    return currentlyNearest;
+                else    // going to the left
+                    return left.nearest(queryPoint, currentlyNearest, leftRect);
             }
+            return currentlyNearest;
         }
 
         abstract RectHV cutRect(RectHV rect, Node child);
 
-        public void put(Point2D point) {
+        void put(Point2D point) {
             int cmp = whereToGoNext(point);
             if (cmp > 0)        putToTheLeft(point);
             else if (cmp < 0)   putToTheRight(point);
@@ -151,7 +169,7 @@ public class KdTree {
     }
 
     private class XNode extends Node {
-        public XNode(Point2D value) {
+        XNode(Point2D value) {
             super(value.x(), value);
         }
 
@@ -199,7 +217,7 @@ public class KdTree {
     }
 
     private class YNode extends Node {
-        public YNode(Point2D value) {
+        YNode(Point2D value) {
             super(value.y(), value);
         }
 
