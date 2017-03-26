@@ -9,7 +9,8 @@ public class NearestNeighborVisualizerTest {
 
     @Test
     public void test() {
-        NearestNeighborVisualizer.main(new String[]{"circle10.txt"});
+//        NearestNeighborVisualizer.main(new String[]{"circle10.txt"});
+        NearestNeighborVisualizer.main(new String[]{"input10K.txt"});
     }
 
 }

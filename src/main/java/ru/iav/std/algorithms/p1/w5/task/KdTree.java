@@ -204,9 +204,10 @@ public class KdTree {
             
             assert minX <= thisX && thisX <= maxX;
             assert minX <= childX && childX <= maxX;
-            
-            if (compareThisKeyTo(childX) < 0)   minX = thisX;
-            else                                maxX = thisX;
+
+            int cmp = compareThisKeyTo(childX);
+            if (cmp < 0)        minX = thisX;
+            else if (cmp > 0)   maxX = thisX;
             
             return new RectHV(minX, rect.ymin(), maxX, rect.ymax());
         }
@@ -252,9 +253,10 @@ public class KdTree {
             
             assert minY <= thisY && thisY <= maxY;
             assert minY <= childY && childY <= maxY;
-            
-            if (compareThisKeyTo(childY) < 0)   minY = thisY;
-            else                                maxY = thisY;
+
+            int cmp = compareThisKeyTo(childY);
+            if (cmp < 0)        minY = thisY;
+            else if (cmp > 0)   maxY = thisY;
 
             return new RectHV(rect.xmin(), minY, rect.xmax(), maxY);
         }
