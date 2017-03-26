@@ -4,8 +4,6 @@ import edu.princeton.cs.algs4.Point2D;
 import edu.princeton.cs.algs4.RectHV;
 import edu.princeton.cs.algs4.SET;
 
-import java.util.NoSuchElementException;
-
 /**
  * Created by takoe on 24.03.17.
  */
@@ -86,19 +84,16 @@ public class PointSET {
         if (p == null) throw new NullPointerException("Argument should not be null.");
         if (set.isEmpty()) return null;
 
-        Point2D floor, ceiling;
-        try {
-            floor = set.floor(p);
-        } catch (NoSuchElementException ex) {
-            return set.min();   // all keys are greater than p
+        double minD = Double.POSITIVE_INFINITY;
+        Point2D nearest = set.min();
+        for (Point2D point : set) {
+            double d = point.distanceSquaredTo(p);
+            if (d < minD) {
+                minD = d;
+                nearest = point;
+            }
         }
-        try {
-            ceiling = set.ceiling(p);
-        } catch (NoSuchElementException ex) {
-            return set.max();   // all keys are less than p
-        }
-        if (Double.compare(floor.distanceSquaredTo(p), ceiling.distanceSquaredTo(p)) < 0)   return floor;
-        else                                                                                return ceiling;
+        return nearest;
     }
 
     /**
