@@ -34,10 +34,10 @@ public class KdTree {
         }
 
         public boolean find(Point2D value) {
-            int cmp = compareTo(value);
+            int cmp = whereToGoNext(value);
             if (cmp > 0)        return left != null && left.find(value);
             else if (cmp < 0)   return right != null && right.find(value);
-            else                return this.value.equals(value);
+            else                return true;
         }
 
         public Set<Point2D> range(RectHV rect) {
@@ -47,7 +47,9 @@ public class KdTree {
         }
 
         private void range(RectHV rect, Set<Point2D> set) {
-            if (rect.contains(this.value))  set.add(this.value);
+            if (rect.contains(this.value))
+                for (int i = 0; i < localDuplicates; i++)
+                    set.add(this.value);
 
             int cmp = compareTo(rect);
             if (cmp > -1 && left != null)   left.range(rect, set);
@@ -113,11 +115,18 @@ public class KdTree {
         abstract RectHV cutRect(RectHV rect, Node child);
 
         public void put(Point2D point) {
-            int cmp = compareTo(point);
+            int cmp = whereToGoNext(point);
             if (cmp > 0)        putToTheLeft(point);
             else if (cmp < 0)   putToTheRight(point);
             else                localDuplicates++;
             size = localDuplicates + size(left) + size(right);
+        }
+
+        private int whereToGoNext(Point2D point) {
+            int cmpKey = compareTo(point);
+            if (cmpKey == 0)    return this.value.compareTo(point); // full comparison:
+                                                                    // equal coordinates (one of two) processing
+            else                return cmpKey;
         }
 
         public abstract int compareTo(Point2D value);

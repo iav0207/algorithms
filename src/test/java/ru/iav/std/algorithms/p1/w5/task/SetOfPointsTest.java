@@ -11,6 +11,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.stream.Collectors;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertFalse;
@@ -59,6 +60,14 @@ public abstract class SetOfPointsTest {
         assertEquals(set.size(), 100);
         points.forEach(set::insert);
         assertEquals(set.size(), 200);
+    }
+
+    @Test
+    public void testFindForHorizontallyDistributedPoints() {
+        List<Point2D> points = horizontallyDistributedPoints(100);
+        points.forEach(set::insert);
+        assertEquals(set.size(), 100);
+        points.forEach(p -> assertTrue(set.contains(p)));
     }
 
     @Test
@@ -113,6 +122,13 @@ public abstract class SetOfPointsTest {
             points.add(point(coords[2*i], coords[2*i + 1]));
         }
         return points;
+    }
+
+    private List<Point2D> horizontallyDistributedPoints(int size) {
+        double y = random.nextDouble();
+        return random.doubles(size).boxed()
+                .map(x -> point(x, y))
+                .collect(Collectors.toList());
     }
 
     private static Point2D point(double x, double y) {
