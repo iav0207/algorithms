@@ -8,19 +8,19 @@ API:          PASSED
 Findbugs:     PASSED
 Checkstyle:   FAILED (26 warnings)
 
-Correctness:  19/27 tests passed
+Correctness:  25/27 tests passed
 Memory:       8/8 tests passed
 Timing:       42/42 tests passed
 
-Aggregate score: 82.22%
+Aggregate score: 95.56%
 [Compilation: 5%, API: 5%, Findbugs: 0%, Checkstyle: 0%, Correctness: 60%, Memory: 10%, Timing: 20%]
 
 ASSESSMENT DETAILS
 
 The following files were submitted:
 ----------------------------------
- 14K Mar 26 14:06 KdTree.java
-2.7K Mar 26 14:06 PointSET.java
+ 14K Mar 26 14:50 KdTree.java
+2.7K Mar 26 14:50 PointSET.java
 
 
 ********************************************************************************
@@ -60,32 +60,32 @@ KdTree:
 
 % checkstyle *.java
 *-----------------------------------------------------------
-PointSET.java:109:43: '{' is not preceded with whitespace. [WhitespaceAround]
-PointSET.java:109:44: '{' is not followed by whitespace. [WhitespaceAround]
-PointSET.java:109:44: '}' is not preceded with whitespace. [WhitespaceAround]
+PointSET.java:106:43: '{' is not preceded with whitespace. [WhitespaceAround]
+PointSET.java:106:44: '{' is not followed by whitespace. [WhitespaceAround]
+PointSET.java:106:44: '}' is not preceded with whitespace. [WhitespaceAround]
 KdTree.java:5: Do not use .* in import statements. [AvoidStarImport]
 KdTree.java:12: Do not use static imports. [AvoidStaticImport]
 KdTree.java:21:13: Do not use the keyword 'abstract' in this course. [IllegalToken]
 KdTree.java:24:9: Declare static and instance variables in order of their access modifiers: public, protected, package, and private. [DeclarationOrder]
 KdTree.java:24:23: The instance (or static) variable 'value' must be private. [VisibilityModifier]
-KdTree.java:34:37: The local (or parameter) variable 'value' has the same name as an instance variable. Use a different name. [HiddenField]
-KdTree.java:79:9: Do not use the keyword 'abstract' in this course. [IllegalToken]
-KdTree.java:131:9: Do not use the keyword 'abstract' in this course. [IllegalToken]
-KdTree.java:148:16: Do not use the keyword 'abstract' in this course. [IllegalToken]
-KdTree.java:148:47: The local (or parameter) variable 'value' has the same name as an instance variable. Use a different name. [HiddenField]
-KdTree.java:160:16: Do not use the keyword 'abstract' in this course. [IllegalToken]
-KdTree.java:160:50: The local (or parameter) variable 'value' has the same name as an instance variable. Use a different name. [HiddenField]
-KdTree.java:162:16: Do not use the keyword 'abstract' in this course. [IllegalToken]
-KdTree.java:164:37: The local (or parameter) variable 'key' has the same name as an instance variable. Use a different name. [HiddenField]
-KdTree.java:266:16: The instance (or static) variable 'x1' must be private. [VisibilityModifier]
-KdTree.java:266:20: The instance (or static) variable 'x2' must be private. [VisibilityModifier]
-KdTree.java:266:24: The instance (or static) variable 'y1' must be private. [VisibilityModifier]
-KdTree.java:266:28: The instance (or static) variable 'y2' must be private. [VisibilityModifier]
-KdTree.java:267:15: The instance (or static) variable 'color' must be private. [VisibilityModifier]
-KdTree.java:280:30: The local (or parameter) variable 'color' has the same name as an instance variable. Use a different name. [HiddenField]
-KdTree.java:401:43: '{' is not preceded with whitespace. [WhitespaceAround]
-KdTree.java:401:44: '{' is not followed by whitespace. [WhitespaceAround]
-KdTree.java:401:44: '}' is not preceded with whitespace. [WhitespaceAround]
+KdTree.java:33:37: The local (or parameter) variable 'value' has the same name as an instance variable. Use a different name. [HiddenField]
+KdTree.java:77:9: Do not use the keyword 'abstract' in this course. [IllegalToken]
+KdTree.java:129:9: Do not use the keyword 'abstract' in this course. [IllegalToken]
+KdTree.java:145:16: Do not use the keyword 'abstract' in this course. [IllegalToken]
+KdTree.java:145:47: The local (or parameter) variable 'value' has the same name as an instance variable. Use a different name. [HiddenField]
+KdTree.java:157:16: Do not use the keyword 'abstract' in this course. [IllegalToken]
+KdTree.java:157:50: The local (or parameter) variable 'value' has the same name as an instance variable. Use a different name. [HiddenField]
+KdTree.java:159:16: Do not use the keyword 'abstract' in this course. [IllegalToken]
+KdTree.java:161:37: The local (or parameter) variable 'key' has the same name as an instance variable. Use a different name. [HiddenField]
+KdTree.java:265:16: The instance (or static) variable 'x1' must be private. [VisibilityModifier]
+KdTree.java:265:20: The instance (or static) variable 'x2' must be private. [VisibilityModifier]
+KdTree.java:265:24: The instance (or static) variable 'y1' must be private. [VisibilityModifier]
+KdTree.java:265:28: The instance (or static) variable 'y2' must be private. [VisibilityModifier]
+KdTree.java:266:15: The instance (or static) variable 'color' must be private. [VisibilityModifier]
+KdTree.java:279:30: The local (or parameter) variable 'color' has the same name as an instance variable. Use a different name. [HiddenField]
+KdTree.java:400:43: '{' is not preceded with whitespace. [WhitespaceAround]
+KdTree.java:400:44: '{' is not followed by whitespace. [WhitespaceAround]
+KdTree.java:400:44: '}' is not preceded with whitespace. [WhitespaceAround]
 Checkstyle ends with 26 errors.
 
 ================================================================
@@ -106,22 +106,10 @@ Test 1: Test size() by inserting n random points
         (size may be less than n because of duplicates)
   * 100000 random points in a 100000-by-100000 grid
   * 100000 random points in a 10000-by-10000 grid
-    - failed on trial 18383 of 100000
-    - student   size() = 18383
-    - reference size() = 18382
   * 100000 random points in a 1000-by-1000 grid
-    - failed on trial 1251 of 100000
-    - student   size() = 1251
-    - reference size() = 1250
   * 100000 random points in a 100-by-100 grid
-    - failed on trial 76 of 100000
-    - student   size() = 76
-    - reference size() = 75
   * 100000 random points in a 10-by-10 grid
-    - failed on trial 10 of 100000
-    - student   size() = 10
-    - reference size() = 9
-==> FAILED
+==> passed
 
 Test 2: Test isEmpty() by checking for n = 0, 1, and 2 points
   * 0 points
@@ -140,28 +128,28 @@ Test 3: Insert n random points and check contains() for random query points
 Test 4: Insert n random points and check nearest() for random query points
   * 1000 random points in a 100000-by-100000 grid
     - failed on trial 1 of 1000
-    - student   nearest()    = (0.44514, 0.199)
-    - reference nearest()    = (0.74032, 0.20404)
-    - student   distanceTo() = 0.3129513522897769
-    - reference distanceTo() = 0.018241362339474602
+    - student   nearest()    = (0.50133, 0.5613)
+    - reference nearest()    = (0.27683, 0.54369)
+    - student   distanceTo() = 0.22069020390583724
+    - reference distanceTo() = 0.017724339197837575
   * 1000 random points in a 10000-by-10000 grid
     - failed on trial 1 of 1000
-    - student   nearest()    = (0.4662, 0.9996)
-    - reference nearest()    = (0.2721, 0.9876)
-    - student   distanceTo() = 0.22110144730417303
-    - reference distanceTo() = 0.029230805667993475
+    - student   nearest()    = (0.1226, 0.3718)
+    - reference nearest()    = (0.3924, 0.3573)
+    - student   distanceTo() = 0.25210001983339864
+    - reference distanceTo() = 0.02294449825121486
   * 1000 random points in a 1000-by-1000 grid
     - failed on trial 1 of 1000
-    - student   nearest()    = (0.789, 0.657)
-    - reference nearest()    = (0.963, 0.664)
-    - student   distanceTo() = 0.16699999999999993
-    - reference distanceTo() = 0.009899494936611674
+    - student   nearest()    = (0.272, 0.653)
+    - reference nearest()    = (0.183, 0.656)
+    - student   distanceTo() = 0.08402380615040003
+    - reference distanceTo() = 0.007071067811865481
   * 1000 random points in a 100-by-100 grid
-    - failed on trial 1 of 1000
-    - student   nearest()    = (0.55, 0.47)
-    - reference nearest()    = (0.52, 0.44)
-    - student   distanceTo() = 0.040000000000000036
-    - reference distanceTo() = 0.03162277660168377
+    - failed on trial 2 of 1000
+    - student   nearest()    = (0.59, 0.42)
+    - reference nearest()    = (0.68, 0.44)
+    - student   distanceTo() = 0.09999999999999998
+    - reference distanceTo() = 0.02236067977499787
   * 1000 random points in a 10-by-10 grid
 ==> FAILED
 
@@ -178,37 +166,34 @@ Test 6: Intermixed sequence of calls to isEmpty(), size(), insert(),
         p1, p2, p3, p4, p5, and p6, respectively
   * 10000 calls with random points in a 10000-by-10000 grid
     and probabilities 0.05, 0.05, 0.3, 0.2, 0.2, 0.2
-    - failed on trial 8 of 10000
-    - student   nearest()    = (0.7649, 0.3505)
-    - reference nearest()    = (0.7318, 0.3803)
-    - student   distanceTo() = 0.5854288769782373
-    - reference distanceTo() = 0.5589018160643245
+    - failed on trial 25 of 10000
+    - student   nearest()    = (0.7877, 0.5904)
+    - reference nearest()    = (0.3663, 0.417)
+    - student   distanceTo() = 0.507526432809169
+    - reference distanceTo() = 0.1773377568370594
   * 10000 calls with random points in a 1000-by-1000 grid
     and probabilities 0.05, 0.05, 0.3, 0.2, 0.2, 0.2
-    - failed on trial 22 of 10000
-    - student   nearest()    = (0.661, 0.12)
-    - reference nearest()    = (0.338, 0.502)
-    - student   distanceTo() = 0.46150297940533386
-    - reference distanceTo() = 0.3606272313622475
+    - failed on trial 29 of 10000
+    - student   nearest()    = (0.377, 0.095)
+    - reference nearest()    = (0.439, 0.037)
+    - student   distanceTo() = 0.3741336659537604
+    - reference distanceTo() = 0.3156707145111817
   * 10000 calls with random points in a 100-by-100 grid
     and probabilities 0.05, 0.05, 0.3, 0.2, 0.2, 0.2
-    - failed on trial 24 of 10000
-    - student   nearest()    = (0.44, 0.41)
-    - reference nearest()    = (0.69, 0.38)
-    - student   distanceTo() = 0.3306055050963308
-    - reference distanceTo() = 0.0943398113205661
+    - failed on trial 4 of 10000
+    - student   nearest()    = (0.66, 0.91)
+    - reference nearest()    = (0.26, 0.43)
+    - student   distanceTo() = 0.6118823416311343
+    - reference distanceTo() = 0.41182520563948005
   * 10000 calls with random points in a 10-by-10 grid
     and probabilities 0.05, 0.05, 0.3, 0.2, 0.2, 0.2
-    - failed on trial 20 of 10000
-    - student   nearest()    = (0.8, 0.0)
-    - reference nearest()    = (0.1, 0.3)
+    - failed on trial 42 of 10000
+    - student   nearest()    = (0.5, 0.1)
+    - reference nearest()    = (0.0, 0.2)
     - student   distanceTo() = 0.5
-    - reference distanceTo() = 0.36055512754639896
+    - reference distanceTo() = 0.1
   * 10000 calls with random points in a 1-by-1 grid
     and probabilities 0.05, 0.05, 0.3, 0.2, 0.2, 0.2
-    - failed on trial 7 of 10000
-    - student   size() = 2
-    - reference size() = 1
 ==> FAILED
 
 Test 7: Intermixed sequence of calls to isEmpty(), size(), insert(),
@@ -231,7 +216,7 @@ Test 8: Test whether two PointSET objects can be created at the same time
 ==> passed
 
 
-Total: 5/8 tests passed!
+Total: 6/8 tests passed!
 
 
 ================================================================
@@ -273,30 +258,12 @@ Test 1b: Insert n distinct points and check size() after each insertion
 
 Test 1c: Insert n general points and check size() after each insertion
   * 100000 random general points in a 100000-by-100000 grid
-    - failed on trial 21955 of 100000
-    - student   size() = 21955
-    - reference size() = 21954
   * 100000 random general points in a 10000-by-10000 grid
-    - failed on trial 30653 of 100000
-    - student   size() = 30653
-    - reference size() = 30652
   * 100000 random general points in a 1000-by-1000 grid
-    - failed on trial 1442 of 100000
-    - student   size() = 1442
-    - reference size() = 1441
   * 100000 random general points in a 100-by-100 grid
-    - failed on trial 83 of 100000
-    - student   size() = 83
-    - reference size() = 82
   * 100000 random general points in a 10-by-10 grid
-    - failed on trial 19 of 100000
-    - student   size() = 19
-    - reference size() = 18
   * 10 random general points in a 1-by-1 grid
-    - failed on trial 2 of 10
-    - student   size() = 2
-    - reference size() = 1
-==> FAILED
+==> passed
 
 Test 2: Test size() and isEmpty() for n = 0, 1, and 2 points
   * 0 points
@@ -374,120 +341,17 @@ Test 6a: Insert n non-degenerate points and call nearest() with random query poi
 
 Test 6b: Insert n distinct points and call nearest() with random query points
   * 50000 random distinct points in a 100000-by-100000 grid
-    java.lang.IllegalArgumentException: Invalid rectangle: 0.86776, 0.27533, 0.89229, 0.27389
-
-    edu.princeton.cs.algs4.RectHV.<init>(RectHV.java:41)
-    KdTree$YNode.cutRect(KdTree.java:260)
-    KdTree$Node.nearest(KdTree.java:100)
-    KdTree$Node.nearest(KdTree.java:97)
-    KdTree$Node.nearest(KdTree.java:95)
-     ...
-    KdTree$Node.nearest(KdTree.java:82)
-    KdTree.nearest(KdTree.java:394)
-    TestKdTree.testNearest(TestKdTree.java:316)
-    TestKdTree.test6b(TestKdTree.java:363)
-    TestKdTree.main(TestKdTree.java:890)
-
   * 10000 random distinct points in a 10000-by-10000 grid
-    java.lang.IllegalArgumentException: Invalid rectangle: 0.5507, 0.6312, 0.5778, 0.6285
-
-    edu.princeton.cs.algs4.RectHV.<init>(RectHV.java:41)
-    KdTree$YNode.cutRect(KdTree.java:260)
-    KdTree$Node.nearest(KdTree.java:95)
-    KdTree$Node.nearest(KdTree.java:97)
-    KdTree$Node.nearest(KdTree.java:118)
-     ...
-    KdTree$Node.nearest(KdTree.java:82)
-    KdTree.nearest(KdTree.java:394)
-    TestKdTree.testNearest(TestKdTree.java:316)
-    TestKdTree.test6b(TestKdTree.java:364)
-    TestKdTree.main(TestKdTree.java:890)
-
   * 10000 random distinct points in a 1000-by-1000 grid
-    java.lang.IllegalArgumentException: Invalid rectangle: 0.179, 0.712, 0.256, 0.705
-
-    edu.princeton.cs.algs4.RectHV.<init>(RectHV.java:41)
-    KdTree$YNode.cutRect(KdTree.java:260)
-    KdTree$Node.nearest(KdTree.java:100)
-    KdTree$Node.nearest(KdTree.java:107)
-    KdTree$Node.nearest(KdTree.java:118)
-     ...
-    KdTree$Node.nearest(KdTree.java:82)
-    KdTree.nearest(KdTree.java:394)
-    TestKdTree.testNearest(TestKdTree.java:316)
-    TestKdTree.test6b(TestKdTree.java:365)
-    TestKdTree.main(TestKdTree.java:890)
-
   * 5000 random distinct points in a 100-by-100 grid
-    java.lang.IllegalArgumentException: Invalid rectangle: 0.87, 0.58, 0.82, 0.69
-
-    edu.princeton.cs.algs4.RectHV.<init>(RectHV.java:41)
-    KdTree$XNode.cutRect(KdTree.java:212)
-    KdTree$Node.nearest(KdTree.java:100)
-    KdTree$Node.nearest(KdTree.java:121)
-    KdTree$Node.nearest(KdTree.java:121)
-     ...
-    KdTree$Node.nearest(KdTree.java:82)
-    KdTree.nearest(KdTree.java:394)
-    TestKdTree.testNearest(TestKdTree.java:316)
-    TestKdTree.test6b(TestKdTree.java:366)
-    TestKdTree.main(TestKdTree.java:890)
-
   * 50 random distinct points in a 10-by-10 grid
-    java.lang.IllegalArgumentException: Invalid rectangle: 0.4, 0.2, 0.3, 0.8
-
-    edu.princeton.cs.algs4.RectHV.<init>(RectHV.java:41)
-    KdTree$XNode.cutRect(KdTree.java:212)
-    KdTree$Node.nearest(KdTree.java:100)
-    KdTree$Node.nearest(KdTree.java:97)
-    KdTree$Node.nearest(KdTree.java:105)
-     ...
-    KdTree$Node.nearest(KdTree.java:82)
-    KdTree.nearest(KdTree.java:394)
-    TestKdTree.testNearest(TestKdTree.java:316)
-    TestKdTree.test6b(TestKdTree.java:367)
-    TestKdTree.main(TestKdTree.java:890)
-
-==> FAILED
+==> passed
 
 Test 6c: Insert n general points and call nearest() with random query points
   * 10000 random general points in a 1000-by-1000 grid
-    java.lang.IllegalArgumentException: Invalid rectangle: 0.238, 0.113, 0.231, 0.189
-
-    edu.princeton.cs.algs4.RectHV.<init>(RectHV.java:41)
-    KdTree$XNode.cutRect(KdTree.java:212)
-    KdTree$Node.nearest(KdTree.java:95)
-    KdTree$Node.nearest(KdTree.java:121)
-    KdTree$Node.nearest(KdTree.java:118)
-     ...
-    KdTree$Node.nearest(KdTree.java:82)
-    KdTree.nearest(KdTree.java:394)
-    TestKdTree.testNearest(TestKdTree.java:316)
-    TestKdTree.test6c(TestKdTree.java:374)
-    TestKdTree.main(TestKdTree.java:893)
-
   * 10000 random general points in a 100-by-100 grid
-    java.lang.IllegalArgumentException: Invalid rectangle: 0.52, 0.65, 0.51, 0.78
-
-    edu.princeton.cs.algs4.RectHV.<init>(RectHV.java:41)
-    KdTree$XNode.cutRect(KdTree.java:212)
-    KdTree$Node.nearest(KdTree.java:100)
-    KdTree$Node.nearest(KdTree.java:107)
-    KdTree$Node.nearest(KdTree.java:121)
-     ...
-    KdTree$Node.nearest(KdTree.java:82)
-    KdTree.nearest(KdTree.java:394)
-    TestKdTree.testNearest(TestKdTree.java:316)
-    TestKdTree.test6c(TestKdTree.java:375)
-    TestKdTree.main(TestKdTree.java:893)
-
   * 10000 random general points in a 10-by-10 grid
-    - failed on trial 16 of 10000
-    - student   nearest()    = (0.3, 0.4)
-    - reference nearest()    = (0.3, 0.5)
-    - student   distanceTo() = 0.09999999999999998
-    - reference distanceTo() = 0.0
-==> FAILED
+==> passed
 
 Test 7a: Intermixed sequence of calls to insert(), isEmpty(), size(),
          contains(), range(), and nearest() with probabilities
@@ -513,71 +377,15 @@ Test 7b: Intermixed sequence of calls to insert(), isEmpty(), size(),
      and probabilities (0.3, 0.05, 0.05, 0.2, 0.2, 0.2)
   * 20000 calls with distinct points in a 10000-by-10000 grid
      and probabilities (0.3, 0.05, 0.05, 0.2, 0.2, 0.2)
-    java.lang.IllegalArgumentException: Invalid rectangle: 0.5381, 0.0326, 0.6786, 0.0314
-
-    edu.princeton.cs.algs4.RectHV.<init>(RectHV.java:41)
-    KdTree$YNode.cutRect(KdTree.java:260)
-    KdTree$Node.nearest(KdTree.java:95)
-    KdTree$Node.nearest(KdTree.java:97)
-    KdTree$Node.nearest(KdTree.java:105)
-     ...
-    KdTree$Node.nearest(KdTree.java:82)
-    KdTree.nearest(KdTree.java:394)
-    TestKdTree.testAll(TestKdTree.java:716)
-    TestKdTree.test7b(TestKdTree.java:788)
-    TestKdTree.main(TestKdTree.java:899)
-
   * 20000 calls with distinct points in a 1000-by-1000 grid
      and probabilities (0.3, 0.05, 0.05, 0.2, 0.2, 0.2)
-    java.lang.IllegalArgumentException: Invalid rectangle: 0.428, 0.804, 0.515, 0.793
-
-    edu.princeton.cs.algs4.RectHV.<init>(RectHV.java:41)
-    KdTree$YNode.cutRect(KdTree.java:260)
-    KdTree$Node.nearest(KdTree.java:95)
-    KdTree$Node.nearest(KdTree.java:97)
-    KdTree$Node.nearest(KdTree.java:121)
-     ...
-    KdTree$Node.nearest(KdTree.java:82)
-    KdTree.nearest(KdTree.java:394)
-    TestKdTree.testAll(TestKdTree.java:716)
-    TestKdTree.test7b(TestKdTree.java:789)
-    TestKdTree.main(TestKdTree.java:899)
-
   * 20000 calls with distinct points in a 100-by-100 grid
      and probabilities (0.3, 0.05, 0.05, 0.2, 0.2, 0.2)
-    java.lang.IllegalArgumentException: Invalid rectangle: 0.51, 0.61, 0.44, 0.63
-
-    edu.princeton.cs.algs4.RectHV.<init>(RectHV.java:41)
-    KdTree$XNode.cutRect(KdTree.java:212)
-    KdTree$Node.nearest(KdTree.java:95)
-    KdTree$Node.nearest(KdTree.java:95)
-    KdTree$Node.nearest(KdTree.java:105)
-     ...
-    KdTree$Node.nearest(KdTree.java:82)
-    KdTree.nearest(KdTree.java:394)
-    TestKdTree.testAll(TestKdTree.java:716)
-    TestKdTree.test7b(TestKdTree.java:790)
-    TestKdTree.main(TestKdTree.java:899)
-
   * 20000 calls with distinct points in a 10-by-10 grid
      and probabilities (0.3, 0.05, 0.05, 0.2, 0.2, 0.2)
-    java.lang.IllegalArgumentException: Invalid rectangle: 0.0, 0.8, 0.5, 0.7
-
-    edu.princeton.cs.algs4.RectHV.<init>(RectHV.java:41)
-    KdTree$YNode.cutRect(KdTree.java:260)
-    KdTree$Node.nearest(KdTree.java:95)
-    KdTree$Node.nearest(KdTree.java:126)
-    KdTree$Node.nearest(KdTree.java:121)
-     ...
-    KdTree$Node.nearest(KdTree.java:82)
-    KdTree.nearest(KdTree.java:394)
-    TestKdTree.testAll(TestKdTree.java:716)
-    TestKdTree.test7b(TestKdTree.java:791)
-    TestKdTree.main(TestKdTree.java:899)
-
   * 20000 calls with distinct points in a 1-by-1 grid
      and probabilities (0.3, 0.05, 0.05, 0.2, 0.2, 0.2)
-==> FAILED
+==> passed
 
 Test 7c: Intermixed sequence of calls to insert(), isEmpty(), size(),
          contains(), range(), and nearest() with probabilities
@@ -586,55 +394,15 @@ Test 7c: Intermixed sequence of calls to insert(), isEmpty(), size(),
      and probabilities (0.3, 0.05, 0.05, 0.2, 0.2, 0.2)
   * 20000 calls with general points in a 10000-by-10000 grid
      and probabilities (0.3, 0.05, 0.05, 0.2, 0.2, 0.2)
-    java.lang.IllegalArgumentException: Invalid rectangle: 0.1207, 0.5231, 0.0752, 0.5383
-
-    edu.princeton.cs.algs4.RectHV.<init>(RectHV.java:41)
-    KdTree$XNode.cutRect(KdTree.java:212)
-    KdTree$Node.nearest(KdTree.java:95)
-    KdTree$Node.nearest(KdTree.java:97)
-    KdTree$Node.nearest(KdTree.java:95)
-     ...
-    KdTree$Node.nearest(KdTree.java:82)
-    KdTree.nearest(KdTree.java:394)
-    TestKdTree.testAll(TestKdTree.java:716)
-    TestKdTree.test7c(TestKdTree.java:802)
-    TestKdTree.main(TestKdTree.java:902)
-
   * 20000 calls with general points in a 1000-by-1000 grid
      and probabilities (0.3, 0.05, 0.05, 0.2, 0.2, 0.2)
-    java.lang.IllegalArgumentException: Invalid rectangle: 0.319, 0.224, 0.463, 0.176
-
-    edu.princeton.cs.algs4.RectHV.<init>(RectHV.java:41)
-    KdTree$YNode.cutRect(KdTree.java:260)
-    KdTree$Node.nearest(KdTree.java:95)
-    KdTree$Node.nearest(KdTree.java:97)
-    KdTree$Node.nearest(KdTree.java:121)
-     ...
-    KdTree$Node.nearest(KdTree.java:82)
-    KdTree.nearest(KdTree.java:394)
-    TestKdTree.testAll(TestKdTree.java:716)
-    TestKdTree.test7c(TestKdTree.java:803)
-    TestKdTree.main(TestKdTree.java:902)
-
   * 20000 calls with general points in a 100-by-100 grid
      and probabilities (0.3, 0.05, 0.05, 0.2, 0.2, 0.2)
-    - failed on trial 150 of 20000
-    - student   size() = 49
-    - reference size() = 48
-
   * 20000 calls with general points in a 10-by-10 grid
      and probabilities (0.3, 0.05, 0.05, 0.2, 0.2, 0.2)
-    - failed on trial 32 of 20000
-    - student   size() = 14
-    - reference size() = 13
-
   * 20000 calls with general points in a 1-by-1 grid
      and probabilities (0.3, 0.05, 0.05, 0.2, 0.2, 0.2)
-    - failed on trial 21 of 20000
-    - student   size() = 11
-    - reference size() = 4
-
-==> FAILED
+==> passed
 
 Test 8: Intermixed sequence of calls to insert(), isEmpty(), size(),
         contains(), range(), and nearest() with probabilities
@@ -653,7 +421,7 @@ Test 8: Intermixed sequence of calls to insert(), isEmpty(), size(),
 ==> passed
 
 
-Total: 14/19 tests passed!
+Total: 19/19 tests passed!
 
 
 ================================================================
@@ -715,19 +483,112 @@ Inserting n points into a PointSET
 
                n      ops per second
 ----------------------------------------
-=> passed   160000     893496
-=> passed   320000    1047028
-=> passed   640000     753885
-=> passed  1280000     739629
+=> passed   160000    1001720
+=> passed   320000    1114811
+=> passed   640000     870580
+=> passed  1280000     754471
 ==> 4/4 tests passed
 
 Performing contains() queries after inserting n points into a PointSET
 
+               n      ops per second
+----------------------------------------
+=> passed   160000     377443
+=> passed   320000     327486
+=> passed   640000     301847
+=> passed  1280000     290843
+==> 4/4 tests passed
+
+Performing range() queries after inserting n points into a PointSET
+
+               n      ops per second
+----------------------------------------
+=> passed    10000       4419
+=> passed    20000       1637
+=> passed    40000        754
+==> 3/3 tests passed
+
+Performing nearest() queries after inserting n points into a PointSET
+
+               n      ops per second
+----------------------------------------
+=> passed    10000     456425
+=> passed    20000     450190
+=> passed    40000     395249
+==> 3/3 tests passed
+
+Total: 14/14 tests passed!
 
 
-...
+================================================================
 
-WARNING: the grading output was truncated due to excessive length.
-Typically, this is because you have a method that has an unanticipated side effect
-(such as printing to standard output or throwing an exception). A large amount of output
-can also arise from failing many tests.
+
+
+Timing KdTree
+*-----------------------------------------------------------
+Running 28 total tests.
+
+
+Inserting n points into a 2d tree. The table gives the average number of calls to methods
+in RectHV and Point per call to insert().
+
+                                                                                                Point2D
+               n      ops per second       RectHV()           x()               y()             equals()
+----------------------------------------------------------------------------------------------------------------
+=> passed   160000    1011005               0.0              11.6              11.1               0.0
+=> passed   320000    1072104               0.0              11.8              11.3               0.0
+=> passed   640000     899401               0.0              12.5              12.0               0.0
+=> passed  1280000     747878               0.0              13.6              13.1               0.0
+==> 4/4 tests passed
+
+Performing contains() queries after inserting n points into a 2d tree. The table gives
+the average number of calls to methods in RectHV and Point per call to contain().
+
+                                                                               Point2D
+               n      ops per second       x()               y()               equals()
+-----------------------------------------------------------------------------------------------
+=> passed    10000     433452               9.2               8.8               0.0
+=> passed    20000     494347               9.8               9.3               0.0
+=> passed    40000     456767              10.9              10.4               0.0
+=> passed    80000     496642              11.0              10.5               0.0
+=> passed   160000     334612              11.6              11.1               0.0
+=> passed   320000     340402              12.5              12.0               0.0
+=> passed   640000     298988              12.8              12.3               0.0
+=> passed  1280000     362316              13.6              13.1               0.0
+==> 8/8 tests passed
+
+Performing range() queries after inserting n points into a 2d tree. The table gives
+the average number of calls to methods in RectHV and Point per call to range().
+
+               n      ops per second       intersects()      contains()        x()               y()
+---------------------------------------------------------------------------------------------------------------
+=> passed    10000     323497               0.0              31.1              50.1              12.1
+=> passed    20000     357974               0.0              32.6              53.3              16.2
+=> passed    40000     307107               0.0              39.3              63.1              14.1
+=> passed    80000     223964               0.0              40.7              65.2              14.9
+=> passed   160000     200511               0.0              42.5              70.9              20.4
+=> passed   320000     165082               0.0              40.2              65.2              15.7
+=> passed   640000     105380               0.0              43.3              70.7              19.2
+=> passed  1280000     146499               0.0              47.0              74.8              14.2
+==> 8/8 tests passed
+
+Performing nearest() queries after inserting n points into a 2d tree. The table gives
+the average number of calls to methods in RectHV and Point per call to nearest().
+
+                                         Point2D                 RectHV
+               n      ops per second     distanceSquaredTo()     distanceSquaredTo()        x()               y()
+------------------------------------------------------------------------------------------------------------------------
+=> passed    10000   200749                  51.5                    0.0                   142.6             137.6
+=> passed    20000   245841                  56.5                    0.0                   156.2             152.4
+=> passed    40000   212141                  66.1                    0.0                   186.5             179.4
+=> passed    80000   179535                  67.4                    0.0                   187.8             187.7
+=> passed   160000   154944                  72.9                    0.0                   207.5             202.5
+=> passed   320000   115641                  75.7                    0.0                   215.2             213.3
+=> passed   640000   116065                  78.7                    0.0                   223.4             222.4
+=> passed  1280000   103316                  87.8                    0.0                   252.9             244.9
+==> 8/8 tests passed
+
+Total: 28/28 tests passed!
+
+
+================================================================
