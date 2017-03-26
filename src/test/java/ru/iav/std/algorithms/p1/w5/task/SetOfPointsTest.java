@@ -59,7 +59,7 @@ public abstract class SetOfPointsTest {
         points.forEach(set::insert);
         assertEquals(set.size(), 100);
         points.forEach(set::insert);
-        assertEquals(set.size(), 200);
+        assertEquals(set.size(), 100);
     }
 
     @Test

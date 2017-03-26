@@ -26,7 +26,6 @@ public class KdTree {
         final Point2D value;
         private Node left, right;
         private int size = 1;
-        private int localDuplicates = 1;
 
         Node(double key, Point2D value) {
             this.key = key;
@@ -48,8 +47,7 @@ public class KdTree {
 
         private void range(RectHV rect, Set<Point2D> set) {
             if (rect.contains(this.value))
-                for (int i = 0; i < localDuplicates; i++)
-                    set.add(this.value);
+                set.add(this.value);
 
             int cmp = compareTo(rect);
             if (cmp > -1 && left != null)   left.range(rect, set);
@@ -136,8 +134,7 @@ public class KdTree {
             int cmp = whereToGoNext(point);
             if (cmp > 0)        putToTheLeft(point);
             else if (cmp < 0)   putToTheRight(point);
-            else                localDuplicates++;
-            size = localDuplicates + size(left) + size(right);
+            size = 1 + size(left) + size(right);
         }
 
         private int whereToGoNext(Point2D point) {
