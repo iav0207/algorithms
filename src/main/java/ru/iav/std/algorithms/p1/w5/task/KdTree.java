@@ -25,12 +25,12 @@ public class KdTree {
         private final double key;
         final Point2D value;
         private Node left, right;
-        private int size;
+        private int size = 1;
+        private int localDuplicates = 1;
 
-        public Node(double key, Point2D value, int size) {
+        public Node(double key, Point2D value) {
             this.key = key;
             this.value = value;
-            this.size = size;
         }
 
         public boolean find(Point2D value) {
@@ -116,8 +116,8 @@ public class KdTree {
             int cmp = compareTo(point);
             if (cmp > 0)        putToTheLeft(point);
             else if (cmp < 0)   putToTheRight(point);
-            // TODO equal coords processing ??
-            size = 1 + size(left) + size(right);
+            else                localDuplicates++;
+            size = localDuplicates + size(left) + size(right);
         }
 
         public abstract int compareTo(Point2D value);
@@ -143,7 +143,7 @@ public class KdTree {
 
     private class XNode extends Node {
         public XNode(Point2D value) {
-            super(value.x(), value, 1);
+            super(value.x(), value);
         }
 
         @Override
@@ -191,7 +191,7 @@ public class KdTree {
 
     private class YNode extends Node {
         public YNode(Point2D value) {
-            super(value.y(), value, 1);
+            super(value.y(), value);
         }
 
         @Override

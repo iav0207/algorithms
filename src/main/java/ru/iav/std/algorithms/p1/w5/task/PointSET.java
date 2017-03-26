@@ -13,6 +13,8 @@ public class PointSET {
 
     private SET<Point2D> set;
 
+    private int duplicates = 0;
+
     /**
      * construct an empty set of points
      */
@@ -33,7 +35,7 @@ public class PointSET {
      * @return
      */
     public int size() {
-        return set.size();
+        return set.size() + duplicates;
     }
 
     /**
@@ -42,6 +44,7 @@ public class PointSET {
      */
     public void insert(Point2D p) {
         if (p == null) throw new NullPointerException("Argument should not be null.");
+        if (set.contains(p)) duplicates++;
         set.add(p);
     }
 

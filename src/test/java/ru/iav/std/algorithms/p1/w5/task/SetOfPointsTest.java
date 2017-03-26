@@ -6,8 +6,11 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.iav.std.algorithms.p1.w5.task.struct.SetOfPoints;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertFalse;
@@ -17,6 +20,8 @@ import static org.testng.Assert.assertTrue;
  * Created by takoe on 24.03.17.
  */
 public abstract class SetOfPointsTest {
+
+    private Random random = ThreadLocalRandom.current();
     
     private SetOfPoints set;
     
@@ -45,6 +50,15 @@ public abstract class SetOfPointsTest {
     @Test(expectedExceptions = NullPointerException.class)
     public void shouldThrowNpeIfNearestArgumentIsNull() {
         set.nearest(null);
+    }
+
+    @Test
+    public void testSize() {
+        List<Point2D> points = randomPoints(100);
+        points.forEach(set::insert);
+        assertEquals(set.size(), 100);
+        points.forEach(set::insert);
+        assertEquals(set.size(), 200);
     }
 
     @Test
@@ -90,6 +104,15 @@ public abstract class SetOfPointsTest {
             assertTrue(inside.contains(each));
             assertFalse(outside.contains(each));
         }
+    }
+
+    private List<Point2D> randomPoints(int size) {
+        double[] coords = random.doubles(2*size).toArray();
+        List<Point2D> points = new ArrayList<>(size);
+        for (int i = 0; i < size; i++) {
+            points.add(point(coords[2*i], coords[2*i + 1]));
+        }
+        return points;
     }
 
     private static Point2D point(double x, double y) {
