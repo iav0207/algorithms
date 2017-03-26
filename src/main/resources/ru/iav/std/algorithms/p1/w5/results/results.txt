@@ -1,0 +1,710 @@
+See the Assessment Guide for information on how to interpret this report.
+
+ASSESSMENT SUMMARY
+
+Compilation:  PASSED
+API:          PASSED
+
+Findbugs:     PASSED
+Checkstyle:   FAILED (26 warnings)
+
+Correctness:  12/27 tests passed
+Memory:       8/8 tests passed
+Timing:       42/42 tests passed
+
+Aggregate score: 66.67%
+[Compilation: 5%, API: 5%, Findbugs: 0%, Checkstyle: 0%, Correctness: 60%, Memory: 10%, Timing: 20%]
+
+ASSESSMENT DETAILS
+
+The following files were submitted:
+----------------------------------
+ 13K Mar 26 12:25 KdTree.java
+2.7K Mar 26 12:25 PointSET.java
+
+
+********************************************************************************
+*  COMPILING
+********************************************************************************
+
+
+% javac PointSET.java
+*-----------------------------------------------------------
+
+% javac KdTree.java
+*-----------------------------------------------------------
+
+
+================================================================
+
+
+Checking the APIs of your programs.
+*-----------------------------------------------------------
+PointSET:
+
+KdTree:
+
+================================================================
+
+
+********************************************************************************
+*  CHECKING STYLE AND COMMON BUG PATTERNS
+********************************************************************************
+
+
+% findbugs *.class
+*-----------------------------------------------------------
+
+================================================================
+
+
+% checkstyle *.java
+*-----------------------------------------------------------
+PointSET.java:106:43: '{' is not preceded with whitespace. [WhitespaceAround]
+PointSET.java:106:44: '{' is not followed by whitespace. [WhitespaceAround]
+PointSET.java:106:44: '}' is not preceded with whitespace. [WhitespaceAround]
+KdTree.java:5: Do not use .* in import statements. [AvoidStarImport]
+KdTree.java:12: Do not use static imports. [AvoidStaticImport]
+KdTree.java:21:13: Do not use the keyword 'abstract' in this course. [IllegalToken]
+KdTree.java:24:9: Declare static and instance variables in order of their access modifiers: public, protected, package, and private. [DeclarationOrder]
+KdTree.java:24:23: The instance (or static) variable 'value' must be private. [VisibilityModifier]
+KdTree.java:34:37: The local (or parameter) variable 'value' has the same name as an instance variable. Use a different name. [HiddenField]
+KdTree.java:77:9: Do not use the keyword 'abstract' in this course. [IllegalToken]
+KdTree.java:111:9: Do not use the keyword 'abstract' in this course. [IllegalToken]
+KdTree.java:121:16: Do not use the keyword 'abstract' in this course. [IllegalToken]
+KdTree.java:121:47: The local (or parameter) variable 'value' has the same name as an instance variable. Use a different name. [HiddenField]
+KdTree.java:133:16: Do not use the keyword 'abstract' in this course. [IllegalToken]
+KdTree.java:133:50: The local (or parameter) variable 'value' has the same name as an instance variable. Use a different name. [HiddenField]
+KdTree.java:135:16: Do not use the keyword 'abstract' in this course. [IllegalToken]
+KdTree.java:137:37: The local (or parameter) variable 'key' has the same name as an instance variable. Use a different name. [HiddenField]
+KdTree.java:239:16: The instance (or static) variable 'x1' must be private. [VisibilityModifier]
+KdTree.java:239:20: The instance (or static) variable 'x2' must be private. [VisibilityModifier]
+KdTree.java:239:24: The instance (or static) variable 'y1' must be private. [VisibilityModifier]
+KdTree.java:239:28: The instance (or static) variable 'y2' must be private. [VisibilityModifier]
+KdTree.java:240:15: The instance (or static) variable 'color' must be private. [VisibilityModifier]
+KdTree.java:253:30: The local (or parameter) variable 'color' has the same name as an instance variable. Use a different name. [HiddenField]
+KdTree.java:374:43: '{' is not preceded with whitespace. [WhitespaceAround]
+KdTree.java:374:44: '{' is not followed by whitespace. [WhitespaceAround]
+KdTree.java:374:44: '}' is not preceded with whitespace. [WhitespaceAround]
+Checkstyle ends with 26 errors.
+
+================================================================
+
+
+********************************************************************************
+*  TESTING CORRECTNESS
+********************************************************************************
+
+Testing correctness of PointSET
+*-----------------------------------------------------------
+Running 8 total tests.
+
+A point in an m-by-m grid means that it is of the form (i/m, j/m),
+where i and j are integers between 0 and m
+
+Test 1: Test size() by inserting n random points
+        (size may be less than n because of duplicates)
+  * 100000 random points in a 100000-by-100000 grid
+  * 100000 random points in a 10000-by-10000 grid
+  * 100000 random points in a 1000-by-1000 grid
+  * 100000 random points in a 100-by-100 grid
+  * 100000 random points in a 10-by-10 grid
+==> passed
+
+Test 2: Test isEmpty() by checking for n = 0, 1, and 2 points
+  * 0 points
+  * 1 point
+  * 2 points
+==> passed
+
+Test 3: Insert n random points and check contains() for random query points
+  * 100000 random points in a 100000-by-100000 grid
+  * 100000 random points in a 10000-by-10000 grid
+  * 100000 random points in a 1000-by-1000 grid
+  * 100000 random points in a 100-by-100 grid
+  * 100000 random points in a 10-by-10 grid
+==> passed
+
+Test 4: Insert n random points and check nearest() for random query points
+  * 1000 random points in a 100000-by-100000 grid
+    - failed on trial 1 of 1000
+    - student   nearest()    = (0.02747, 0.86535)
+    - reference nearest()    = (0.09642, 0.86683)
+    - student   distanceTo() = 0.06658043256092587
+    - reference distanceTo() = 0.004499788883936694
+  * 1000 random points in a 10000-by-10000 grid
+    - failed on trial 1 of 1000
+    - student   nearest()    = (0.5926, 0.2229)
+    - reference nearest()    = (0.9286, 0.2282)
+    - student   distanceTo() = 0.3583003488694924
+    - reference distanceTo() = 0.02304191832291746
+  * 1000 random points in a 1000-by-1000 grid
+    - failed on trial 1 of 1000
+    - student   nearest()    = (0.692, 0.989)
+    - reference nearest()    = (0.484, 0.981)
+    - student   distanceTo() = 0.19200260414900622
+    - reference distanceTo() = 0.018357559750685835
+  * 1000 random points in a 100-by-100 grid
+    - failed on trial 2 of 1000
+    - student   nearest()    = (0.73, 0.4)
+    - reference nearest()    = (0.7, 0.41)
+    - student   distanceTo() = 0.040000000000000036
+    - reference distanceTo() = 0.014142135623730925
+  * 1000 random points in a 10-by-10 grid
+==> FAILED
+
+Test 5: Insert n random points and check range() for random query rectangles
+  * 1000 random rectangles and points in a 100000-by-100000 grid
+  * 1000 random rectangles and points in a 10000-by-10000 grid
+  * 1000 random rectangles and points in a 1000-by-1000 grid
+  * 1000 random rectangles and points in a 100-by-100 grid
+  * 1000 random rectangles and points in a 10-by-10 grid
+==> passed
+
+Test 6: Intermixed sequence of calls to isEmpty(), size(), insert(),
+        contains(), range(), and nearest() with probabilities
+        p1, p2, p3, p4, p5, and p6, respectively
+  * 10000 calls with random points in a 10000-by-10000 grid
+    and probabilities 0.05, 0.05, 0.3, 0.2, 0.2, 0.2
+    - failed on trial 30 of 10000
+    - student   nearest()    = (0.0707, 0.377)
+    - reference nearest()    = (0.5068, 0.0552)
+    - student   distanceTo() = 0.41822314617916595
+    - reference distanceTo() = 0.3266907559145193
+  * 10000 calls with random points in a 1000-by-1000 grid
+    and probabilities 0.05, 0.05, 0.3, 0.2, 0.2, 0.2
+    - failed on trial 23 of 10000
+    - student   nearest()    = (0.298, 0.907)
+    - reference nearest()    = (0.947, 0.842)
+    - student   distanceTo() = 0.46912898013232995
+    - reference distanceTo() = 0.19538679586911697
+  * 10000 calls with random points in a 100-by-100 grid
+    and probabilities 0.05, 0.05, 0.3, 0.2, 0.2, 0.2
+    - failed on trial 39 of 10000
+    - student   nearest()    = (0.32, 0.84)
+    - reference nearest()    = (0.21, 0.75)
+    - student   distanceTo() = 0.24698178070456941
+    - reference distanceTo() = 0.2163330765278394
+  * 10000 calls with random points in a 10-by-10 grid
+    and probabilities 0.05, 0.05, 0.3, 0.2, 0.2, 0.2
+    - failed on trial 9 of 10000
+    - student   nearest()    = (0.9, 0.2)
+    - reference nearest()    = (0.6, 0.6)
+    - student   distanceTo() = 0.806225774829855
+    - reference distanceTo() = 0.7071067811865476
+  * 10000 calls with random points in a 1-by-1 grid
+    and probabilities 0.05, 0.05, 0.3, 0.2, 0.2, 0.2
+==> FAILED
+
+Test 7: Intermixed sequence of calls to isEmpty(), size(), insert(),
+        contains(), range(), and nearest() with probabilities
+        p1, p2, p3=0, p4, p5, and p6, respectively
+        (data structure with 0 points)
+  * 1000 calls with random points in a 1000-by-1000 grid
+    and probabilities 0.5, 0.5, 0.0, 0.0, 0.0, 0.0
+  * 1000 calls with random points in a 1000-by-1000 grid
+    and probabilities 0.2, 0.2, 0.0, 0.6, 0.0, 0.0
+  * 1000 calls with random points in a 1000-by-1000 grid
+    and probabilities 0.2, 0.2, 0.0, 0.0, 0.6, 0.0
+  * 1000 calls with random points in a 1000-by-1000 grid
+    and probabilities 0.2, 0.2, 0.0, 0.0, 0.0, 0.6
+  * 1000 calls with random points in a 1000-by-1000 grid
+    and probabilities 0.2, 0.2, 0.0, 0.2, 0.2, 0.2
+==> passed
+
+Test 8: Test whether two PointSET objects can be created at the same time
+==> passed
+
+
+Total: 6/8 tests passed!
+
+
+================================================================
+Testing correctness of KdTree
+*-----------------------------------------------------------
+In the tests below, we consider three classes of points and rectangles.
+
+  * Non-degenerate points: no two points (or rectangles) share either an
+                           x-coordinate or a y-coordinate
+
+  * Distinct points:       no two points (or rectangles) share both an
+                           x-coordinate and a y-coordinate
+
+  * General points:        no restrictions on the x-coordinates or y-coordinates
+                           of the points (or rectangles)
+
+A point in an GRID-by-GRID grid means that it is of the form (i/GRID, j/GRID),
+where i and j are integers between 0 and GRID
+
+Running 19 total tests.
+
+Test 1a: Insert n non-degenerate points and check size() after each insertion
+  * 50000 random non-degenerate points in a 100000-by-100000 grid
+  * 5000 random non-degenerate points in a 10000-by-10000 grid
+  * 500 random non-degenerate points in a 1000-by-1000 grid
+  * 50 random non-degenerate points in a 100-by-100 grid
+  * 10 random non-degenerate points in a 10-by-10 grid
+  * 1 random non-degenerate points in a 1-by-1 grid
+==> passed
+
+Test 1b: Insert n distinct points and check size() after each insertion
+  * 100000 random distinct points in a 100000-by-100000 grid
+    - failed on trial 1674 of 100000
+    - student   size() = 1673
+    - reference size() = 1674
+  * 100000 random distinct points in a 10000-by-10000 grid
+    - failed on trial 151 of 100000
+    - student   size() = 150
+    - reference size() = 151
+  * 100000 random distinct points in a 1000-by-1000 grid
+    - failed on trial 71 of 100000
+    - student   size() = 70
+    - reference size() = 71
+  * 10000 random distinct points in a 100-by-100 grid
+    - failed on trial 24 of 10000
+    - student   size() = 23
+    - reference size() = 24
+  * 100 random distinct points in a 10-by-10 grid
+    - failed on trial 3 of 100
+    - student   size() = 2
+    - reference size() = 3
+  * 1 random distinct points in a 1-by-1 grid
+==> FAILED
+
+Test 1c: Insert n general points and check size() after each insertion
+  * 100000 random general points in a 100000-by-100000 grid
+    - failed on trial 1540 of 100000
+    - student   size() = 1539
+    - reference size() = 1540
+  * 100000 random general points in a 10000-by-10000 grid
+    - failed on trial 205 of 100000
+    - student   size() = 204
+    - reference size() = 205
+  * 100000 random general points in a 1000-by-1000 grid
+    - failed on trial 34 of 100000
+    - student   size() = 33
+    - reference size() = 34
+  * 100000 random general points in a 100-by-100 grid
+    - failed on trial 25 of 100000
+    - student   size() = 24
+    - reference size() = 25
+  * 100000 random general points in a 10-by-10 grid
+    - failed on trial 14 of 100000
+    - student   size() = 13
+    - reference size() = 14
+  * 10 random general points in a 1-by-1 grid
+    - failed on trial 5 of 10
+    - student   size() = 3
+    - reference size() = 4
+==> FAILED
+
+Test 2: Test size() and isEmpty() for n = 0, 1, and 2 points
+  * 0 points
+  * 1 point
+  * 2 points
+==> passed
+
+Test 3a: Insert n non-degenerate points and call contains() with random query points
+  * 50000 random non-degenerate points in a 100000-by-100000 grid
+  * 5000 random non-degenerate points in a 10000-by-10000 grid
+  * 500 random non-degenerate points in a 1000-by-1000 grid
+  * 50 random non-degenerate points in a 100-by-100 grid
+  * 5 random non-degenerate points in a 10-by-10 grid
+  * 1 random non-degenerate points in a 1-by-1 grid
+==> passed
+
+Test 3b: Insert n distinct points and call contains() with random query points
+  * 100000 random distinct points in a 100000-by-100000 grid
+  * 100000 random distinct points in a 10000-by-10000 grid
+    - failed on trial 9418 of 100000
+    - student   contains() = false
+    - reference contains() = true
+  * 100000 random distinct points in a 1000-by-1000 grid
+    - failed on trial 14 of 100000
+    - student   contains() = false
+    - reference contains() = true
+  * 10000 random distinct points in a 100-by-100 grid
+    - failed on trial 1 of 10000
+    - student   contains() = false
+    - reference contains() = true
+  * 100 random distinct points in a 10-by-10 grid
+    - failed on trial 5 of 100
+    - student   contains() = false
+    - reference contains() = true
+  * 1 random distinct points in a 1-by-1 grid
+==> FAILED
+
+Test 3c: Insert n general points and call contains() with random query points
+  * 10000 random general points in a 1000-by-1000 grid
+    - failed on trial 236 of 10000
+    - student   contains() = false
+    - reference contains() = true
+  * 10000 random general points in a 100-by-100 grid
+    - failed on trial 4 of 10000
+    - student   contains() = false
+    - reference contains() = true
+  * 10000 random general points in a 10-by-10 grid
+    - failed on trial 1 of 10000
+    - student   contains() = false
+    - reference contains() = true
+  * 10000 random general points in a 1-by-1 grid
+    - failed on trial 2 of 10000
+    - student   contains() = false
+    - reference contains() = true
+==> FAILED
+
+Test 4: Test whether two KdTree objects can be created at the same time
+==> passed
+
+Test 5a: Insert n non-degenerate points and call range() for n random query rectangles
+  * 5000 random non-degenerate points and rectangles in a 100000-by-100000 grid
+  * 5000 random non-degenerate points and rectangles in a 10000-by-10000 grid
+  * 500 random non-degenerate points and rectangles in a 1000-by-1000 grid
+  * 50 random non-degenerate points and rectangles in a 100-by-100 grid
+  * 5 random non-degenerate points and rectangles in a 10-by-10 grid
+==> passed
+
+Test 5b: Insert n distinct points and call range() for n random query rectangles
+  * 5000 random distinct points and rectangles in a 100000-by-100000 grid
+    - student   solution has 16 non-null entries
+    - reference solution has 17 non-null entries
+    - 1 missing entry in student solution: (0.07522, 0.83221)
+
+    - failed on trial 5 of 5000
+    - rectangle = [0.07212, 0.09663] x [0.80182, 0.94496]
+  * 5000 random distinct points and rectangles in a 10000-by-10000 grid
+    - student   solution has 1255 non-null entries
+    - reference solution has 1274 non-null entries
+    - 19 missing entries in student solution, including: (0.3502, 0.8265)
+
+    - failed on trial 1 of 5000
+    - rectangle = [0.137, 0.4127] x [0.0183, 0.9206]
+  * 1000 random distinct points and rectangles in a 1000-by-1000 grid
+    - student   solution has 72 non-null entries
+    - reference solution has 73 non-null entries
+    - 1 missing entry in student solution: (0.109, 0.266)
+
+    - failed on trial 1 of 1000
+    - rectangle = [0.045, 0.513] x [0.253, 0.433]
+  * 1000 random distinct points and rectangles in a 100-by-100 grid
+    - student   solution has 207 non-null entries
+    - reference solution has 358 non-null entries
+    - 151 missing entries in student solution, including: (0.74, 0.84)
+
+    - failed on trial 1 of 1000
+    - rectangle = [0.39, 0.84] x [0.05, 0.84]
+  * 5 random distinct points and rectangles in a 10-by-10 grid
+==> FAILED
+
+Test 5c: Insert n general points and call range() for n random query rectangles
+  * 5000 random general points and rectangles in a 10000-by-10000 grid
+    - student   solution has 158 non-null entries
+    - reference solution has 160 non-null entries
+    - 2 missing entries in student solution, including: (0.1513, 0.5596)
+
+    - failed on trial 1 of 5000
+    - rectangle = [0.1063, 0.201] x [0.3071, 0.6805]
+  * 5000 random general points and rectangles in a 1000-by-1000 grid
+    - student   solution has 402 non-null entries
+    - reference solution has 456 non-null entries
+    - 54 missing entries in student solution, including: (0.443, 0.152)
+
+    - failed on trial 1 of 5000
+    - rectangle = [0.032, 0.84] x [0.035, 0.153]
+  * 5000 random general points and rectangles in a 100-by-100 grid
+    - student   solution has 572 non-null entries
+    - reference solution has 1806 non-null entries
+    - 1234 missing entries in student solution, including: (0.72, 0.67)
+
+    - failed on trial 1 of 5000
+    - rectangle = [0.02, 0.74] x [0.05, 0.67]
+  * 5000 random general points and rectangles in a 10-by-10 grid
+    - student   solution has 6 non-null entries
+    - reference solution has 20 non-null entries
+    - 14 missing entries in student solution, including: (1.0, 0.8)
+
+    - failed on trial 1 of 5000
+    - rectangle = [0.7, 1.0] x [0.4, 0.8]
+  * 5000 random general points and rectangles in a 1-by-1 grid
+    - student   solution has 3 non-null entries
+    - reference solution has 4 non-null entries
+    - 1 missing entry in student solution: (1.0, 1.0)
+
+    - failed on trial 1 of 5000
+    - rectangle = [0.0, 1.0] x [0.0, 1.0]
+==> FAILED
+
+Test 5d: Insert n points and call range() for tiny rectangles enclosing each point.
+  * 4000 tiny rectangles and 4000 points in a 100000-by-100000 grid
+    - failed on trial 351 of 4000
+    - rectangle query        = [0.6602999999, 0.6603000001] x [0.09076999990000001, 0.0907700001]
+    - student   range() size = 0
+    - reference range() size = 1
+  * 4000 tiny rectangles and 4000 points in a 10000-by-10000 grid
+    - failed on trial 30 of 4000
+    - rectangle query        = [0.29859999989999997, 0.2986000001] x [0.0077999999, 0.007800000099999999]
+    - student   range() size = 0
+    - reference range() size = 1
+  * 4000 tiny rectangles and 4000 points in a 1000-by-1000 grid
+    - failed on trial 2 of 3993
+    - rectangle query        = [0.28399999989999997, 0.2840000001] x [0.0, 1.0E-10]
+    - student   range() size = 0
+    - reference range() size = 1
+  * 4000 tiny rectangles and 4000 points in a 100-by-100 grid
+    - failed on trial 2 of 3296
+    - rectangle query        = [0.0499999999, 0.050000000100000004] x [0.0, 1.0E-10]
+    - student   range() size = 0
+    - reference range() size = 1
+  * 4000 tiny rectangles and 4000 points in a 10-by-10 grid
+    - failed on trial 1 of 121
+    - rectangle query        = [0.0, 1.0E-10] x [0.0, 1.0E-10]
+    - student   range() size = 0
+    - reference range() size = 1
+==> FAILED
+
+Test 6a: Insert n non-degenerate points and call nearest() with random query points
+  * 50000 random non-degenerate points in a 100000-by-100000 grid
+    - failed on trial 3 of 50000
+    - student   nearest()    = (0.05803, 0.06304)
+    - reference nearest()    = (0.05868, 0.05977)
+    - student   distanceTo() = 0.002681678578800968
+    - reference distanceTo() = 0.0016458432489152828
+  * 5000 random non-degenerate points in a 10000-by-10000 grid
+    - failed on trial 1 of 5000
+    - student   nearest()    = (0.5855, 0.5498)
+    - reference nearest()    = (0.6344, 0.5313)
+    - student   distanceTo() = 0.034253758917818025
+    - reference distanceTo() = 0.018948878594787586
+  * 500 random non-degenerate points in a 1000-by-1000 grid
+    - failed on trial 5 of 500
+    - student   nearest()    = (0.242, 0.284)
+    - reference nearest()    = (0.219, 0.346)
+    - student   distanceTo() = 0.04257933771208758
+    - reference distanceTo() = 0.025612496949731358
+  * 50 random non-degenerate points in a 100-by-100 grid
+    - failed on trial 17 of 50
+    - student   nearest()    = (0.93, 0.92)
+    - reference nearest()    = (0.86, 0.84)
+    - student   distanceTo() = 0.09055385138137424
+    - reference distanceTo() = 0.07280109889280525
+  * 5 random non-degenerate points in a 10-by-10 grid
+==> FAILED
+
+Test 6b: Insert n distinct points and call nearest() with random query points
+  * 50000 random distinct points in a 100000-by-100000 grid
+    - failed on trial 4 of 50000
+    - student   nearest()    = (0.07547, 0.58077)
+    - reference nearest()    = (0.07035, 0.58286)
+    - student   distanceTo() = 0.004823795186365176
+    - reference distanceTo() = 0.0015554099138170108
+  * 10000 random distinct points in a 10000-by-10000 grid
+    - failed on trial 3 of 10000
+    - student   nearest()    = (0.3257, 0.1877)
+    - reference nearest()    = (0.3387, 0.1855)
+    - student   distanceTo() = 0.00822982381342394
+    - reference distanceTo() = 0.005608029957124011
+  * 10000 random distinct points in a 1000-by-1000 grid
+    - failed on trial 2 of 10000
+    - student   nearest()    = (0.338, 0.582)
+    - reference nearest()    = (0.331, 0.577)
+    - student   distanceTo() = 0.0058309518948453055
+    - reference distanceTo() = 0.0028284271247461927
+  * 5000 random distinct points in a 100-by-100 grid
+    - failed on trial 2 of 5000
+    - student   nearest()    = (0.06, 0.72)
+    - reference nearest()    = (0.04, 0.71)
+    - student   distanceTo() = 0.014142135623730954
+    - reference distanceTo() = 0.010000000000000002
+  * 50 random distinct points in a 10-by-10 grid
+    - failed on trial 1 of 50
+    - student   nearest()    = (0.1, 0.3)
+    - reference nearest()    = (0.0, 0.3)
+    - student   distanceTo() = 0.1414213562373095
+    - reference distanceTo() = 0.09999999999999998
+==> FAILED
+
+Test 6c: Insert n general points and call nearest() with random query points
+  * 10000 random general points in a 1000-by-1000 grid
+    - failed on trial 2 of 10000
+    - student   nearest()    = (0.991, 0.978)
+    - reference nearest()    = (0.983, 0.985)
+    - student   distanceTo() = 0.02209072203437454
+    - reference distanceTo() = 0.018027756377319962
+  * 10000 random general points in a 100-by-100 grid
+    - failed on trial 3 of 10000
+    - student   nearest()    = (0.12, 0.6)
+    - reference nearest()    = (0.12, 0.59)
+    - student   distanceTo() = 0.010000000000000009
+    - reference distanceTo() = 0.0
+  * 10000 random general points in a 10-by-10 grid
+    - failed on trial 1 of 10000
+    - student   nearest()    = (0.8, 0.2)
+    - reference nearest()    = (0.8, 0.3)
+    - student   distanceTo() = 0.09999999999999998
+    - reference distanceTo() = 0.0
+==> FAILED
+
+Test 7a: Intermixed sequence of calls to insert(), isEmpty(), size(),
+         contains(), range(), and nearest() with probabilities
+         (p1, p2, p3, p4, p5, p6), respectively
+  * 20000 calls with non-degenerate points in a 100000-by-100000 grid
+     and probabilities (0.3, 0.05, 0.05, 0.1, 0.2, 0.2)
+    - failed on trial 42 of 20000
+    - student   nearest()  = (0.44513, 0.06935)
+    - reference nearest()  = (0.64255, 0.08029)
+    - student   distanceTo() = 0.1698180496884827
+    - reference distanceTo() = 0.04123311775745316
+
+  * 20000 calls with non-degenerate points in a 10000-by-10000 grid
+     and probabilities (0.3, 0.05, 0.05, 0.1, 0.2, 0.2)
+    - failed on trial 67 of 20000
+    - student   nearest()  = (0.2397, 0.4941)
+    - reference nearest()  = (0.4462, 0.5585)
+    - student   distanceTo() = 0.17399841953305212
+    - reference distanceTo() = 0.16105334519965736
+
+  * 20000 calls with non-degenerate points in a 1000-by-1000 grid
+     and probabilities (0.3, 0.05, 0.05, 0.1, 0.2, 0.2)
+    - failed on trial 15 of 20000
+    - student   nearest()  = (0.622, 0.143)
+    - reference nearest()  = (0.241, 0.693)
+    - student   distanceTo() = 0.7628977651035557
+    - reference distanceTo() = 0.46868752917055523
+
+  * 20000 calls with non-degenerate points in a 100-by-100 grid
+     and probabilities (0.3, 0.05, 0.05, 0.1, 0.2, 0.2)
+    - failed on trial 16 of 20000
+    - student   nearest()  = (0.8, 0.19)
+    - reference nearest()  = (0.49, 0.28)
+    - student   distanceTo() = 0.21954498400100153
+    - reference distanceTo() = 0.1216552506059644
+
+  * 20000 calls with non-degenerate points in a 10-by-10 grid
+     and probabilities (0.3, 0.05, 0.05, 0.1, 0.2, 0.2)
+  * 20000 calls with non-degenerate points in a 1-by-1 grid
+     and probabilities (0.3, 0.05, 0.05, 0.1, 0.2, 0.2)
+==> FAILED
+
+Test 7b: Intermixed sequence of calls to insert(), isEmpty(), size(),
+         contains(), range(), and nearest() with probabilities
+         (p1, p2, p3, p4, p5, p6), respectively
+  * 20000 calls with distinct points in a 100000-by-100000 grid
+     and probabilities (0.3, 0.05, 0.05, 0.2, 0.2, 0.2)
+    - failed on trial 86 of 20000
+    - student   nearest()  = (0.99079, 0.13058)
+    - reference nearest()  = (0.80357, 0.09036)
+    - student   distanceTo() = 0.20474481800524275
+    - reference distanceTo() = 0.18360737920900677
+
+  * 20000 calls with distinct points in a 10000-by-10000 grid
+     and probabilities (0.3, 0.05, 0.05, 0.2, 0.2, 0.2)
+    - failed on trial 308 of 20000
+    - student   nearest()  = (0.2906, 0.5422)
+    - reference nearest()  = (0.2073, 0.5233)
+    - student   distanceTo() = 0.06038021199035331
+    - reference distanceTo() = 0.025985572920372534
+
+  * 20000 calls with distinct points in a 1000-by-1000 grid
+     and probabilities (0.3, 0.05, 0.05, 0.2, 0.2, 0.2)
+    - failed on trial 33 of 20000
+    - student   nearest()  = (0.007, 0.461)
+    - reference nearest()  = (0.128, 0.735)
+    - student   distanceTo() = 0.3164048040090416
+    - reference distanceTo() = 0.11308846094982461
+
+  * 20000 calls with distinct points in a 100-by-100 grid
+     and probabilities (0.3, 0.05, 0.05, 0.2, 0.2, 0.2)
+    - failed on trial 40 of 20000
+    - student   size() = 15
+    - reference size() = 16
+
+  * 20000 calls with distinct points in a 10-by-10 grid
+     and probabilities (0.3, 0.05, 0.05, 0.2, 0.2, 0.2)
+    - failed on trial 22 of 20000
+    - student   size() = 7
+    - reference size() = 11
+
+  * 20000 calls with distinct points in a 1-by-1 grid
+     and probabilities (0.3, 0.05, 0.05, 0.2, 0.2, 0.2)
+    - failed on trial 7 of 20000
+    - student   size() = 3
+    - reference size() = 4
+    - sequence of dequeue operations was:
+           set.size()  ==>  0
+           set.insert((1.0, 1.0))
+           set.insert((0.0, 1.0))
+           set.range([0.0, 1.0] x [0.0, 0.0])
+           set.insert((0.0, 0.0))
+           set.insert((1.0, 0.0))
+           set.size()  ==>  3
+
+==> FAILED
+
+Test 7c: Intermixed sequence of calls to insert(), isEmpty(), size(),
+         contains(), range(), and nearest() with probabilities
+         (p1, p2, p3, p4, p5, p6), respectively
+  * 20000 calls with general points in a 100000-by-100000 grid
+     and probabilities (0.3, 0.05, 0.05, 0.2, 0.2, 0.2)
+    - failed on trial 195 of 20000
+    - student   nearest()  = (0.59559, 0.04478)
+    - reference nearest()  = (0.56746, 0.05377)
+    - student   distanceTo() = 0.0564780143064538
+    - reference distanceTo() = 0.051610654907683566
+
+  * 20000 calls with general points in a 10000-by-10000 grid
+     and probabilities (0.3, 0.05, 0.05, 0.2, 0.2, 0.2)
+    - failed on trial 33 of 20000
+    - student   nearest()  = (0.3026, 0.5192)
+    - reference nearest()  = (0.2233, 0.4043)
+    - student   distanceTo() = 0.1330767072030263
+    - reference distanceTo() = 0.029800167784762587
+
+  * 20000 calls with general points in a 1000-by-1000 grid
+     and probabilities (0.3, 0.05, 0.05, 0.2, 0.2, 0.2)
+    - failed on trial 63 of 20000
+    - student   nearest()  = (0.297, 0.603)
+    - reference nearest()  = (0.048, 0.99)
+    - student   distanceTo() = 0.38313052606128895
+    - reference distanceTo() = 0.2390334704596827
+
+  * 20000 calls with general points in a 100-by-100 grid
+     and probabilities (0.3, 0.05, 0.05, 0.2, 0.2, 0.2)
+    - failed on trial 87 of 20000
+    - student   nearest()  = (0.93, 0.87)
+    - reference nearest()  = (0.71, 1.0)
+    - student   distanceTo() = 0.2
+    - reference distanceTo() = 0.060827625302982254
+
+  * 20000 calls with general points in a 10-by-10 grid
+     and probabilities (0.3, 0.05, 0.05, 0.2, 0.2, 0.2)
+    - failed on trial 27 of 20000
+    - student   nearest()  = (0.9, 0.5)
+    - reference nearest()  = (0.7, 0.2)
+    - student   distanceTo() = 0.22360679774997902
+    - reference distanceTo() = 0.2
+
+  * 20000 calls with general points in a 1-by-1 grid
+     and probabilities (0.3, 0.05, 0.05, 0.2, 0.2, 0.2)
+    - student   solution has 1 non-null entries
+    - reference solution has 2 non-null entries
+    - 1 missing entry in student solution: (0.0, 0.0)
+
+    - failed on trial 4 of 20000
+    - rectangle = [0.0, 0.0] x [0.0, 1.0]
+    - sequence of dequeue operations was:
+           set.insert((0.0, 1.0))
+           set.range([0.0, 1.0] x [0.0, 1.0])
+           set.insert((0.0, 0.0))
+           set.range([0.0, 0.0] x [0.0, 1.0])
+
+==> FAILED
+
+Test 8: Intermixed sequence of calls to insert(), isEmpty(), size(),
+        contains(), range(),
+
+...
+
+WARNING: the grading output was truncated due to excessive length.
+Typically, this is because you have a method that has an unanticipated side effect
+(such as printing to standard output or throwing an exception). A large amount of output
+can also arise from failing many tests.
