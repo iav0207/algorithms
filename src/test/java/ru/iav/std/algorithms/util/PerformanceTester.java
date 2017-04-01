@@ -18,6 +18,13 @@ public class PerformanceTester {
         return measureRelativeDeltaT(first, second) < epsilon;
     }
 
+    public static <T> void printResultAndExecutionTime(Supplier<T> supplier) {
+        long start = now();
+        T result = supplier.get();
+        long time = now() - start;
+        System.out.printf("Result: " + result + ",\ttime elapsed: %d ms\n", time);
+    }
+
     public double measureRelativeDeltaT(Supplier<?> first, Supplier<?> second) {
         double timeFirst = measureAverageExecutionTime(first);
         double timeSecond = measureAverageExecutionTime(second);
