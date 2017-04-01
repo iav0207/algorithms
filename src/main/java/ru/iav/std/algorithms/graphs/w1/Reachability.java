@@ -32,7 +32,7 @@ public class Reachability {
 
     @SuppressWarnings("unchecked")
     public static ArrayList<Integer>[] initializeAdjArray(int n) {
-        return  Stream.generate(ArrayList<Integer>::new).limit(n)
+        return Stream.generate(ArrayList<Integer>::new).limit(n)
                 .collect(Collectors.toList()).toArray((ArrayList<Integer>[]) new ArrayList[n]);
     }
 

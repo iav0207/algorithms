@@ -5,7 +5,7 @@ import ru.iav.std.algorithms.graphs.GraphGenerator;
 
 import java.util.ArrayList;
 
-import static ru.iav.std.algorithms.graphs.GraphGenerator.arrayOfLists;
+import static ru.iav.std.algorithms.graphs.GraphGenerator.undirected;
 import static ru.iav.std.algorithms.graphs.GraphGenerator.edge;
 
 /**
@@ -31,7 +31,7 @@ public class ReachabilityTestData {
         return new Object[][] {
                 {
                         new Input(
-                                arrayOfLists(4,
+                                undirected(4,
                                         edge(1, 2),
                                         edge(3, 2),
                                         edge(4, 3),
@@ -42,7 +42,7 @@ public class ReachabilityTestData {
                 },
                 {
                         new Input(
-                                arrayOfLists(4,
+                                undirected(4,
                                         edge(1, 2),
                                         edge(3, 2)
                                 ),

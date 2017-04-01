@@ -3,7 +3,7 @@ package ru.iav.std.algorithms.graphs.w1;
 import org.testng.annotations.DataProvider;
 import ru.iav.std.algorithms.graphs.GraphGenerator;
 
-import static ru.iav.std.algorithms.graphs.GraphGenerator.arrayOfLists;
+import static ru.iav.std.algorithms.graphs.GraphGenerator.undirected;
 import static ru.iav.std.algorithms.graphs.GraphGenerator.edge;
 
 /**
@@ -15,7 +15,7 @@ public class ComponentsExplorerTestData {
     public static Object[][] sample() {
         return new Object[][]{
                 {
-                        arrayOfLists(4,
+                        undirected(4,
                                 edge(1, 2),
                                 edge(3, 2)
                         ), 2    // expected result
