@@ -1,4 +1,4 @@
-package ru.iav.std.algorithms.graphs;
+package ru.iav.std.algorithms.graphs.w1;
 
 import java.util.ArrayList;
 import java.util.HashSet;

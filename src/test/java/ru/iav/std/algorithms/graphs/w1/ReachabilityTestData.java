@@ -1,6 +1,7 @@
-package ru.iav.std.algorithms.graphs;
+package ru.iav.std.algorithms.graphs.w1;
 
 import org.testng.annotations.DataProvider;
+import ru.iav.std.algorithms.graphs.GraphGenerator;
 
 import java.util.ArrayList;
 
@@ -12,13 +13,13 @@ import static ru.iav.std.algorithms.graphs.GraphGenerator.edge;
  */
 public class ReachabilityTestData {
 
-    static class Input {
+    public static class Input {
 
         ArrayList<Integer>[] adj;
 
         int x, y;
 
-        Input(ArrayList<Integer>[] adj, int x, int y) {
+        public Input(ArrayList<Integer>[] adj, int x, int y) {
             this.adj = adj;
             this.x = x - 1;
             this.y = y - 1;

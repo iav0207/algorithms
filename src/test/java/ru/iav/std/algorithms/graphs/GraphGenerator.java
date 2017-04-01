@@ -1,6 +1,8 @@
 package ru.iav.std.algorithms.graphs;
 
 import org.apache.commons.lang3.tuple.Pair;
+import ru.iav.std.algorithms.graphs.w1.Reachability;
+import ru.iav.std.algorithms.graphs.w1.ReachabilityTestData;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -44,12 +46,12 @@ public class GraphGenerator {
                 .collect(Collectors.toList()).toArray((Pair<Integer, Integer>[]) new Pair[m]);
     }
 
-    static Pair<Integer, Integer> edge(int u, int v) {
+    public static Pair<Integer, Integer> edge(int u, int v) {
         return Pair.of(u, v);
     }
 
     @SafeVarargs
-    static ArrayList<Integer>[] arrayOfLists(int n, Pair<Integer, Integer>... edges) {
+    public static ArrayList<Integer>[] arrayOfLists(int n, Pair<Integer, Integer>... edges) {
         ArrayList<Integer>[] array = Reachability.initializeAdjArray(n);
         for (Pair<Integer, Integer> eachEdge : edges) {
             int u = eachEdge.getLeft() - 1;

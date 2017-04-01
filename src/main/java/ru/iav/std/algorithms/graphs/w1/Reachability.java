@@ -1,4 +1,4 @@
-package ru.iav.std.algorithms.graphs;
+package ru.iav.std.algorithms.graphs.w1;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -31,7 +31,7 @@ public class Reachability {
     }
 
     @SuppressWarnings("unchecked")
-    static ArrayList<Integer>[] initializeAdjArray(int n) {
+    public static ArrayList<Integer>[] initializeAdjArray(int n) {
         return  Stream.generate(ArrayList<Integer>::new).limit(n)
                 .collect(Collectors.toList()).toArray((ArrayList<Integer>[]) new ArrayList[n]);
     }

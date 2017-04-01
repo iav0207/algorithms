@@ -1,6 +1,7 @@
-package ru.iav.std.algorithms.graphs;
+package ru.iav.std.algorithms.graphs.w1;
 
 import org.testng.annotations.DataProvider;
+import ru.iav.std.algorithms.graphs.GraphGenerator;
 
 import static ru.iav.std.algorithms.graphs.GraphGenerator.arrayOfLists;
 import static ru.iav.std.algorithms.graphs.GraphGenerator.edge;

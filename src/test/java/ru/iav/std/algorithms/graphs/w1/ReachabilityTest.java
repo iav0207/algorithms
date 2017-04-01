@@ -1,4 +1,4 @@
-package ru.iav.std.algorithms.graphs;
+package ru.iav.std.algorithms.graphs.w1;
 
 import org.testng.annotations.Test;
 
