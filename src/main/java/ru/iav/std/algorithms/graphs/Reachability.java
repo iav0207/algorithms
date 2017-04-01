@@ -43,20 +43,23 @@ public class Reachability {
 
         Explorer(ArrayList<Integer>[] adj) {
             this.adj = adj;
-            visited = new HashSet<>();
         }
 
         Set<Integer> explore(int u) {
             if (u < 0 || u >= adj.length) throw new IllegalArgumentException("No such vertex in the graph");
+            initializeVisited();
             recursivelyExplore(u);
             return resultAsDefensiveCopy();
+        }
+
+        private void initializeVisited() {
+            visited = new HashSet<>();
         }
 
         private void recursivelyExplore(int u) {
             visit(u);
             adj[u].stream()
-                    .filter(v -> u != v)
-                    .filter(v -> !isVisited(v))
+                    .filter(v -> u != v && !isVisited(v))
                     .forEach(this::recursivelyExplore);
         }
 
