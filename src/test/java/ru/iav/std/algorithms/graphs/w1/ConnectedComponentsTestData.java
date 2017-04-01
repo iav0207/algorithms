@@ -9,7 +9,7 @@ import static ru.iav.std.algorithms.graphs.GraphGenerator.edge;
 /**
  * Created by takoe on 01.04.17.
  */
-public class ComponentsExplorerTestData {
+public class ConnectedComponentsTestData {
 
     @DataProvider(name = "sample")
     public static Object[][] sample() {

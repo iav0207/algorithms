@@ -10,14 +10,14 @@ import static ru.iav.std.algorithms.util.PerformanceTester.printResultAndExecuti
 /**
  * Created by takoe on 01.04.17.
  */
-public class ComponentsExplorerTest {
+public class ConnectedComponentsTest {
 
-    @Test(dataProvider = "sample", dataProviderClass = ComponentsExplorerTestData.class)
+    @Test(dataProvider = "sample", dataProviderClass = ConnectedComponentsTestData.class)
     public void testSample(ArrayList<Integer>[] input, int expected) {
         assertEquals(runTest(input), expected);
     }
 
-    @Test(dataProvider = "largeSet", dataProviderClass = ComponentsExplorerTestData.class,
+    @Test(dataProvider = "largeSet", dataProviderClass = ConnectedComponentsTestData.class,
             invocationCount = 10)
     public void testLargeSet(ArrayList<Integer>[] input, Object ignore) {
         System.out.printf("Data set size: %d,\t", input.length);
