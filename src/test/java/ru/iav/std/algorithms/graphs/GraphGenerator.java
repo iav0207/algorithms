@@ -29,13 +29,17 @@ public class GraphGenerator {
         this.m = m;
     }
 
-    public ArrayList<Integer>[] generateAdj() {
+    public ArrayList<Integer>[] generateUndirected() {
         return undirected(n, generateEdges(n, m));
+    }
+
+    public ArrayList<Integer>[] generateDirected() {
+        return directed(n, generateEdges(n, m));
     }
 
     public ReachabilityTestData.Input generateReachabilityInput() {
         return new ReachabilityTestData.Input(
-                generateAdj(),
+                generateUndirected(),
                 random.nextInt(n) + 1,
                 random.nextInt(n) + 1
         );

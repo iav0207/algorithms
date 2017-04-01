@@ -25,7 +25,7 @@ public class ConnectedComponentsTestData {
 
     @DataProvider(name = "largeSet")
     public static Object[][] largeSet() {
-        return new Object[][] {{new GraphGenerator(1000, 2000).generateAdj(), null}};
+        return new Object[][] {{new GraphGenerator(1000, 2000).generateUndirected(), null}};
     }
 
 }

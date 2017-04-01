@@ -1,6 +1,7 @@
 package ru.iav.std.algorithms.graphs.w2;
 
 import org.testng.annotations.DataProvider;
+import ru.iav.std.algorithms.graphs.GraphGenerator;
 
 import static ru.iav.std.algorithms.graphs.GraphGenerator.directed;
 import static ru.iav.std.algorithms.graphs.GraphGenerator.edge;
@@ -33,6 +34,11 @@ public class AcyclicityTestData {
                         ), 0    // expected result
                 }
         };
+    }
+
+    @DataProvider(name = "largeSet")
+    public static Object[][] largeSet() {
+        return new Object[][] {{new GraphGenerator(1000, 500).generateDirected(), null}};
     }
 
 }
