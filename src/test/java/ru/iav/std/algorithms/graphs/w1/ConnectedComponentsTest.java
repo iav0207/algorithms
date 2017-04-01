@@ -1,11 +1,11 @@
 package ru.iav.std.algorithms.graphs.w1;
 
 import org.testng.annotations.Test;
+import ru.iav.std.algorithms.graphs.GraphPerformanceTester;
 
 import java.util.ArrayList;
 
 import static org.testng.Assert.assertEquals;
-import static ru.iav.std.algorithms.util.PerformanceTester.printResultAndExecutionTime;
 
 /**
  * Created by takoe on 01.04.17.
@@ -17,11 +17,9 @@ public class ConnectedComponentsTest {
         assertEquals(runTest(input), expected);
     }
 
-    @Test(dataProvider = "largeSet", dataProviderClass = ConnectedComponentsTestData.class,
-            invocationCount = 10)
+    @Test(dataProvider = "largeSet", dataProviderClass = ConnectedComponentsTestData.class, invocationCount = 10)
     public void testLargeSet(ArrayList<Integer>[] input, Object ignore) {
-        System.out.printf("Data set size: %d,\t", input.length);
-        printResultAndExecutionTime(() -> runTest(input));
+        GraphPerformanceTester.resultAndTiming(input, () -> runTest(input));
     }
 
     private int runTest(ArrayList<Integer>[] input) {

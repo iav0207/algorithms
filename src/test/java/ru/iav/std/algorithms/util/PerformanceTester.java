@@ -25,6 +25,13 @@ public class PerformanceTester {
         System.out.printf("Result: " + result + ",\ttime elapsed: %d ms\n", time);
     }
 
+    public static void printExecutionTime(Supplier<?> supplier) {
+        long start = now();
+        supplier.get();
+        long time = now() - start;
+        System.out.printf("Time elapsed: %d ms\n", time);
+    }
+
     public double measureRelativeDeltaT(Supplier<?> first, Supplier<?> second) {
         double timeFirst = measureAverageExecutionTime(first);
         double timeSecond = measureAverageExecutionTime(second);
