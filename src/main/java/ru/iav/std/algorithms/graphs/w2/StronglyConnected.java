@@ -22,20 +22,12 @@ public class StronglyConnected {
 
     private int scc;
 
-    private StronglyConnected(ArrayList<Integer>[] adj) {
+    private StronglyConnected(ArrayList<Integer>[] adj, ArrayList<Integer>[] reverse) {
         this.adj = adj;
-        reverse = buildReverseGraph();
+        this.reverse = reverse;
         order = new Stack<>();
         visited = new HashSet<>();
         excluded = new HashSet<>();
-    }
-
-    private ArrayList<Integer>[] buildReverseGraph() {
-        ArrayList<Integer>[] rg = initializeAdjArray(adj.length);
-        for (int u = 0; u < rg.length; u++)
-            for (Integer v : adj[u])
-                rg[v].add(u);
-        return rg;
     }
 
     private int count() {
@@ -75,7 +67,7 @@ public class StronglyConnected {
     }
 
     private void recursivelyExploreScc(int u) {
-        log("Visiting " + u);
+        log("Visiting and excluding " + u);
         exclude(u);
         adj[u].stream()
                 .filter(v -> !isExcluded(v))
@@ -99,7 +91,11 @@ public class StronglyConnected {
     }
 
     static int numberOfStronglyConnectedComponents(ArrayList<Integer>[] adj) {
-        return new StronglyConnected(adj).count();
+        return new StronglyConnected(adj, buildReverseGraph(adj)).count();
+    }
+
+    static int numberOfStronglyConnectedComponents(ArrayList<Integer>[] adj, ArrayList<Integer>[] rev) {
+        return new StronglyConnected(adj, rev).count();
     }
 
     public static void main(String[] args) {
@@ -107,18 +103,28 @@ public class StronglyConnected {
         int n = scanner.nextInt();
         int m = scanner.nextInt();
         ArrayList<Integer>[] adj = initializeAdjArray(n);
+        ArrayList<Integer>[] rev = initializeAdjArray(n);
         for (int i = 0; i < m; i++) {
             int x, y;
             x = scanner.nextInt();
             y = scanner.nextInt();
             adj[x - 1].add(y - 1);
+            rev[y - 1].add(x - 1);  // building a reverse graph
         }
-        System.out.println(numberOfStronglyConnectedComponents(adj));
+        System.out.println(numberOfStronglyConnectedComponents(adj, rev));
     }
 
     private static ArrayList<Integer>[] initializeAdjArray(int n) {
         return Stream.generate(ArrayList<Integer>::new).limit(n)
                 .collect(Collectors.toList()).toArray((ArrayList<Integer>[]) new ArrayList[n]);
+    }
+
+    static ArrayList<Integer>[] buildReverseGraph(ArrayList<Integer>[] graph) {
+        ArrayList<Integer>[] reverseGraph = initializeAdjArray(graph.length);
+        for (int u = 0; u < reverseGraph.length; u++)
+            for (Integer v : graph[u])
+                reverseGraph[v].add(u);
+        return reverseGraph;
     }
 
     private static void log(String format, Object... objects) {
