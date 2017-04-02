@@ -64,24 +64,22 @@ public class StronglyConnected {
     private void forEachVertexFromStackExploreAndExcludeAllAndIncrementScc() {
         Stream.generate(order::pop).limit(order.size())
                 .filter(u -> u != null)         .peek(u -> log("Trying to poll: %d", u))
-                .filter(u -> !isExcluded(u))    .peek(u -> log("Starting to explore SCC: %d", u))
+                .filter(u -> !isExcluded(u))    .peek(u -> log("Starting to explore SCC from vertex %d", u))
                 .forEach(this::exploreScc);
     }
 
     private void exploreScc(int u) {
-        exploreScc(u, new HashSet<>());
+        recursivelyExploreScc(u);
         scc++;
         log("The whole SCC excluded: #" + scc);
     }
 
-    private void exploreScc(int u, Set<Integer> visited) {
+    private void recursivelyExploreScc(int u) {
         log("Visiting " + u);
-        visited.add(u);
         exclude(u);
         adj[u].stream()
-                .filter(v -> !visited.contains(v))
                 .filter(v -> !isExcluded(v))
-                .forEach(v -> exploreScc(v, visited));
+                .forEach(this::recursivelyExploreScc);
     }
 
     private boolean isExcluded(int v) {
@@ -124,7 +122,7 @@ public class StronglyConnected {
     }
 
     private static void log(String format, Object... objects) {
-        log(String.format(format, objects));
+        if (debugMode) log(String.format(format, objects));
     }
 
     private static void log(String message) {
