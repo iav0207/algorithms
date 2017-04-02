@@ -28,19 +28,17 @@ public class TrieMatching implements Runnable {
 
 	List <Integer> solve (String text, List <String> patterns) {
 		List <Integer> result = new ArrayList <> ();
-		buildTrie(patterns);
+		patterns.forEach(this::addToTrie);
 		for (int start = 0; start < text.length(); start++) {
 			if (hasMatch(text, start)) result.add(start);
 		}
 		return result;
 	}
 
-	private void buildTrie(List<String> patterns) {
-		for (String pattern : patterns) {
-			Node node = root;
-			for (Character c : pattern.toCharArray()) {
-				node = node.getOrCreateChild(c);
-			}
+	private void addToTrie(String pattern) {
+		Node node = root;
+		for (Character c : pattern.toCharArray()) {
+			node = node.getOrCreateChild(c);
 		}
 	}
 
