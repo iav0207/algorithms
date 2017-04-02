@@ -1,4 +1,4 @@
-package ru.iav.std.algorithms.graphs.strings.w1;
+package ru.iav.std.algorithms.strings.w1;
 
 import java.io.BufferedReader;
 import java.io.IOException;

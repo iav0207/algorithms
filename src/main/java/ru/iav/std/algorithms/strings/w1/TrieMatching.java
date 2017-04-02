@@ -1,25 +1,22 @@
-package ru.iav.std.algorithms.graphs.strings.w1;
+package ru.iav.std.algorithms.strings.w1;
 
 import java.io.*;
 import java.util.*;
 
-public class TrieMatchingExtended implements Runnable {
+public class TrieMatching implements Runnable {
 
 	private static class Node
 	{
 		public static final int Letters =  4;
 		public static final int NA      = -1;
 		public int next [];
-		public boolean patternEnd;
 
 		Node ()
 		{
 			next = new int [Letters];
 			Arrays.fill (next, NA);
-			patternEnd = false;
 		}
 	}
-
 	int letterToIndex (char letter)
 	{
 		switch (letter)
@@ -64,6 +61,6 @@ public class TrieMatchingExtended implements Runnable {
 	}
 
 	public static void main (String [] args) {
-		new Thread (new TrieMatchingExtended ()).start ();
+		new Thread (new TrieMatching ()).start ();
 	}
 }
