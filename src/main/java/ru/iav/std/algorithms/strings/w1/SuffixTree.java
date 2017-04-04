@@ -14,10 +14,9 @@ public class SuffixTree {
     private static class Node {
 
         private Map<Character, Node> edges = new TreeMap<>();
-
         private String label;
-
         private int index = -1;
+
         Node(String label) {
             this.label = label;
         }
@@ -25,6 +24,7 @@ public class SuffixTree {
             this(label);
             this.index = index;
         }
+
         void push(String s, int index) {
             char key = s.charAt(0);
             if (hasChild(key)) {
@@ -60,13 +60,16 @@ public class SuffixTree {
                 edges.put(key, new Node(s, index));
             }
         }
+
         void adopt(Node that) {
             that.label = that.label.substring(this.label.length());
             this.edges.put(that.label.charAt(0), that);
         }
+
         void takeAllChildrenFrom(Node old) {
             this.edges.putAll(old.edges);
         }
+
         boolean hasChild(char c) {
             return getChild(c) != null;
         }
@@ -79,6 +82,7 @@ public class SuffixTree {
         void terminateWith(int index) {
             this.index = index;
         }
+
         private static int commonPrefixLength(String s1, String s2) {
             int i = 0;
             while (i < s1.length() && i < s2.length()) {
