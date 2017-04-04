@@ -1,5 +1,6 @@
 package ru.iav.std.algorithms.strings.w2;
 
+import org.apache.commons.lang3.RandomStringUtils;
 import org.testng.annotations.DataProvider;
 
 /**
@@ -17,16 +18,14 @@ public class InverseBWTTestData {
         };
     }
 
-    private static String bwt(String s) {
-        return new BurrowsWheelerTransform().transform(s);
+    @DataProvider(name = "largeSet")
+    public static Object[][] largeSet() {
+        String s = RandomStringUtils.randomAlphabetic(10_000) + "$";
+        return new Object[][] {{ bwt(s), s}};
     }
 
-    @DataProvider(name = "occurrence")
-    public static Object[][] occurrence() {
-        return new Object[][] {
-                {new OccInput("AC$A", 0),   1},
-                {new OccInput("AC$A", 3),   2}
-        };
+    private static String bwt(String s) {
+        return new BurrowsWheelerTransform().transform(s);
     }
 
     static class OccInput {
