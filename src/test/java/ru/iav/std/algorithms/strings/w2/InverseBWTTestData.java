@@ -10,9 +10,15 @@ public class InverseBWTTestData {
     @DataProvider(name = "samples")
     public static Object[][] samples() {
         return new Object[][] {
-                {"AC$A",         "ACA$"},
-                {"AGGGAA$",   "GAGAGA$"}
+                {"AC$A",        "ACA$"},
+                {"AGGGAA$",     "GAGAGA$"},
+                {"TTCCTAACG$A", "TACATCACGT$"},
+                {bwt("ABCDEFG$"), "ABCDEFG$"}
         };
+    }
+
+    private static String bwt(String s) {
+        return new BurrowsWheelerTransform().transform(s);
     }
 
     @DataProvider(name = "occurrence")

@@ -12,9 +12,10 @@ public class InverseBWT {
     String inverseBWT(String bwt) {
         StringBuilder result = new StringBuilder();
         String bwt0 = sort(bwt);
+        // assuming that bwt0.charAt(0) == '$',
+        // the terminal symbol for the text block
         int index = 0;
         for (int i = 0; i < bwt.length() - 1; i ++) {
-            // assuming that bwt0.charAt(0) == '$', the terminal symbol for the text block
             result.append(bwt0.charAt(index));
 
             char correspondingFromBwt = bwt.charAt(index);
@@ -28,7 +29,7 @@ public class InverseBWT {
     private int getKthOccurrenceIndex(String s, Character c, int k) {
         int result = -1;
         for (int i = 0; i < k; i++) {
-            result = s.indexOf(c, max(0, result));
+            result = s.indexOf(c, max(0, result + 1));
         }
         return result;
     }
