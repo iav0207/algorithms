@@ -1,8 +1,9 @@
 package ru.iav.std.algorithms.strings.w2;
 
-import java.util.*;
-import java.io.*;
-import java.util.zip.CheckedInputStream;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
 
 public class SuffixArray {
     class FastScanner {
@@ -47,6 +48,7 @@ public class SuffixArray {
     // suffix of text starts.
     public int[] computeSuffixArray(String text) {
         // write your code here
+        return new int[]{0};
     }
 
 

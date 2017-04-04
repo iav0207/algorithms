@@ -42,6 +42,7 @@ public class BWMatching {
     // information we get from the preprocessing stage - starts and occ_counts_before.
     int CountOccurrences(String pattern, String bwt, Map<Character, Integer> starts, Map<Character, int[]> occ_counts_before) {
         // Implement this function yourself
+        return 0;
     }
 
     static public void main(String[] args) throws IOException {
@@ -64,7 +65,7 @@ public class BWMatching {
         // Occurrence counts for each character and each position in bwt,
         // see the description in the comment about function PreprocessBWT
         Map<Character, int[]> occ_counts_before = new HashMap<Character, int[]>();
-        // Preprocess the BWT once to get starts and occ_count_before.
+        // Preprocess the transform once to get starts and occ_count_before.
         // For each pattern, we will then use these precomputed values and
         // spend only O(|pattern|) to find all occurrences of the pattern
         // in the text instead of O(|pattern| + |text|).
