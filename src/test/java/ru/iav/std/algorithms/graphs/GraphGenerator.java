@@ -45,6 +45,10 @@ public class GraphGenerator {
         );
     }
 
+    public static DirectedWeightedGraph.Builder<Integer> weightedGraphBuilder() {
+        return new DirectedWeightedGraph.Builder<>();
+    }
+
     @SuppressWarnings("unchecked")
     private static Pair<Integer, Integer>[] generateEdges(int n, int m) {
         return Stream.generate(() -> edge(random.nextInt(n) + 1, random.nextInt(n) + 1)).limit(m)
