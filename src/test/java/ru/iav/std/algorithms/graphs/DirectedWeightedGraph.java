@@ -42,8 +42,8 @@ public class DirectedWeightedGraph<W extends Number> {
         }
 
         public Builder addEdge(int u, int v, W weight) {
-            u -= 1;
-            v -= 1;
+            u--;
+            v--;
             nodes.add(u);
             nodes.add(v);
             if (!maps.containsKey(u))
