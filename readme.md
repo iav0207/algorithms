@@ -2,8 +2,10 @@
 
 ### The course
 This is the implementation of the assignment from the online course _Algorithms, Part I_ by Bob Sedgewick and Kevin Wayne.
-To learn about the course follow the link below.
-https://www.coursera.org/learn/algorithms-part1/home/info
+###### Links
+- Course: https://www.coursera.org/learn/algorithms-part1/home/info
+- Textbook: https://algs4.cs.princeton.edu/home/
+- Library: https://algs4.cs.princeton.edu/code/
 
 ### The project
 The project is divided by parts and weeks - just like the course - and contains
