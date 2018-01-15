@@ -13,7 +13,7 @@ import static java.util.Arrays.stream;
 public class Graph {
 
     private final int v;
-    private final Bag<Integer>[] adj;
+    final Bag<Integer>[] adj;
 
     /**
      * Create an empty graph with empty vs.
