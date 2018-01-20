@@ -1,0 +1,131 @@
+See the Assessment Guide for information on how to interpret this report.
+
+ASSESSMENT SUMMARY
+
+Compilation:  PASSED
+API:          PASSED
+
+Findbugs:     FAILED (12 warnings)
+PMD:          PASSED
+Checkstyle:   FAILED (8 errors, 12 warnings)
+
+Correctness:  No tests available for autograding.
+Memory:       No tests available for autograding.
+Timing:       No tests available for autograding.
+
+Aggregate score: 10.00%
+[Compilation: 5%, API: 5%, Findbugs: 0%, PMD: 0%, Checkstyle: 0%, Correctness: 60%, Memory: 10%, Timing: 20%]
+
+ASSESSMENT DETAILS
+
+The following files were submitted:
+----------------------------------
+ 964 Jan 20 18:16 Outcast.java
+6.3K Jan 20 18:16 SAP.java
+3.7K Jan 20 18:16 WordNet.java
+
+
+********************************************************************************
+*  COMPILING
+********************************************************************************
+
+
+% javac SAP.java
+*-----------------------------------------------------------
+
+% javac WordNet.java
+*-----------------------------------------------------------
+
+% javac Outcast.java
+*-----------------------------------------------------------
+
+
+================================================================
+
+
+Checking the APIs of your programs.
+*-----------------------------------------------------------
+SAP:
+
+WordNet:
+
+Outcast:
+
+================================================================
+
+
+********************************************************************************
+*  CHECKING STYLE AND COMMON BUG PATTERNS
+********************************************************************************
+
+
+% findbugs *.class
+*-----------------------------------------------------------
+M C WOC_WRITE_ONLY_COLLECTION_FIELD WOC: Class SAP creates and initializes a collection but never reads or gains information from it  In SAP.java
+M C WOC_WRITE_ONLY_COLLECTION_FIELD WOC: Class SAP creates and initializes a collection but never reads or gains information from it  In SAP.java
+M C DMC_DUBIOUS_MAP_COLLECTION DMC: Class SAP holds a map-type field SAP.multiQueriesCache, but uses it as only a List  In SAP.java
+M C DMC_DUBIOUS_MAP_COLLECTION DMC: Class SAP holds a map-type field SAP.singleQueriesCache, but uses it as only a List  In SAP.java
+L P URF_UNREAD_FIELD UrF: The instance (or static) variable 'v' is never read. Consider removing it from the class.  At SAP.java:[line 55]
+L P URF_UNREAD_FIELD UrF: The instance (or static) variable 'multiQueriesCache' is never read. Consider removing it from the class.  At SAP.java:[line 21]
+L P SIC_INNER_SHOULD_BE_STATIC_NEEDS_THIS SIC: Should the inner class 'SAP$MultiRunner' be refactored into a static nested class?  At SAP.java:[lines 109-138]
+L P SIC_INNER_SHOULD_BE_STATIC_NEEDS_THIS SIC: Should the inner class 'SAP$SingleRunner' be refactored into a static nested class?  At SAP.java:[lines 51-85]
+L P URF_UNREAD_FIELD UrF: The instance (or static) variable 'w' is never read. Consider removing it from the class.  At SAP.java:[line 114]
+L P URF_UNREAD_FIELD UrF: The instance (or static) variable 'singleQueriesCache' is never read. Consider removing it from the class.  At SAP.java:[line 20]
+L P URF_UNREAD_FIELD UrF: The instance (or static) variable 'w' is never read. Consider removing it from the class.  At SAP.java:[line 56]
+L P URF_UNREAD_FIELD UrF: The instance (or static) variable 'v' is never read. Consider removing it from the class.  At SAP.java:[line 113]
+Warnings generated: 12
+
+
+================================================================
+
+
+% pmd .
+*-----------------------------------------------------------
+SAP.java:20: Avoid unused private instance (or static) variables, such as 'singleQueriesCache'. [UnusedPrivateField]
+SAP.java:21: Avoid unused private instance (or static) variables, such as 'multiQueriesCache'. [UnusedPrivateField]
+PMD ends with 2 warnings.
+
+
+================================================================
+
+
+% checkstyle *.java
+*-----------------------------------------------------------
+[ERROR] Outcast.java:1:1: Do not import 'java.util.stream.IntStream.range' in this course. [IllegalImport]
+[ERROR] SAP.java:6:1: Do not import 'java.util.stream.Stream' in this course. [IllegalImport]
+[ERROR] SAP.java:7:1: Do not import 'java.util.stream.StreamSupport' in this course. [IllegalImport]
+[ERROR] SAP.java:13:1: Do not import 'java.util.Arrays.stream' in this course. [IllegalImport]
+[ERROR] WordNet.java:10:1: Do not import 'java.lang.Integer.parseInt' in this course. [IllegalImport]
+[ERROR] WordNet.java:11:1: Do not import 'java.util.Arrays.asList' in this course. [IllegalImport]
+[ERROR] WordNet.java:12:1: Do not import 'java.util.stream.IntStream.range' in this course. [IllegalImport]
+[ERROR] WordNet.java:49:23: Do not suppress warnings in this course. [SuppressWarnings]
+[WARN] Outcast.java:1: Do not use static imports. [AvoidStaticImport]
+[WARN] SAP.java:13: Do not use static imports. [AvoidStaticImport]
+[WARN] SAP.java:112:31: Do not put multiple statements on the same line. [OneStatementPerLine]
+[WARN] SAP.java:171:9: Define constructors after static and instance variables but before methods. [DeclarationOrder]
+[WARN] SAP.java:177:38: Do not use the letter 'o' as a parameter variable name. It is hard to distinguish from the number '0'. [ParameterName]
+[WARN] SAP.java:180:18: You should not need to use wildcard types in this course. [TypeParameter]
+[WARN] SAP.java:180:34: You should not need to use wildcard types in this course. [TypeParameter]
+[WARN] WordNet.java:10: Do not use static imports. [AvoidStaticImport]
+[WARN] WordNet.java:11: Do not use static imports. [AvoidStaticImport]
+[WARN] WordNet.java:12: Do not use static imports. [AvoidStaticImport]
+[WARN] WordNet.java:33:38: Do not use the letter 'o' as a parameter variable name. It is hard to distinguish from the number '0'. [ParameterName]
+Checkstyle ends with 8 errors and 11 warning.
+
+% custom checkstyle checks for SAP.java
+*-----------------------------------------------------------
+[WARN] SAP.java:15:1: You should not need to define multiple nested classes in this program. [Design]
+Checkstyle ends with 0 errors and 1 warning.
+
+% custom checkstyle checks for WordNet.java
+*-----------------------------------------------------------
+[INFO] WordNet.java:1: The program uses neither 'DirectedCycle' nor 'Topological' to check whether the digraph is a DAG. [Design]
+
+% custom checkstyle checks for Outcast.java
+*-----------------------------------------------------------
+
+
+================================================================
+
+
+ABORTING: you must fix any Checkstyle errors (not warnings).
