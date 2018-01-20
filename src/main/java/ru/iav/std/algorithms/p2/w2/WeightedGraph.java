@@ -1,4 +1,4 @@
-package ru.iav.std.algorithms.p2.w1;
+package ru.iav.std.algorithms.p2.w2;
 
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
