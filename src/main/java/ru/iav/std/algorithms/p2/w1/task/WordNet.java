@@ -30,10 +30,10 @@ public class WordNet {
         }
 
         @Override
-        public boolean equals(Object o) {
-            if (this == o) return true;
-            if (o == null || getClass() != o.getClass()) return false;
-            Synset synset = (Synset) o;
+        public boolean equals(Object that) {
+            if (this == that) return true;
+            if (that == null || getClass() != that.getClass()) return false;
+            Synset synset = (Synset) that;
             return Objects.equals(name, synset.name) && Objects.equals(nouns, synset.nouns);
         }
 
