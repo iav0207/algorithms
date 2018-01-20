@@ -65,3 +65,19 @@ Nowadays no one knows even how difficult this problem is.
 
 Challenge: given a graph, can you lay it out in a plane without crossing its edges?
 Use DFS-based Tarjan's planarity algorithm discovered in 1970's (rather complex).
+
+### Task one: WordNet
+#### Specification
+WordNet is a semantic lexicon for the English language that is used extensively
+by computational linguists and cognitive scientists;
+for example, it was a key component in IBM's Watson. WordNet groups words
+into sets of synonyms called synsets and describes semantic relationships between them.
+One such relationship is the is-a relationship, which connects a hyponym
+(more specific synset) to a hypernym (more general synset). For example,
+animal is a hypernym of both bird and fish; bird is a hypernym of eagle,
+pigeon, and seagull.
+
+In the task we find shortest ancestral path between any two words
+or two _sets_ of words, find words relatedness and detect outcast
+among given words.
+http://coursera.cs.princeton.edu/algs4/assignments/wordnet.html
