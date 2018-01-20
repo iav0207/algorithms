@@ -8,6 +8,7 @@ import java.util.Objects;
 import edu.princeton.cs.algs4.Digraph;
 import edu.princeton.cs.algs4.In;
 import edu.princeton.cs.algs4.SET;
+import edu.princeton.cs.algs4.Topological;
 
 public class WordNet {
 
@@ -67,6 +68,9 @@ public class WordNet {
             for (int i = 1; i < split.length; i++) {
                 hyper.addEdge(id, Integer.parseInt(split[i]));
             }
+        }
+        if (!new Topological(hyper).hasOrder()) {
+            throw new IllegalArgumentException("The given digraph must be a DAG.");
         }
         sap = new SAP(hyper);
     }
