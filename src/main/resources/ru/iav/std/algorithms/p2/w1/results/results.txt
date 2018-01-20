@@ -5,24 +5,24 @@ ASSESSMENT SUMMARY
 Compilation:  PASSED
 API:          PASSED
 
-Findbugs:     FAILED (6 warnings)
+Findbugs:     FAILED (2 warnings)
 PMD:          PASSED
-Checkstyle:   FAILED (0 errors, 2 warnings)
+Checkstyle:   FAILED (0 errors, 1 warning)
 
-Correctness:  31/35 tests passed
+Correctness:  34/35 tests passed
 Memory:       4/4 tests passed
-Timing:       27/27 tests passed
+Timing:       28/27 tests passed
 
-Aggregate score: 93.14%
+Aggregate score: 99.03%
 [Compilation: 5%, API: 5%, Findbugs: 0%, PMD: 0%, Checkstyle: 0%, Correctness: 60%, Memory: 10%, Timing: 20%]
 
 ASSESSMENT DETAILS
 
 The following files were submitted:
 ----------------------------------
- 980 Jan 20 18:48 Outcast.java
-5.0K Jan 20 18:48 SAP.java
-3.8K Jan 20 18:48 WordNet.java
+ 980 Jan 20 19:54 Outcast.java
+5.1K Jan 20 19:54 SAP.java
+3.8K Jan 20 19:54 WordNet.java
 
 
 ********************************************************************************
@@ -61,13 +61,9 @@ Outcast:
 
 % findbugs *.class
 *-----------------------------------------------------------
-L P URF_UNREAD_FIELD UrF: The instance (or static) variable 'v' is never read. Consider removing it from the class.  At SAP.java:[line 46]
-L P SIC_INNER_SHOULD_BE_STATIC_NEEDS_THIS SIC: Should the inner class 'SAP$MultiRunner' be refactored into a static nested class?  At SAP.java:[lines 100-130]
-L P SIC_INNER_SHOULD_BE_STATIC_NEEDS_THIS SIC: Should the inner class 'SAP$SingleRunner' be refactored into a static nested class?  At SAP.java:[lines 42-76]
-L P URF_UNREAD_FIELD UrF: The instance (or static) variable 'w' is never read. Consider removing it from the class.  At SAP.java:[line 106]
-L P URF_UNREAD_FIELD UrF: The instance (or static) variable 'w' is never read. Consider removing it from the class.  At SAP.java:[line 47]
-L P URF_UNREAD_FIELD UrF: The instance (or static) variable 'v' is never read. Consider removing it from the class.  At SAP.java:[line 105]
-Warnings generated: 6
+L P SIC_INNER_SHOULD_BE_STATIC_NEEDS_THIS SIC: Should the inner class 'SAP$MultiRunner' be refactored into a static nested class?  At SAP.java:[lines 100-128]
+L P SIC_INNER_SHOULD_BE_STATIC_NEEDS_THIS SIC: Should the inner class 'SAP$SingleRunner' be refactored into a static nested class?  At SAP.java:[lines 45-77]
+Warnings generated: 2
 
 
 ================================================================
@@ -82,12 +78,10 @@ Warnings generated: 6
 
 % checkstyle *.java
 *-----------------------------------------------------------
-[WARN] WordNet.java:31:38: Do not use the letter 'o' as a parameter variable name. It is hard to distinguish from the number '0'. [ParameterName]
-Checkstyle ends with 0 errors and 1 warning.
 
 % custom checkstyle checks for SAP.java
 *-----------------------------------------------------------
-[WARN] SAP.java:8:1: You should not need to define multiple nested classes in this program. [Design]
+[WARN] SAP.java:10:1: You should not need to define multiple nested classes in this program. [Design]
 Checkstyle ends with 0 errors and 1 warning.
 
 % custom checkstyle checks for WordNet.java
@@ -112,21 +106,11 @@ Test 1: check length() and ancestor() on fixed digraphs
   * digraph1.txt
   * digraph2.txt
   * digraph3.txt
-    - failed on trial 18 of 225
-    - v = 13, w = 9
-    - student   length() = 6
-    - reference length() = 5
-
   * digraph4.txt
   * digraph5.txt
-    - failed on trial 7 of 484
-    - v = 7, w = 21
-    - student   length() = 10
-    - reference length() = 4
-
   * digraph6.txt
   * digraph9.txt
-==> FAILED
+==> passed
 
 Test 2: check length() and ancestor() on WordNet digraph
   * 100 random vertex pairs in digraph-wordnet.txt
@@ -209,17 +193,9 @@ Test 13: check length() and ancestor() on random simple digraphs
 Test 14: check whether two SAP objects can be created at the same time
   * digraph1.txt and digraph2.txt
   * digraph3.txt and digraph4.txt
-    - v = 9, w = 0
-    - (digraph3.txt) student   length() = 4
-    - (digraph3.txt) reference length() = 3
-
   * digraph5.txt and digraph6.txt
-    - v = 7, w = 12
-    - (digraph5.txt) student   length() = 7
-    - (digraph5.txt) reference length() = 5
-
   * digraph2.txt and digraph1.txt
-==> FAILED
+==> passed
 
 Test 15: check whether SAP is immutable
   * digraph1.txt
@@ -245,44 +221,14 @@ Test 16: check invalid arguments to length() and ancestor() in digraph1.txt
 Test 17: check length() and ancestor() with Iterable arguments
   * 100 random subsets of 1 and 1 vertices in digraph-wordnet.txt
   * 100 random subsets of 1 and 2 vertices in digraph-wordnet.txt
-    - failed on trial 18 of 100
-    - v = 50205
-    - w = 39821 45786
-    - student   length() = 14
-    - reference length() = 10
-
   * 100 random subsets of 2 and 1 vertices in digraph-wordnet.txt
-    - failed on trial 37 of 100
-    - v = 12382 20403
-    - w = 19681
-    - student   length() = 12
-    - reference length() = 11
-
   * 100 random subsets of 2 and 2 vertices in digraph-wordnet.txt
-    - failed on trial 32 of 100
-    - v = 44352 61724
-    - w = 49042 76564
-    - student   length() = 13
-    - reference length() = 11
-
   * 100 random subsets of 3 and 11 vertices in digraph-wordnet.txt
-    - failed on trial 80 of 100
-    - v = 2443 16758 64788
-    - w size = 11
-    - student   length() = 11
-    - reference length() = 10
-
   * 100 random subsets of 11 and 3 vertices in digraph-wordnet.txt
-    - failed on trial 19 of 100
-    - v size = 11
-    - w = 18545 39790 64544
-    - student   length() = 10
-    - reference length() = 9
-
   * 100 random subsets of 0 and 5 vertices in digraph-wordnet.txt
   * 100 random subsets of 5 and 0 vertices in digraph-wordnet.txt
   * 100 random subsets of 0 and 0 vertices in digraph-wordnet.txt
-==> FAILED
+==> passed
 
 Test 18: Check Iterable version of length() and ancestor() with null arguments
 ==> passed
@@ -296,7 +242,7 @@ Test 19: random calls to both version of length() and ancestor(),
 ==> passed
 
 
-Total: 16/19 tests passed!
+Total: 19/19 tests passed!
 
 
 ================================================================
@@ -482,8 +428,8 @@ Running 1 total tests.
 digraph G             = digraph-wordnet.txt
 vertices in G         = 82192
 edges    in G         = 84505
-student     memory    = 8347880 bytes
-reference   memory    = 10320552 bytes
+student     memory    = 8348048 bytes
+reference   memory    = 10320464 bytes
 ratio                 = 0.81
 maximum allowed ratio = 2.50
 
@@ -501,7 +447,7 @@ Test 1a: check memory of WordNet object
   * synsets = synsets1000-subgraph.txt; hypernyms = hypernyms1000-subgraph.txt
     - number of vertices in digraph = 1000
     - number of edges    in digraph = 1008
-    - student   memory              = 1138896 bytes
+    - student   memory              = 1138968 bytes
     - reference memory              = 1494080 bytes
     - student / reference ratio     = 0.8
     - maximum allowed rato          = 2.0
@@ -512,7 +458,7 @@ Test 1b: check memory of WordNet object
   * synsets = synsets5000-subgraph.txt; hypernyms = hypernyms5000-subgraph.txt
     - number of vertices in digraph = 5000
     - number of edges    in digraph = 5059
-    - student   memory              = 5622184 bytes
+    - student   memory              = 5622392 bytes
     - reference memory              = 7296728 bytes
     - student / reference ratio     = 0.8
     - maximum allowed rato          = 2.0
@@ -523,8 +469,8 @@ Test 1c: check memory of WordNet object
   * synsets = synsets10000-subgraph.txt; hypernyms = hypernyms10000-subgraph.txt
     - number of vertices in digraph = 10000
     - number of edges    in digraph = 10087
-    - student   memory              = 13222936 bytes
-    - reference memory              = 16928320 bytes
+    - student   memory              = 13224304 bytes
+    - reference memory              = 16930512 bytes
     - student / reference ratio     = 0.8
     - maximum allowed rato          = 2.0
 
@@ -552,20 +498,21 @@ Test 1: time SAP constructor
 
 Test 2a-c: time length() and ancestor() with random pairs of vertices
   *  digraph-wordnet.txt
-     -  reference solution calls per second:  512703.00
-     -  student   solution calls per second:    2279.00
-     -  reference / student ratio:               224.97
+     -  reference solution calls per second:  358194.00
+     -  student   solution calls per second:    4309.00
+     -  reference / student ratio:                83.13
 
 => passed      student <= 50000x reference
 => passed      student <= 10000x reference
 => passed      student <=  5000x reference
 => passed      student <=  1000x reference
+=> BONUS       student <=   100x reference
 
 Test 3a-c: time length() and ancestor() with random subsets of 5 vertices
   *  digraph-wordnet.txt
-     -  reference solution calls per second:  179309.00
-     -  student   solution calls per second:    2216.00
-     -  reference / student ratio:                80.92
+     -  reference solution calls per second:  177309.00
+     -  student   solution calls per second:    2092.00
+     -  reference / student ratio:                84.76
 
 => passed      student <= 10000x reference
 => passed      student <=  5000x reference
@@ -574,9 +521,9 @@ Test 3a-c: time length() and ancestor() with random subsets of 5 vertices
 
 Test 4a-c: time length() and ancestor() with random subsets of 100 vertices
   *  digraph-wordnet.txt
-     -  reference solution calls per second:   12228.00
-     -  student   solution calls per second:    1645.00
-     -  reference / student ratio:                 7.43
+     -  reference solution calls per second:   12326.00
+     -  student   solution calls per second:    1578.00
+     -  reference / student ratio:                 7.81
 
 => passed      student <= 10000x reference
 => passed      student <=  5000x reference
@@ -588,12 +535,12 @@ Test 5: Time 10 calls to length() and ancestor() on random path graphs
 
              V  seconds
         ---------------
-         32768     0.06
+         32768     0.05
          65536     0.12
 ==> passed
 
 
-Total: 14/14 tests passed!
+Total: 15/14 tests passed!
 
 
 ================================================================
@@ -639,7 +586,7 @@ Test 4: count Digraph operations during 1000 calls each
   * synsets = synsets.txt; hypernyms = hypernyms.txt
   * calls to constructor = 0
   * calls to addEdge()   = 0
-  * calls to adj()       = 46346
+  * calls to adj()       = 45646
   * calls to reverse()   = 0
   * calls to toString()  = 0
 
@@ -647,16 +594,16 @@ Test 4: count Digraph operations during 1000 calls each
 
 Test 5: time WordNet constructor
   * synsets = synsets.txt; hypernyms = hypernyms.txt
-    - student constructor time =  0.47 seconds
+    - student constructor time =  0.41 seconds
     - maximum allowed     time = 10.00 seconds
 
 ==> passed
 
 Test 6a-e: time sap() and distance() with random nouns
   * synsets = synsets.txt; hypernyms = hypernyms.txt
-    - reference solution calls per second:  169076.50
-    - student   solution calls per second:  143789.50
-    - reference / student ratio:                 1.18
+    - reference solution calls per second:  179874.50
+    - student   solution calls per second:  177649.00
+    - reference / student ratio:                 1.01
 
 => passed    student <= 10000x reference
 => passed    student <=  1000x reference
@@ -666,9 +613,9 @@ Test 6a-e: time sap() and distance() with random nouns
 
 Test 7: time isNoun() with random nouns
   * synsets = synsets.txt; hypernyms = hypernyms.txt
-    - reference solution calls per second:  442887.00
-    - student   solution calls per second:  409242.00
-    - reference / student ratio:                 1.08
+    - reference solution calls per second:  468675.00
+    - student   solution calls per second:  437796.00
+    - reference / student ratio:                 1.07
     - allowed ratio:                             4.00
 ==> passed
 
@@ -716,7 +663,7 @@ Total time must not exceed 1.0 seconds.
   outcast12.txt   12     0.00
  outcast12a.txt   12     0.00
   outcast20.txt   20     0.00
-  outcast29.txt   29     0.01
+  outcast29.txt   29     0.00
 
 Total elapsed time: 0.01 seconds
 
