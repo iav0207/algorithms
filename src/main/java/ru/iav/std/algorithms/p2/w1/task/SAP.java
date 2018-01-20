@@ -63,7 +63,7 @@ public class SAP {
                 final int c = queue.dequeue();
                 final int vDist = vBfs.distTo(c), wDist = wBfs.distTo(c);
                 visited.add(c);
-                if (vDist > minLength || wDist > minLength) {
+                if (vDist > minLength && wDist > minLength) {
                     continue;
                 }
                 if (vBfs.hasPathTo(c) && wBfs.hasPathTo(c)) {
