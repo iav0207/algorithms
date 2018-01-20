@@ -38,6 +38,6 @@ class TestDigraphs {
             AMBI = DIGRAPHS.get(S_AMBI);
 
     private static In resourceInput(String fileName) {
-        return new In(SAPTestData.class.getResource(requireNonNull(fileName)));
+        return new In(TestDigraphs.class.getResource(requireNonNull(fileName)));
     }
 }
