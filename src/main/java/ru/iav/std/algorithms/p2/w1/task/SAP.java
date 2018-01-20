@@ -1,6 +1,8 @@
 package ru.iav.std.algorithms.p2.w1.task;
 
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 import edu.princeton.cs.algs4.BreadthFirstDirectedPaths;
@@ -12,6 +14,7 @@ public class SAP {
     private static final int NO_SUCH_PATH = -1;
 
     private final Digraph g;
+    private final Map<Integer, Map<Integer, SingleRunner>> srCache = new HashMap<>();
 
     /**
      * Constructor takes a digraph (not necessarily a DAG)
@@ -35,18 +38,16 @@ public class SAP {
     }
 
     private SingleRunner singleRunner(int v, int w) {
-        // mb cache?
-        return new SingleRunner(v, w);
+        int a = Math.min(v, w), b = Math.max(v, w);
+        srCache.putIfAbsent(a, new HashMap<>());
+        return srCache.get(a).computeIfAbsent(b, ignore -> new SingleRunner(a, b));
     }
     
     private class SingleRunner {
-        final int v, w;
         int minLength = Integer.MAX_VALUE, ancestor = NO_SUCH_PATH;
 
         SingleRunner(int v, int w) {
             check(v, w);
-            this.v = v;
-            this.w = w;
             if (v == w) {
                 minLength = 0;
                 ancestor = v;
@@ -98,14 +99,11 @@ public class SAP {
     }
 
     private class MultiRunner {
-        final Iterable<Integer> v, w;
         int minLength = Integer.MAX_VALUE, ancestor = NO_SUCH_PATH;
 
         MultiRunner(Iterable<Integer> v, Iterable<Integer> w) {
             check(v);
             check(w);
-            this.v = v;
-            this.w = w;
             BreadthFirstDirectedPaths vBfs = new BreadthFirstDirectedPaths(g, v);
             BreadthFirstDirectedPaths wBfs = new BreadthFirstDirectedPaths(g, w);
             Set<Integer> visited = new HashSet<>();
