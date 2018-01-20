@@ -1,26 +1,17 @@
 package ru.iav.std.algorithms.p2.w1.task;
 
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Map;
-import java.util.Objects;
 import java.util.Set;
-import java.util.stream.Stream;
-import java.util.stream.StreamSupport;
 
 import edu.princeton.cs.algs4.BreadthFirstDirectedPaths;
 import edu.princeton.cs.algs4.Digraph;
 import edu.princeton.cs.algs4.Queue;
-
-import static java.util.Arrays.stream;
 
 public class SAP {
 
     private static final int NO_SUCH_PATH = -1;
 
     private final Digraph g;
-    private final Map<Pair<Integer>, SingleRunner> singleQueriesCache = new HashMap<>();
-    private final Map<Pair<Iterable<Integer>>, MultiRunner> multiQueriesCache = new HashMap<>();
 
     /**
      * Constructor takes a digraph (not necessarily a DAG)
@@ -44,8 +35,8 @@ public class SAP {
     }
 
     private SingleRunner singleRunner(int v, int w) {
+        // mb cache?
         return new SingleRunner(v, w);
-//        return singleQueriesCache.computeIfAbsent(Pair.of(v, w), p -> new SingleRunner(v, w));
     }
     
     private class SingleRunner {
@@ -102,8 +93,8 @@ public class SAP {
     }
 
     private MultiRunner multiRunner(Iterable<Integer> v, Iterable<Integer> w) {
+        // mb cache?
         return new MultiRunner(v, w);
-//        return multiQueriesCache.computeIfAbsent(Pair.of(v, w), p -> new MultiRunner(v, w));
     }
 
     private class MultiRunner {
@@ -111,7 +102,8 @@ public class SAP {
         int minLength = Integer.MAX_VALUE, ancestor = NO_SUCH_PATH;
 
         MultiRunner(Iterable<Integer> v, Iterable<Integer> w) {
-            check(v); check(w);
+            check(v);
+            check(w);
             this.v = v;
             this.w = w;
             BreadthFirstDirectedPaths vBfs = new BreadthFirstDirectedPaths(g, v);
@@ -141,19 +133,19 @@ public class SAP {
     }
 
     private void check(Iterable<Integer> vertices) {
-        if (streamOf(requireNonNull(vertices)).anyMatch(v -> v < 0 || v >= g.V())) {
-            throw new IllegalArgumentException("Vertex of of bounds.");
+        for (int v : requireNonNull(vertices)) {
+            if (v < 0 || v >= g.V()) {
+                throw new IllegalArgumentException("Vertex of of bounds.");
+            }
         }
     }
 
     private void check(int... vertices) {
-        if (stream(vertices).anyMatch(v -> v < 0 || v >= g.V())) {
-            throw new IllegalArgumentException("Vertex of of bounds.");
+        for (int v : requireNonNull(vertices)) {
+            if (v < 0 || v >= g.V()) {
+                throw new IllegalArgumentException("Vertex of of bounds.");
+            }
         }
-    }
-
-    private static <T> Stream<T> streamOf(Iterable<T> iterable) {
-        return StreamSupport.stream(iterable.spliterator(), false);
     }
 
     private static <T> T requireNonNull(T obj) {
@@ -161,32 +153,5 @@ public class SAP {
             throw new IllegalArgumentException("Argument is null.");
         }
         return obj;
-    }
-
-    private static class Pair<T> {
-        final T a, b;
-
-        static <E> Pair<E> of(E a, E b) {
-            return new Pair<>(a, b);
-        }
-
-        Pair(T a, T b) {
-            this.a = a;
-            this.b = b;
-        }
-
-        @Override
-        public boolean equals(Object o) {
-            if (this == o) return true;
-            if (o == null || getClass() != o.getClass()) return false;
-            Pair<?> pair = (Pair<?>) o;
-            return (Objects.equals(a, pair.a) && Objects.equals(b, pair.b))
-                    || (Objects.equals(a, pair.b) && Objects.equals(b, pair.a));
-        }
-
-        @Override
-        public int hashCode() {
-            return Objects.hash(((long) a.hashCode()) + b.hashCode());
-        }
     }
 }

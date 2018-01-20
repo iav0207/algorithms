@@ -1,7 +1,5 @@
 package ru.iav.std.algorithms.p2.w1.task;
 
-import static java.util.stream.IntStream.range;
-
 public class Outcast {
 
     private final WordNet wn;
@@ -33,6 +31,10 @@ public class Outcast {
     }
 
     private int dist(String[] nouns, int i) {
-        return range(0, nouns.length).map(j -> j == i ? 0 : wn.distance(nouns[i], nouns[j])).sum();
+        int sum = 0;
+        for (int j = 0; j < nouns.length; j++) {
+            sum += j == i ? 0 : wn.distance(nouns[i], nouns[j]);
+        }
+        return sum;
     }
 }
