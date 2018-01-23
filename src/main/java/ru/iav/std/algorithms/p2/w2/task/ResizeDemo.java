@@ -1,19 +1,20 @@
+package ru.iav.std.algorithms.p2.w2.task;
+
+import edu.princeton.cs.algs4.Picture;
+import edu.princeton.cs.algs4.StdOut;
+import edu.princeton.cs.algs4.Stopwatch;
+
 /******************************************************************************
  *  Compilation:  javac ResizeDemo.java
  *  Execution:    java ResizeDemo input.png columnsToRemove rowsToRemove
  *  Dependencies: SeamCarver.java SCUtility.java
- *                
+ *
  *
  *  Read image from file specified as command line argument. Use SeamCarver
  *  to remove number of rows and columns specified as command line arguments.
  *  Show the images and print time elapsed to screen.
  *
  ******************************************************************************/
-
-import edu.princeton.cs.algs4.Picture;
-import edu.princeton.cs.algs4.StdOut;
-import edu.princeton.cs.algs4.Stopwatch;
-
 public class ResizeDemo {
     public static void main(String[] args) {
         if (args.length != 3) {

@@ -1,17 +1,18 @@
+package ru.iav.std.algorithms.p2.w2.task;
+
+import edu.princeton.cs.algs4.Picture;
+import edu.princeton.cs.algs4.StdOut;
+
 /******************************************************************************
  *  Compilation:  javac ShowEnergy.java
  *  Execution:    java ShowEnergy input.png
  *  Dependencies: SeamCarver.java SCUtility.java
- *                
+ *
  *
  *  Read image from file specified as command line argument. Show original
  *  image (only useful if image is large enough).
  *
  ******************************************************************************/
-
-import edu.princeton.cs.algs4.Picture;
-import edu.princeton.cs.algs4.StdOut;
-
 public class ShowEnergy {
 
     public static void main(String[] args) {

@@ -1,17 +1,18 @@
-/******************************************************************************
- *  Compilation:  javac PrintEnergy.java
- *  Execution:    java PrintEnergy input.png
- *  Dependencies: SeamCarver.java
- *                
- *
- *  Read image from file specified as command line argument. Print energy
- *  of each pixel as calculated by SeamCarver object. 
- * 
- ******************************************************************************/
+package ru.iav.std.algorithms.p2.w2.task;
 
 import edu.princeton.cs.algs4.Picture;
 import edu.princeton.cs.algs4.StdOut;
 
+/******************************************************************************
+ *  Compilation:  javac PrintEnergy.java
+ *  Execution:    java PrintEnergy input.png
+ *  Dependencies: SeamCarver.java
+ *
+ *
+ *  Read image from file specified as command line argument. Print energy
+ *  of each pixel as calculated by SeamCarver object.
+ *
+ ******************************************************************************/
 public class PrintEnergy {
 
     public static void main(String[] args) {
