@@ -1,17 +1,18 @@
+package ru.iav.std.algorithms.p2.w2.task;
+
+import edu.princeton.cs.algs4.Picture;
+import edu.princeton.cs.algs4.StdOut;
+
 /******************************************************************************
  *  Compilation:  javac ShowSeams.java
  *  Execution:    java ShowSeams input.png
  *  Dependencies: SeamCarver.java SCUtility.java
  *
- *  Read image from file specified as command line argument. Show 3 images 
+ *  Read image from file specified as command line argument. Show 3 images
  *  original image as well as horizontal and vertical seams of that image.
  *  Each image hides the previous one - drag them to see all three.
  *
  ******************************************************************************/
-
-import edu.princeton.cs.algs4.Picture;
-import edu.princeton.cs.algs4.StdOut;
-
 public class ShowSeams {
 
     private static void showHorizontalSeam(SeamCarver sc) {

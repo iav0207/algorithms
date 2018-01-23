@@ -1,3 +1,10 @@
+package ru.iav.std.algorithms.p2.w2.task;
+
+import java.awt.*;
+
+import edu.princeton.cs.algs4.Picture;
+import edu.princeton.cs.algs4.StdRandom;
+
 /******************************************************************************
  *  Compilation:  javac SCUtility.java
  *  Execution:    none
@@ -6,12 +13,6 @@
  *  Some utility functions for testing SeamCarver.java.
  *
  ******************************************************************************/
-
-import java.awt.Color;
-
-import edu.princeton.cs.algs4.Picture;
-import edu.princeton.cs.algs4.StdRandom;
-
 public class SCUtility {
 
 
