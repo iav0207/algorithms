@@ -3,6 +3,8 @@ package ru.iav.std.algorithms.p2.w2.task;
 import edu.princeton.cs.algs4.Picture;
 import edu.princeton.cs.algs4.StdOut;
 
+import static ru.iav.std.algorithms.p2.w2.task.ResourceUtil.getResourceAsFile;
+
 /******************************************************************************
  *  Compilation:  javac PrintSeams.java
  *  Execution:    java PrintSeams input.png
@@ -62,7 +64,7 @@ public class PrintSeams {
     }
 
     public static void main(String[] args) {
-        Picture picture = new Picture(args[0]);
+        Picture picture = new Picture(getResourceAsFile(args[0]));
         StdOut.printf("%s (%d-by-%d image)\n", args[0], picture.width(), picture.height());
         StdOut.println();
         StdOut.println("The table gives the dual-gradient energies of each pixel.");

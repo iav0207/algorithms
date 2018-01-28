@@ -3,6 +3,8 @@ package ru.iav.std.algorithms.p2.w2.task;
 import edu.princeton.cs.algs4.Picture;
 import edu.princeton.cs.algs4.StdOut;
 
+import static ru.iav.std.algorithms.p2.w2.task.ResourceUtil.getResourceAsFile;
+
 /******************************************************************************
  *  Compilation:  javac PrintEnergy.java
  *  Execution:    java PrintEnergy input.png
@@ -16,7 +18,7 @@ import edu.princeton.cs.algs4.StdOut;
 public class PrintEnergy {
 
     public static void main(String[] args) {
-        Picture picture = new Picture(args[0]);
+        Picture picture = new Picture(getResourceAsFile(args[0]));
         StdOut.printf("image is %d pixels wide by %d pixels high.\n", picture.width(), picture.height());
         
         SeamCarver sc = new SeamCarver(picture);
@@ -25,7 +27,7 @@ public class PrintEnergy {
 
         for (int row = 0; row < sc.height(); row++) {
             for (int col = 0; col < sc.width(); col++)
-                StdOut.printf("%9.0f ", sc.energy(col, row));
+                StdOut.printf("%9.2f ", sc.energy(col, row));
             StdOut.println();
         }
     }

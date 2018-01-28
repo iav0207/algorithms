@@ -4,6 +4,8 @@ import edu.princeton.cs.algs4.Picture;
 import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.Stopwatch;
 
+import static ru.iav.std.algorithms.p2.w2.task.ResourceUtil.getResourceAsFile;
+
 /******************************************************************************
  *  Compilation:  javac ResizeDemo.java
  *  Execution:    java ResizeDemo input.png columnsToRemove rowsToRemove
@@ -22,7 +24,7 @@ public class ResizeDemo {
             return;
         }
 
-        Picture inputImg = new Picture(args[0]);
+        Picture inputImg = new Picture(getResourceAsFile(args[0]));
         int removeColumns = Integer.parseInt(args[1]);
         int removeRows = Integer.parseInt(args[2]); 
 
