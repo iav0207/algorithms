@@ -253,7 +253,7 @@ public class SeamCarver {
         int prev = seam[0];
         for (int x = 0; x < seam.length; x++) {
             int seamY = seam[x];
-            checkArgument(Math.abs(seamY - prev) > 1);
+            checkArgument(Math.abs(seamY - prev) <= 1);
             System.arraycopy(px[x], seamY + 1, px[x], seamY, height - 1 - seamY);
             prev = seamY;
         }
@@ -271,7 +271,7 @@ public class SeamCarver {
         int prev = seam[0];
         for (int y = 0; y < seam.length; y++) {
             int seamX = seam[y];
-            checkArgument(Math.abs(seamX - prev) > 1);
+            checkArgument(Math.abs(seamX - prev) <= 1);
             for (int x = seamX; x < width - 1; x++) {
                 px[x][y] = px[x + 1][y];
             }
