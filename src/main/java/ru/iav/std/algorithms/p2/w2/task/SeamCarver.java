@@ -1,6 +1,6 @@
 package ru.iav.std.algorithms.p2.w2.task;
 
-import java.awt.*;
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -22,7 +22,7 @@ public class SeamCarver {
     public SeamCarver(Picture picture) {
         checkArgument(picture != null);
 
-        //noinspection ConstantConditions
+        // noinspection ConstantConditions
         this.current = new Picture(picture);
 
         this.height = picture.height();
@@ -247,7 +247,7 @@ public class SeamCarver {
      */
     public void removeHorizontalSeam(int[] seam) {
         checkArgument(seam != null);
-        //noinspection ConstantConditions
+        // noinspection ConstantConditions
         checkArgument(seam.length == width());
         checkArgument(height > 1);
         int prev = seam[0];
@@ -265,7 +265,7 @@ public class SeamCarver {
      */
     public void removeVerticalSeam(int[] seam) {
         checkArgument(seam != null);
-        //noinspection ConstantConditions
+        // noinspection ConstantConditions
         checkArgument(seam.length == height());
         checkArgument(width > 1);
         int prev = seam[0];
