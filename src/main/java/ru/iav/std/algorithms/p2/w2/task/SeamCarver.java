@@ -120,8 +120,11 @@ public class SeamCarver {
         int[][] to = new int[w][h];
         for (int y = 0; y < h; y++) {
             to[0][y] = noVal;
-            to[1][y] = y;
-            nrgSum[y] = energy(0, y) + energy(1, y);
+            nrgSum[y] = energy(0, y);
+            if (w > 1) {
+                to[1][y] = y;
+                nrgSum[y] += energy(1, y);
+            }
         }
 
         for (int x = 2; x < w; x++) {
@@ -142,7 +145,7 @@ public class SeamCarver {
             }
         }
 
-        int[] seam = new int[h];
+        int[] seam = new int[w];
         for (int x = w - 1, y = minValueIndex(nrgSum); x >= 0; x--) {
             seam[x] = y;
             y = to[x][y] == noVal ? y : to[x][y];
@@ -176,8 +179,11 @@ public class SeamCarver {
         int[][] to = new int[w][h];
         for (int x = 0; x < w; x++) {
             to[x][0] = noVal;
-            to[x][1] = x;
-            nrgSum[x] = energy(x, 0) + energy(x, 1);
+            nrgSum[x] = energy(x, 0);
+            if (h > 1) {
+                to[x][1] = x;
+                nrgSum[x] += energy(x, 1);
+            }
         }
 
         for (int y = 2; y < h; y++) {
