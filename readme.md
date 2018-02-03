@@ -50,7 +50,7 @@ http://coursera.cs.princeton.edu/algs4/assignments/8puzzle.html
 
 ## Part II
 
-### Week one – Graphs
+### Week one: Graphs
 
 - Bipartite G – G, whose vertices can be divided into two disjoint sets,
 so that each vertex has edges only to ones of the opposite set.
@@ -81,3 +81,40 @@ In the task we find shortest ancestral path between any two words
 or two _sets_ of words, find words relatedness and detect outcast
 among given words.
 http://coursera.cs.princeton.edu/algs4/assignments/wordnet.html
+
+### Week two: MSTs and shortest paths
+
+Algorithms for finding shortest paths (limitations, complexity):
+- Dijkstra's alg – no negative weights. _O(E+V)_
+- Topological sort – no directed cycles. _O(E logV)_
+- Bellman-Ford alg – no negative cycles. _O(EV)_
+- Bellman-Ford queue-based modification – no negative cycles.  Best-case _O(E+V)_, worst-case _O(EV)_
+
+### Task two: Seam carving
+#### Specification
+Seam-carving is a content-aware image resizing technique where
+the image is reduced in size by one pixel of height (or width) at a time.
+A vertical seam in an image is a path of pixels connected from the top
+to the bottom with one pixel in each row. A horizontal seam is a path of pixels
+connected from the left to the right with one pixel in each column.
+
+The underlying algorithm is quite simple and elegant. Despite this fact,
+this technique was not discovered until 2007 by Shai Avidan and Ariel Shamir.
+It is now a feature in Adobe Photoshop (thanks to a Princeton graduate student),
+as well as other popular computer graphics applications.
+http://coursera.cs.princeton.edu/algs4/assignments/seam.html
+
+### Task three: Baseball elimination
+#### Specification
+Given the standings in a sports division at some point during the season,
+determine which teams have been mathematically eliminated from winning their division.
+
+In the baseball elimination problem, there is a division consisting of n teams.
+At some point during the season, team `i` has `w[i]` wins, `l[i]` losses,
+`r[i]` remaining games, and `g[i][j]` games left to play against team `j`.
+A team is mathematically eliminated if it cannot possibly finish the season
+in (or tied for) first place. The goal is to determine exactly which teams
+are mathematically eliminated. For simplicity, we assume that no games end in a tie
+(as is the case in Major League Baseball) and that there are no rainouts,
+i.e., every scheduled game is played.
+http://coursera.cs.princeton.edu/algs4/assignments/baseball.html
