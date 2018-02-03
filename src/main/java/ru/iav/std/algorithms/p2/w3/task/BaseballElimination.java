@@ -20,7 +20,10 @@ public class BaseballElimination {
     private final int[][] g;
 
     // some precomputed constants for the algorithm
-    private final int n, gamesNum, v, source, sink;
+    private final int n;
+    private final int v;
+    private final int source;
+    private final int sink;
 
     /**
      * create a baseball division from given filename in format specified below
@@ -45,7 +48,7 @@ public class BaseballElimination {
         }
 
         n = names.length;
-        gamesNum = n * (n - 1) / 2;
+        int gamesNum = n * (n - 1) / 2;
         v = n + gamesNum + 2;   // teams + games + source + sink
         source = v - 2;
         sink = v - 1;
