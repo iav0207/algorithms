@@ -8,3 +8,6 @@ gradlew
 *.gradle
 *.bat
 *.iml
+.DS_Store
+target/
+
