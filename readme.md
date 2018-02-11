@@ -80,6 +80,7 @@ pigeon, and seagull.
 In the task we find shortest ancestral path between any two words
 or two _sets_ of words, find words relatedness and detect outcast
 among given words.
+
 http://coursera.cs.princeton.edu/algs4/assignments/wordnet.html
 
 ### Week two: MSTs and shortest paths
@@ -102,6 +103,7 @@ The underlying algorithm is quite simple and elegant. Despite this fact,
 this technique was not discovered until 2007 by Shai Avidan and Ariel Shamir.
 It is now a feature in Adobe Photoshop (thanks to a Princeton graduate student),
 as well as other popular computer graphics applications.
+
 http://coursera.cs.princeton.edu/algs4/assignments/seam.html
 
 ### Task three: Baseball elimination
@@ -117,4 +119,20 @@ in (or tied for) first place. The goal is to determine exactly which teams
 are mathematically eliminated. For simplicity, we assume that no games end in a tie
 (as is the case in Major League Baseball) and that there are no rainouts,
 i.e., every scheduled game is played.
+
 http://coursera.cs.princeton.edu/algs4/assignments/baseball.html
+
+### Task four: Boggle
+#### Specification
+Write a program to play the word game Boggle®.
+The Boggle game. Boggle is a word game designed by Allan Turoff
+and distributed by Hasbro.It involves a board made up of 16 cubic dice,
+where each die has a letter printed on each of its sides.
+At the beginning of the game, the 16 dice are shaken and randomly
+distributed into a 4-by-4 tray, with only the top sides of the dice visible.
+The players compete to accumulate points by building valid words.
+
+The challenge is to write a Boggle solver that finds all valid words
+in a given Boggle board, using a given dictionary.
+
+http://coursera.cs.princeton.edu/algs4/assignments/boggle.html
