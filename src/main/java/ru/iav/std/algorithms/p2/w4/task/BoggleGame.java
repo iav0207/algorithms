@@ -1,32 +1,6 @@
-/******************************************************************************
- *  Compilation:  javac BoggleGame.java
- *  Execution:    java BoggleGame [m n]
- *  Dependencies: BoggleSolver.java BoggleBoard.java 
- *  Author:       Matthew Drabick
- *
- *  GUI for the boggle solver. Pits the user against a computer opponent
- *  of various difficulties. Can be launched from the command line, where 
- *  the default size of the board for that game must be specified. 
- *  
- *  To add: Way to change the size of the board from inside the game
- *
- *  % javac BoggleGame.java
- *  
- *  % java BoggleGame 
- *
- *  % java -Xmx300m BoggleGame 3 7
- *  
- *  Report bugs to: wayne@princeton.edu, CC mdrabick@princeton.edu
- *
- *  Note: expect some compiler warning with Java 7 because
- *  javax.swing.JList is a parameterized type in Java 7 but not
- *  in Java 6.
- *
- ******************************************************************************/
+package ru.iav.std.algorithms.p2.w4.task;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
@@ -42,9 +16,32 @@ import javax.swing.*;
 import edu.princeton.cs.algs4.In;
 import edu.princeton.cs.algs4.SET;
 import edu.princeton.cs.algs4.StdRandom;
-import ru.iav.std.algorithms.p2.w4.task.BoggleBoard;
-import ru.iav.std.algorithms.p2.w4.task.BoggleSolver;
 
+/******************************************************************************
+ *  Compilation:  javac BoggleGame.java
+ *  Execution:    java BoggleGame [m n]
+ *  Dependencies: BoggleSolver.java BoggleBoard.java
+ *  Author:       Matthew Drabick
+ *
+ *  GUI for the boggle solver. Pits the user against a computer opponent
+ *  of various difficulties. Can be launched from the command line, where
+ *  the default size of the board for that game must be specified.
+ *
+ *  To add: Way to change the size of the board from inside the game
+ *
+ *  % javac BoggleGame.java
+ *
+ *  % java BoggleGame
+ *
+ *  % java -Xmx300m BoggleGame 3 7
+ *
+ *  Report bugs to: wayne@princeton.edu, CC mdrabick@princeton.edu
+ *
+ *  Note: expect some compiler warning with Java 7 because
+ *  javax.swing.JList is a parameterized type in Java 7 but not
+ *  in Java 6.
+ *
+ ******************************************************************************/
 public class BoggleGame extends JFrame {
     private static final int GAME_TIME = 180;                 // in seconds
     private static final int SECONDS_PER_MINUTE = 60;         // number of seconds in one minute
@@ -157,12 +154,7 @@ public class BoggleGame extends JFrame {
         entryField = new JTextField(DEF_COLUMNS);
         entryField.setMaximumSize(new Dimension(entryField.getPreferredSize().width, 
                                                 entryField.getPreferredSize().height));
-        entryField.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                checkWord();
-            }  
-        });
+        entryField.addActionListener(e -> checkWord());
         entryField.addKeyListener(new KeyListener() {
             @Override 
             public void keyPressed(KeyEvent e) { }
@@ -381,31 +373,31 @@ public class BoggleGame extends JFrame {
         );
 
         // all words in shakespeare
-        In in1 = new In(new File("dictionary-shakespeare.txt"));
-        shakespeareDictionary = new SET<String>();
+        In in1 = new In(getResourceAsFile("dictionary-shakespeare.txt"));
+        shakespeareDictionary = new SET<>();
         for (String s : in1.readAllStrings())
             shakespeareDictionary.add(s);
 
         // all words in shakespeare
-        In in2 = new In(new File("dictionary-nursery.txt"));
-        nurseryDictionary = new SET<String>();
+        In in2 = new In(getResourceAsFile("dictionary-nursery.txt"));
+        nurseryDictionary = new SET<>();
         for (String s : in2.readAllStrings())
             nurseryDictionary.add(s);
 
         // about 20K common words
-        In in3 = new In(new File("dictionary-common.txt"));
-        commonDictionary = new SET<String>();
+        In in3 = new In(getResourceAsFile("dictionary-common.txt"));
+        commonDictionary = new SET<>();
         for (String s : in3.readAllStrings())
             commonDictionary.add(s);
 
         // all words in Algorithms 4/e
-        In in4 = new In(new File("dictionary-algs4.txt"));
-        algs4Dictionary = new SET<String>();
+        In in4 = new In(getResourceAsFile("dictionary-algs4.txt"));
+        algs4Dictionary = new SET<>();
         for (String s : in4.readAllStrings())
             algs4Dictionary.add(s);
 
         // dictionary
-        In in = new In(new File("dictionary-yawl.txt"));
+        In in = new In(getResourceAsFile("dictionary-yawl.txt"));
         String[] dictionary = in.readAllStrings();
 
         // create the Boggle solver with the given dictionary
@@ -892,21 +884,11 @@ public class BoggleGame extends JFrame {
         JMenuItem newGameMenuItem = new JMenuItem("New...", KeyEvent.VK_N);
         newGameMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
         newGameMenuItem.getAccessibleContext().setAccessibleDescription("Starts a new game");
-        newGameMenuItem.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent arg0) {
-                newGame();
-            }
-        });
+        newGameMenuItem.addActionListener(arg0 -> newGame());
         JMenuItem endGameMenuItem = new JMenuItem("End Game", KeyEvent.VK_E);
         endGameMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_E, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
         endGameMenuItem.getAccessibleContext().setAccessibleDescription("Ends the current game");
-        endGameMenuItem.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent arg0) {
-                endGame();
-            }
-        });
+        endGameMenuItem.addActionListener(arg0 -> endGame());
         gameMenu.add(newGameMenuItem);
         gameMenu.add(endGameMenuItem);
         gameMenu.addSeparator();
@@ -916,16 +898,13 @@ public class BoggleGame extends JFrame {
             difficultySelection[i]  = new JRadioButtonMenuItem(LEVEL_DESCRIPTION[i % LEVEL_DESCRIPTION.length]); // mod as a check against mismatched sizes
             if (i == 0) difficultySelection[i].setSelected(true);
             difficultySelection[i].setActionCommand(LEVEL_DESCRIPTION[i % LEVEL_DESCRIPTION.length]);
-            difficultySelection[i].addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent ae) {
-                    for (int i = 0; i < LEVEL_DESCRIPTION.length; i++) {
-                        if (ae.getActionCommand().equals(LEVEL_DESCRIPTION[i])) {
-                            gameDifficulty = i;
-                            //endGame();
-                            newGame();
-                            break;
-                        }
+            difficultySelection[i].addActionListener(ae -> {
+                for (int i1 = 0; i1 < LEVEL_DESCRIPTION.length; i1++) {
+                    if (ae.getActionCommand().equals(LEVEL_DESCRIPTION[i1])) {
+                        gameDifficulty = i1;
+                        //endGame();
+                        newGame();
+                        break;
                     }
                 }
             });
@@ -935,71 +914,69 @@ public class BoggleGame extends JFrame {
         JMenuItem quitMenuItem = new JMenuItem("Quit", KeyEvent.VK_Q);
         quitMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Q, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
         quitMenuItem.getAccessibleContext().setAccessibleDescription("Quits the program");
-        quitMenuItem.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent arg0) {
-                timer.cancel();
-                System.exit(0);
-            }
+        quitMenuItem.addActionListener(arg0 -> {
+            timer.cancel();
+            System.exit(0);
         });
         gameMenu.addSeparator();
         gameMenu.add(quitMenuItem);
         setJMenuBar(menuBar);
     }
-    
-    
+
+    private static File getResourceAsFile(String fileName) {
+        return new File(BoggleGame.class.getResource(fileName).getFile());
+    }
+
     /**
      * @param args the dimension of the Boggle game
      */
-    public static void main(final String[] args) {
-        
-        SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                int rows = 0;
-                int cols = 0;
-                if (args.length == 0) {
-                    rows = 4;
-                    cols = 4;
+    public static void main(final String... args) {
+
+        SwingUtilities.invokeLater(() -> {
+            int rows = 0;
+            int cols = 0;
+            if (args.length == 0) {
+                rows = 4;
+                cols = 4;
+            }
+            else if (args.length == 1) {
+                try {
+                    rows = Integer.parseInt(args[0]);
+                    cols = rows;
                 }
-                else if (args.length == 1) {
-                    try {
-                        rows = Integer.parseInt(args[0]);
-                        cols = rows;
-                    }
-                    catch (NumberFormatException e) {
-                        System.err.println("Usage: java BoggleGame " +
-                                           "\nor:    java BoggleGame [rows]" +
-                                           "\nor:    java BoggleGame [rows] [cols]");
-                        System.exit(1);
-                    }
-                }
-                else if (args.length == 2) {
-                    try {
-                        rows = Integer.parseInt(args[0]);
-                        cols  = Integer.parseInt(args[1]);
-                    }
-                    catch (NumberFormatException e) {
-                        System.err.println("Usage: java BoggleGame " +
-                                           "\nor:    java BoggleGame [rows]" +
-                                           "\nor:    java BoggleGame [rows] [cols]");
-                        System.exit(1);
-                    }
-                }
-                else {
+                catch (NumberFormatException e) {
                     System.err.println("Usage: java BoggleGame " +
                                        "\nor:    java BoggleGame [rows]" +
                                        "\nor:    java BoggleGame [rows] [cols]");
                     System.exit(1);
                 }
-
-                if (rows <= 0 || cols <= 0) {
-                    throw new java.lang.IllegalArgumentException("Rows and columns must be positive" + 
-                                                                 "\nUsage: java BoggleGame " +
-                                                                 "\nor:    java BoggleGame [rows]" +
-                                                                 "\nor:    java BoggleGame [rows] [cols]");
-                }
-                new BoggleGame(rows, cols).setVisible(true);
             }
+            else if (args.length == 2) {
+                try {
+                    rows = Integer.parseInt(args[0]);
+                    cols  = Integer.parseInt(args[1]);
+                }
+                catch (NumberFormatException e) {
+                    System.err.println("Usage: java BoggleGame " +
+                                       "\nor:    java BoggleGame [rows]" +
+                                       "\nor:    java BoggleGame [rows] [cols]");
+                    System.exit(1);
+                }
+            }
+            else {
+                System.err.println("Usage: java BoggleGame " +
+                                   "\nor:    java BoggleGame [rows]" +
+                                   "\nor:    java BoggleGame [rows] [cols]");
+                System.exit(1);
+            }
+
+            if (rows <= 0 || cols <= 0) {
+                throw new IllegalArgumentException("Rows and columns must be positive" +
+                                                             "\nUsage: java BoggleGame " +
+                                                             "\nor:    java BoggleGame [rows]" +
+                                                             "\nor:    java BoggleGame [rows] [cols]");
+            }
+            new BoggleGame(rows, cols).setVisible(true);
         });
     }
 
