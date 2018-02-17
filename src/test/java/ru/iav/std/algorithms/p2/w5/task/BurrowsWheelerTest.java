@@ -2,32 +2,30 @@ package ru.iav.std.algorithms.p2.w5.task;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.Arrays;
-import java.util.function.Supplier;
-import java.util.stream.IntStream;
 
 import org.apache.commons.io.IOUtils;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;
 import static ru.iav.std.algorithms.p2.w5.task.IOUtil.getResourceAsStream;
 import static ru.iav.std.algorithms.p2.w5.task.IOUtil.resetSystemOutToConsole;
 
-public class MoveToFrontTest {
+public class BurrowsWheelerTest {
 
     @Test
-    public void abra() throws Exception {
+    public void testTransform() throws Exception {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
 
         System.setIn(getResourceAsStream("abra.txt"));
         System.setOut(new PrintStream(out));
 
-        MoveToFront.encode();
+        BurrowsWheeler.transform();
 
         byte[] actual = out.toByteArray();
-        byte[] expected = IOUtils.toByteArray(getResourceAsStream("abra.txt.mtf"));
+        byte[] expected = IOUtils.toByteArray(getResourceAsStream("abra.txt.bwt"));
 
         resetSystemOutToConsole();
         System.out.println("Expected: " + Arrays.toString(expected));
@@ -35,41 +33,39 @@ public class MoveToFrontTest {
         assertEquals(actual, expected);
     }
 
-    @Test
-    public void abra_symmetry() throws Exception {
-        Supplier<InputStream> input = () -> getResourceAsStream("abra.txt");
-
-        byte[] expected = IOUtils.toByteArray(input.get());
-
-        System.setIn(input.get());
+    @Test(dataProvider = "strings")
+    public void testSymmetry(String text) throws Exception {
+        System.setIn(new ByteArrayInputStream(text.getBytes()));
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
 
-        MoveToFront.encode();
+        BurrowsWheeler.transform();
 
         System.setIn(new ByteArrayInputStream(out.toByteArray()));
         out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
 
-        MoveToFront.decode();
+        BurrowsWheeler.inverseTransform();
 
         byte[] actual = out.toByteArray();
 
         resetSystemOutToConsole();
-        System.out.println("Expected: " + Arrays.toString(expected));
+        System.out.println("Expected: " + Arrays.toString(text.getBytes()));
         System.out.println("Actual:   " + Arrays.toString(actual));
-        assertEquals(actual, expected);
+        assertEquals(new String(actual), text);
     }
 
-    @Test
-    public void testArrayRotation() {
-        int[] arr = IntStream.range(0, 10).toArray();
-        int idxToMove = 7;
-        int toMove = arr[idxToMove];
-
-        System.arraycopy(arr, 0, arr, 1, idxToMove);
-        arr[0] = toMove;
-        assertEquals(arr, new int[] {7, 0, 1, 2, 3, 4, 5, 6, 8, 9});
+    @DataProvider(name = "strings")
+    public static Object[][] strings() {
+        return new Object[][] {
+                {"ABRACADABRA!"},
+                {"Class JavaLaunchHelper is implemented in both /Library/Java/JavaVirtualMachines/jdk1.8.0_131"},
+                {"The goal of the Burrows–Wheeler transform is not to compress a message, but rather to transform"
+                        + " it into a form that is more amenable to compression."},
+                {""},
+                {"$"},
+                {" "},
+        };
     }
 
 }
