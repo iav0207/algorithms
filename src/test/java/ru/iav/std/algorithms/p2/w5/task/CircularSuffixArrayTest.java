@@ -20,4 +20,9 @@ public class CircularSuffixArrayTest {
         assertEquals(actual, expected);
     }
 
+    @Test
+    public void testMain() {
+        CircularSuffixArray.main("ABRACADABRA!");
+    }
+
 }
