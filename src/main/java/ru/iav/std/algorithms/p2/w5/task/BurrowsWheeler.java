@@ -9,8 +9,6 @@ import java.util.TreeSet;
 import edu.princeton.cs.algs4.BinaryStdIn;
 import edu.princeton.cs.algs4.BinaryStdOut;
 
-import static java.lang.String.format;
-
 public class BurrowsWheeler {
 
     /**
@@ -97,6 +95,6 @@ public class BurrowsWheeler {
         } else if ("+".equals(in)) {
             inverseTransform();
         }
-        throw new IllegalArgumentException(format("Unknown arg value: '%s'", in));
+        throw new IllegalArgumentException(String.format("Unknown arg value: '%s'", in));
     }
 }

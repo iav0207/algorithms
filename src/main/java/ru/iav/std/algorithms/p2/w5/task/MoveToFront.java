@@ -3,8 +3,6 @@ package ru.iav.std.algorithms.p2.w5.task;
 import edu.princeton.cs.algs4.BinaryStdIn;
 import edu.princeton.cs.algs4.BinaryStdOut;
 
-import static java.lang.String.format;
-
 public class MoveToFront {
 
     /**
@@ -18,6 +16,13 @@ public class MoveToFront {
     private static final int W = 8;
 
     private final char[] a;
+
+    public MoveToFront() {
+        a = new char[R];
+        for (int i = 0; i < R; i++) {
+            a[i] = (char) i;
+        }
+    }
 
     /**
      * Apply move-to-front encoding, reading from standard input and writing to standard output.
@@ -80,13 +85,6 @@ public class MoveToFront {
         } else if ("+".equals(in)) {
             decode();
         }
-        throw new IllegalArgumentException(format("Unknown arg value: '%s'", in));
-    }
-
-    private MoveToFront() {
-        a = new char[R];
-        for (int i = 0; i < R; i++) {
-            a[i] = (char) i;
-        }
+        throw new IllegalArgumentException(String.format("Unknown arg value: '%s'", in));
     }
 }
