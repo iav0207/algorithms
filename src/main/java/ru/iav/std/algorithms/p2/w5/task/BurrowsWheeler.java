@@ -1,8 +1,6 @@
 package ru.iav.std.algorithms.p2.w5.task;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
 import java.util.TreeSet;
 
@@ -10,6 +8,11 @@ import edu.princeton.cs.algs4.BinaryStdIn;
 import edu.princeton.cs.algs4.BinaryStdOut;
 
 public class BurrowsWheeler {
+
+    /**
+     * Alphabet size, extended ASCII.
+     */
+    private static final int R = 256;
 
     /**
      * Bits per character.
@@ -27,6 +30,7 @@ public class BurrowsWheeler {
         String text = BinaryStdIn.readString();
         int n = text.length();
         BinaryStdIn.close();
+
         CircularSuffixArray csa = new CircularSuffixArray(text);
         for (int i = 0; i < n; i++) {
             if (csa.index(i) == 0) {
@@ -53,35 +57,46 @@ public class BurrowsWheeler {
         // read input
         int first = BinaryStdIn.readInt();
         List<Character> t = new ArrayList<>();
-        HashMap<Character, TreeSet<Integer>> st = new HashMap<>();
+        // noinspection unchecked
+        TreeSet<Integer>[] st = (TreeSet<Integer>[]) new TreeSet[R];
         while (!BinaryStdIn.isEmpty()) {
-            Character c = BinaryStdIn.readChar(W);
-            int idx = t.size();
+            char c = BinaryStdIn.readChar(W);
             t.add(c);
-            st.computeIfAbsent(c, ch -> new TreeSet<>()).add(idx);
+            if (st[c] == null) st[c] = new TreeSet<>();
+            st[c].add(t.size() - 1);
         }
+        int n = t.size();
 
-        // close input
         BinaryStdIn.close();
 
-        List<Character> sorted = new ArrayList<>(t);
-        Collections.sort(sorted);
+        char[] sorted = keyCountingSort(t);
 
         // construct next[] array
-        int[] next = new int[t.size()];
-        for (int i = 0; i < t.size(); i++) {
-            Character c = sorted.get(i);
+        int[] next = new int[n];
+        for (int i = 0; i < n; i++) {
             // noinspection ConstantConditions
-            next[i] = st.get(c).pollFirst();
+            next[i] = st[sorted[i]].pollFirst();
         }
 
         // build text using first, t[] and next[]
-        int count = 0;
-        for (int i = first; count < t.size(); count++, i = next[i]) {
-            BinaryStdOut.write(sorted.get(i), W);
+        int counter = 0;
+        for (int i = first; counter < n; counter++, i = next[i]) {
+            BinaryStdOut.write(sorted[i], W);
         }
 
         BinaryStdOut.close();
+    }
+
+    private static char[] keyCountingSort(List<Character> t) {
+        int N = t.size();
+        int[] count = new int[R + 1];   // shifted by one
+        char[] sorted = new char[N];
+
+        for (char ti : t)       count[ti + 1]++;                // counting frequencies
+        for (int r = 0; r < R;  r++) count[r + 1] += count[r];  // cumulative array
+        for (char ti : t)       sorted[count[ti]++] = ti;       // fill items
+
+        return sorted;
     }
 
     /**

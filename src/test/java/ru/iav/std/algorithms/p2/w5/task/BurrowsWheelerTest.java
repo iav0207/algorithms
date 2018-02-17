@@ -65,6 +65,7 @@ public class BurrowsWheelerTest {
                 {""},
                 {"$"},
                 {" "},
+                {"Русский текст"},
         };
     }
 
