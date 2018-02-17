@@ -7,22 +7,22 @@ API:          PASSED
 
 Findbugs:     PASSED
 PMD:          PASSED
-Checkstyle:   FAILED (0 errors, 6 warnings)
+Checkstyle:   FAILED (0 errors, 3 warnings)
 
 Correctness:  64/64 tests passed
 Memory:       10/10 tests passed
-Timing:       62/159 tests passed
+Timing:       157/159 tests passed
 
-Aggregate score: 87.80%
+Aggregate score: 99.75%
 [Compilation: 5%, API: 5%, Findbugs: 0%, PMD: 0%, Checkstyle: 0%, Correctness: 60%, Memory: 10%, Timing: 20%]
 
 ASSESSMENT DETAILS
 
 The following files were submitted:
 ----------------------------------
-2.9K Feb 17 13:48 BurrowsWheeler.java
-2.4K Feb 17 13:48 CircularSuffixArray.java
-2.2K Feb 17 13:48 MoveToFront.java
+3.3K Feb 17 15:54 BurrowsWheeler.java
+2.4K Feb 17 15:54 CircularSuffixArray.java
+2.2K Feb 17 15:54 MoveToFront.java
 
 
 ********************************************************************************
@@ -75,18 +75,14 @@ MoveToFront:
 
 % checkstyle *.java
 *-----------------------------------------------------------
-[WARN] BurrowsWheeler.java:56:13: Use the primitive type instead of the corresponding wrapper type 'Character'. For example, use 'boolean' instead of 'Boolean'. [WrapperType]
-[WARN] BurrowsWheeler.java:71:13: Use the primitive type instead of the corresponding wrapper type 'Character'. For example, use 'boolean' instead of 'Boolean'. [WrapperType]
-Checkstyle ends with 0 errors and 2 warnings.
+[WARN] BurrowsWheeler.java:91:13: The local variable 'N' must start with a lowercase letter and use camelCase. [LocalVariableName]
+Checkstyle ends with 0 errors and 1 warning.
 
 % custom checkstyle checks for CircularSuffixArray.java
 *-----------------------------------------------------------
 
 % custom checkstyle checks for BurrowsWheeler.java
 *-----------------------------------------------------------
-[WARN] BurrowsWheeler.java:54:9: You should not need to use the 'HashMap' data type in this program. [Performance]
-[WARN] BurrowsWheeler.java:66:25: You will probably not meet the performance requirement for 'inverseTransform()' if you call 'Collections.sort()'. [Performance]
-Checkstyle ends with 0 errors and 2 warnings.
 
 % custom checkstyle checks for MoveToFront.java
 *-----------------------------------------------------------
@@ -167,10 +163,10 @@ Test 10: check that two CircularSuffixArray objects can be created at the same t
 ==> passed
 
 Test 11: check that CircularSuffixArray is immutable
-  * string = "AWZSIGLMEYVXZLDUPWRUSERGZBQOZA"
-  * string = "BBBAABABBBABABBABABAABABABBBAB"
+  * string = "EDSZYNVALSUOALNEQNEDFXOVMADGNA"
+  * string = "AAABAABABBBABBABABAAABBABBAAAA"
   * string = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-  * string = hex representation: 4b 84 24 fe 2b 18 fa e8 1d 61 5d ab d0 0c e9
+  * string = hex representation: 3d ec 1d 1a 44 3a 16 55 19 aa 25 a4 d5 89 0f
 ==> passed
 
 Test 12: check index() and length() with corner-case strings
@@ -629,22 +625,22 @@ Tests  1-13: time to create a circular suffix array for the first
 
                  n    student  reference      ratio
 ---------------------------------------------------
-=> passed     1000       0.01       0.00      19.76
-=> passed     2000       0.00       0.00       3.71
-=> passed     4000       0.01       0.00       4.89
-=> passed     8000       0.01       0.00       3.14
-=> passed    16000       0.02       0.00       3.94
-=> passed    32000       0.04       0.01       5.54
-=> FAILED    64000       0.13       0.01      14.93
-=> FAILED   128000       0.16       0.01      12.42
-=> passed   256000       0.31       0.03      11.90
-=> passed   512000       0.53       0.06       9.30
-=> passed  1024000       1.17       0.11      10.77
-=> passed  2048000       2.67       0.28       9.53
-=> passed  4096000       6.61       0.75       8.78
+=> passed     1000       0.01       0.00      15.40
+=> passed     2000       0.00       0.00       3.50
+=> passed     4000       0.01       0.00       4.84
+=> passed     8000       0.01       0.00       3.11
+=> passed    16000       0.02       0.00       3.84
+=> passed    32000       0.04       0.01       5.63
+=> passed    64000       0.10       0.01      11.88
+=> passed   128000       0.18       0.02      10.92
+=> passed   256000       0.26       0.02      10.78
+=> passed   512000       0.51       0.05      10.13
+=> passed  1024000       1.15       0.11      10.56
+=> passed  2048000       2.69       0.28       9.71
+=> passed  4096000       6.41       0.76       8.49
 
 Estimated running time (using last 6 measurements)
-    = 4.97e-07 * n^1.07  (R^2 = 0.99)
+    = 5.16e-07 * n^1.06  (R^2 = 0.99)
 
 
 Tests 14-26: time to create circular suffix array for n random ASCII characters
@@ -654,25 +650,25 @@ Tests 14-26: time to create circular suffix array for n random ASCII characters
 
                  n    student  reference      ratio
 ---------------------------------------------------
-=> passed     1000       0.00       0.00       5.48
-=> passed     2000       0.00       0.00       3.05
-=> passed     4000       0.00       0.00       2.65
-=> passed     8000       0.00       0.00       4.31
-=> passed    16000       0.01       0.00       6.29
-=> passed    32000       0.02       0.00       8.39
-=> passed    64000       0.03       0.00       9.37
-=> passed   128000       0.08       0.01       9.65
-=> passed   256000       0.17       0.03       5.75
-=> passed   512000       0.36       0.03      10.40
-=> passed  1024000       0.84       0.06      14.71
-=> passed  2048000       1.97       0.14      13.64
-=> passed  4096000       4.64       0.32      14.66
+=> passed     1000       0.00       0.00       5.39
+=> passed     2000       0.00       0.00       3.82
+=> passed     4000       0.00       0.00       3.19
+=> passed     8000       0.00       0.00       3.94
+=> passed    16000       0.01       0.00       7.11
+=> passed    32000       0.02       0.00       9.29
+=> passed    64000       0.03       0.00       9.44
+=> passed   128000       0.08       0.01       9.77
+=> passed   256000       0.17       0.03       5.91
+=> passed   512000       0.35       0.04       8.95
+=> passed  1024000       0.82       0.06      13.80
+=> passed  2048000       1.86       0.14      13.50
+=> passed  4096000       4.43       0.32      13.92
 
 Estimated running time (using last 6 measurements)
-    = 6.11e-08 * n^1.19  (R^2 = 1.00)
+    = 7.67e-08 * n^1.17  (R^2 = 1.00)
 
 
-Total: 24/26 tests passed!
+Total: 26/26 tests passed!
 
 
 ================================================================
@@ -703,17 +699,17 @@ Tests  3-12: Timing encode() with first n character of dickens.txt
                  n    student  reference      ratio
 ---------------------------------------------------
 => passed     1000       0.00       0.00       1.19
-=> passed     2000       0.00       0.00       1.84
-=> passed     4000       0.01       0.00       1.91
-=> passed     8000       0.02       0.01       2.11
-=> passed    16000       0.04       0.02       1.93
-=> passed    32000       0.07       0.04       1.94
-=> passed    64000       0.14       0.08       1.85
-=> passed   128000       0.29       0.15       2.03
-=> passed   256000       0.58       0.29       2.00
+=> passed     2000       0.00       0.00       1.89
+=> passed     4000       0.01       0.00       1.93
+=> passed     8000       0.02       0.01       1.93
+=> passed    16000       0.04       0.02       1.96
+=> passed    32000       0.07       0.04       1.98
+=> passed    64000       0.14       0.07       2.00
+=> passed   128000       0.29       0.14       2.01
+=> passed   256000       0.59       0.29       2.06
 
 Estimated running time (using last 6 measurements)
-     = 3.05e-06 * n^0.97  (R^2 = 1.00)
+     = 2.34e-06 * n^1.00  (R^2 = 1.00)
 
 
 Tests  13-20: Timing encode() with first n character of abab.txt
@@ -721,18 +717,18 @@ Tests  13-20: Timing encode() with first n character of abab.txt
 
                  n    student  reference      ratio
 ---------------------------------------------------
-=> passed     1000       0.00       0.00       1.97
-=> passed     2000       0.00       0.00       1.96
+=> passed     1000       0.00       0.00       1.95
+=> passed     2000       0.00       0.00       1.98
 => passed     4000       0.01       0.00       1.98
 => passed     8000       0.02       0.01       1.99
-=> passed    16000       0.03       0.02       1.99
-=> passed    32000       0.06       0.03       2.05
-=> passed    64000       0.12       0.06       2.04
-=> passed   128000       0.25       0.12       2.06
-=> passed   256000       0.50       0.24       2.04
+=> passed    16000       0.03       0.02       1.98
+=> passed    32000       0.06       0.03       2.03
+=> passed    64000       0.15       0.08       1.93
+=> passed   128000       0.25       0.13       2.00
+=> passed   256000       0.51       0.24       2.09
 
 Estimated running time (using last 6 measurements)
-     = 2.41e-06 * n^0.98  (R^2 = 1.00)
+     = 2.12e-06 * n^1.00  (R^2 = 1.00)
 
 
 Tests 21-29: Timing decode() with first n character of dickens.txt
@@ -742,16 +738,16 @@ Tests 21-29: Timing decode() with first n character of dickens.txt
 ---------------------------------------------------
 => passed     1000       0.00       0.00       2.65
 => passed     2000       0.01       0.00       2.73
-=> passed     4000       0.01       0.00       2.82
-=> passed     8000       0.02       0.01       2.87
-=> passed    16000       0.05       0.02       2.90
+=> passed     4000       0.01       0.00       2.81
+=> passed     8000       0.02       0.01       2.86
+=> passed    16000       0.05       0.02       2.89
 => passed    32000       0.10       0.03       2.92
-=> passed    64000       0.19       0.06       2.95
-=> passed   128000       0.38       0.13       2.98
-=> passed   256000       0.76       0.26       2.94
+=> passed    64000       0.19       0.06       2.99
+=> passed   128000       0.38       0.13       2.97
+=> passed   256000       0.76       0.25       3.00
 
 Estimated running time (using last 6 measurements)
-     = 3.02e-06 * n^1.00  (R^2 = 1.00)
+     = 2.97e-06 * n^1.00  (R^2 = 1.00)
 
 
 Tests 30-38: Timing decode() with first n character of abab.txt
@@ -759,15 +755,15 @@ Tests 30-38: Timing decode() with first n character of abab.txt
 
                  n    student  reference      ratio
 ---------------------------------------------------
-=> passed     1000       0.00       0.00       3.53
-=> passed     2000       0.01       0.00       2.97
-=> passed     4000       0.01       0.00       3.10
-=> passed     8000       0.02       0.01       3.06
-=> passed    16000       0.05       0.02       2.63
-=> passed    32000       0.09       0.03       3.09
-=> passed    64000       0.19       0.06       3.07
-=> passed   128000       0.37       0.12       3.08
-=> passed   256000       0.75       0.24       3.10
+=> passed     1000       0.00       0.00       3.11
+=> passed     2000       0.01       0.00       3.03
+=> passed     4000       0.01       0.00       3.07
+=> passed     8000       0.02       0.01       3.05
+=> passed    16000       0.05       0.02       2.76
+=> passed    32000       0.09       0.03       3.05
+=> passed    64000       0.19       0.06       3.16
+=> passed   128000       0.37       0.12       3.05
+=> passed   256000       0.74       0.24       3.09
 
 Estimated running time (using last 6 measurements)
      = 2.95e-06 * n^1.00  (R^2 = 1.00)
@@ -813,22 +809,22 @@ Tests  5-17: timing transform() with first n character of dickens.txt
 
                  n    student  reference      ratio
 ---------------------------------------------------
-=> passed     1000       0.00       0.00       0.07
-=> passed     2000       0.00       0.00       0.51
+=> passed     1000       0.00       0.00       0.09
+=> passed     2000       0.00       0.00       0.54
 => passed     4000       0.00       0.00       0.55
 => passed     8000       0.00       0.00       0.66
-=> passed    16000       0.00       0.01       0.53
-=> passed    32000       0.01       0.01       0.52
-=> passed    64000       0.01       0.02       0.57
-=> passed   128000       0.02       0.02       0.93
-=> passed   256000       0.04       0.04       1.00
-=> passed   512000       0.08       0.08       0.98
-=> passed  1024000       0.19       0.17       1.12
-=> passed  2048000       0.40       0.44       0.91
-=> passed  4096000       0.97       0.90       1.08
+=> passed    16000       0.00       0.01       0.51
+=> passed    32000       0.01       0.01       0.54
+=> passed    64000       0.01       0.02       0.86
+=> passed   128000       0.03       0.03       0.99
+=> passed   256000       0.05       0.05       0.99
+=> passed   512000       0.11       0.11       0.99
+=> passed  1024000       0.18       0.17       1.04
+=> passed  2048000       0.42       0.39       1.06
+=> passed  4096000       0.94       0.91       1.03
 
 Estimated running time as a function of n (using last 6 measurements)
-    = 2.16e-08 * n^1.15  (R^2 = 1.00)
+    = 1.53e-07 * n^1.02  (R^2 = 0.99)
 
 
 Tests 18-30: timing transform() with first n character of random.bin
@@ -836,22 +832,22 @@ Tests 18-30: timing transform() with first n character of random.bin
 
                  n    student  reference      ratio
 ---------------------------------------------------
-=> passed     1000       0.00       0.00       0.67
-=> passed     2000       0.00       0.00       1.05
+=> passed     1000       0.00       0.00       0.98
+=> passed     2000       0.00       0.00       0.96
 => passed     4000       0.00       0.00       0.94
-=> passed     8000       0.00       0.00       1.00
-=> passed    16000       0.00       0.00       0.98
-=> passed    32000       0.01       0.01       0.96
-=> passed    64000       0.01       0.01       0.98
-=> passed   128000       0.02       0.02       0.98
-=> passed   256000       0.04       0.04       1.00
-=> passed   512000       0.09       0.09       1.02
-=> passed  1024000       0.15       0.16       0.95
-=> passed  2048000       0.42       0.42       1.01
-=> passed  4096000       1.04       1.03       1.00
+=> passed     8000       0.00       0.00       0.93
+=> passed    16000       0.00       0.00       1.00
+=> passed    32000       0.01       0.00       1.38
+=> passed    64000       0.01       0.01       0.96
+=> passed   128000       0.02       0.02       1.01
+=> passed   256000       0.04       0.04       1.01
+=> passed   512000       0.09       0.09       1.00
+=> passed  1024000       0.20       0.19       1.09
+=> passed  2048000       0.43       0.44       0.98
+=> passed  4096000       1.08       1.07       1.00
 
 Estimated running time as a function of n (using last 6 measurements)
-    = 3.57e-08 * n^1.12  (R^2 = 0.99)
+    = 2.89e-08 * n^1.14  (R^2 = 1.00)
 
 
 Tests 31-43: timing transform() with first n character of abab.txt
@@ -859,22 +855,22 @@ Tests 31-43: timing transform() with first n character of abab.txt
 
                  n    student  reference      ratio
 ---------------------------------------------------
-=> passed     1000       0.00       0.00       0.79
-=> passed     2000       0.00       0.00       1.13
-=> passed     4000       0.00       0.00       0.97
-=> passed     8000       0.00       0.00       1.02
-=> passed    16000       0.00       0.00       0.98
-=> passed    32000       0.00       0.00       0.63
+=> passed     1000       0.00       0.00       0.80
+=> passed     2000       0.00       0.00       1.11
+=> passed     4000       0.00       0.00       0.93
+=> passed     8000       0.00       0.00       0.99
+=> passed    16000       0.00       0.00       0.95
+=> passed    32000       0.00       0.00       1.04
 => passed    64000       0.00       0.00       0.97
-=> passed   128000       0.00       0.00       0.98
-=> passed   256000       0.01       0.01       0.97
-=> passed   512000       0.01       0.01       1.00
-=> passed  1024000       0.03       0.04       0.70
-=> passed  2048000       0.05       0.05       1.04
-=> passed  4096000       0.10       0.10       1.00
+=> passed   128000       0.00       0.00       0.99
+=> passed   256000       0.01       0.01       1.03
+=> passed   512000       0.02       0.01       1.53
+=> passed  1024000       0.03       0.03       0.92
+=> passed  2048000       0.05       0.05       0.99
+=> passed  4096000       0.11       0.11       0.95
 
 Estimated running time as a function of n (using last 6 measurements)
-    = 2.44e-08 * n^1.00  (R^2 = 1.00)
+    = 4.69e-08 * n^0.96  (R^2 = 0.98)
 
 
 Tests 44-56: timing inverseTransform() with first n character of dickens.txt
@@ -882,23 +878,23 @@ Tests 44-56: timing inverseTransform() with first n character of dickens.txt
 
                  n    student  reference      ratio
 ---------------------------------------------------
-=> passed     1000       0.00       0.00       3.16
-=> passed     2000       0.00       0.00       3.62
-=> passed     4000       0.00       0.00       2.97
-=> passed     8000       0.00       0.00       2.40
-=> passed    16000       0.01       0.00       2.27
-=> passed    32000       0.01       0.00       5.69
-=> passed    64000       0.02       0.00       7.68
-=> passed   128000       0.05       0.00      13.02
-=> passed   256000       0.07       0.01       9.99
-=> FAILED   512000       0.18       0.02      10.10
-=> FAILED  1024000       0.49       0.06       8.28
-=> passed  2048000       1.03       0.17       6.14
-=> passed  4096000       1.61       0.31       5.13
+=> passed     1000       0.00       0.00       2.90
+=> passed     2000       0.00       0.00       1.68
+=> passed     4000       0.00       0.00       2.60
+=> passed     8000       0.00       0.00       0.89
+=> passed    16000       0.00       0.00       0.89
+=> passed    32000       0.00       0.00       2.85
+=> passed    64000       0.01       0.00       2.53
+=> passed   128000       0.02       0.01       3.28
+=> passed   256000       0.04       0.01       5.51
+=> passed   512000       0.09       0.02       4.95
+=> passed  1024000       0.19       0.05       4.09
+=> passed  2048000       0.50       0.12       4.14
+=> passed  4096000       1.11       0.43       2.57
 
 ==> FAILED.   inverseTransform() is possibly n*R or n log n. The ratio is consistently too high.
 Estimated running time as a function of n (using last 6 measurements)
-    = 1.14e-07 * n^1.09  (R^2 = 0.99)
+    = 1.74e-08 * n^1.18  (R^2 = 1.00)
 
 
 Tests 57-69: timing inverseTransform() with first n character of random.bin
@@ -906,23 +902,23 @@ Tests 57-69: timing inverseTransform() with first n character of random.bin
 
                  n    student  reference      ratio
 ---------------------------------------------------
-=> passed     1024       0.00       0.00      57.52
-=> passed     2048       0.00       0.00      24.39
-=> passed     4096       0.00       0.00      11.87
-=> passed     8192       0.00       0.00      19.54
-=> passed    16384       0.00       0.00      14.61
-=> passed    32768       0.01       0.00      12.63
-=> passed    65536       0.02       0.00      10.76
-=> passed   131072       0.04       0.00      10.06
-=> passed   262144       0.09       0.01      10.42
-=> FAILED   524288       0.19       0.02       9.73
-=> FAILED  1048576       0.44       0.05       9.23
-=> FAILED  2097152       1.00       0.11       9.05
-=> FAILED  4194304       2.64       0.38       6.91
+=> passed     1024       0.00       0.00      23.57
+=> passed     2048       0.00       0.00      13.18
+=> passed     4096       0.00       0.00      15.38
+=> passed     8192       0.01       0.00      18.31
+=> passed    16384       0.02       0.00      20.26
+=> passed    32768       0.03       0.00      18.79
+=> passed    65536       0.01       0.00       3.28
+=> passed   131072       0.02       0.01       3.13
+=> passed   262144       0.05       0.01       3.98
+=> passed   524288       0.09       0.02       4.76
+=> passed  1048576       0.20       0.05       4.16
+=> passed  2097152       0.43       0.11       3.74
+=> passed  4194304       1.10       0.40       2.75
 
-==> FAILED.   inverseTransform() is possibly n^2 or worse.
+==> FAILED.   inverseTransform() is possibly n*R or n log n. The ratio is consistently too high.
 Estimated running time as a function of n (using last 6 measurements)
-    = 2.46e-08 * n^1.21  (R^2 = 1.00)
+    = 2.95e-08 * n^1.14  (R^2 = 1.00)
 
 
 Tests 70-82: timing inverseTransform() with first n character of abab.txt
@@ -930,23 +926,22 @@ Tests 70-82: timing inverseTransform() with first n character of abab.txt
 
                  n    student  reference      ratio
 ---------------------------------------------------
-=> passed     1000       0.00       0.00       5.73
-=> passed     2000       0.00       0.00       7.73
-=> passed     4000       0.00       0.00       6.90
-=> passed     8000       0.00       0.00       6.29
-=> passed    16000       0.00       0.00       7.16
-=> passed    32000       0.01       0.00       8.63
-=> passed    64000       0.01       0.00       9.08
-=> passed   128000       0.03       0.00      10.32
-=> passed   256000       0.06       0.01      11.36
-=> FAILED   512000       0.14       0.01      13.29
-=> FAILED  1024000       0.30       0.02      14.71
-=> FAILED  2048000       0.87       0.04      19.98
-=> FAILED  4096000       2.02       0.14      14.01
+=> passed     1000       0.00       0.00       1.34
+=> passed     2000       0.00       0.00       1.37
+=> passed     4000       0.00       0.00       1.30
+=> passed     8000       0.00       0.00       1.37
+=> passed    16000       0.00       0.00       1.31
+=> passed    32000       0.00       0.00       1.28
+=> passed    64000       0.00       0.00       1.28
+=> passed   128000       0.00       0.00       1.27
+=> passed   256000       0.01       0.01       1.28
+=> passed   512000       0.01       0.01       1.27
+=> passed  1024000       0.03       0.02       1.32
+=> passed  2048000       0.06       0.04       1.31
+=> passed  4096000       0.11       0.09       1.28
 
-==> FAILED.   inverseTransform() is possibly n^2 or worse.
 Estimated running time as a function of n (using last 6 measurements)
-    = 9.05e-09 * n^1.26  (R^2 = 1.00)
+    = 2.57e-08 * n^1.00  (R^2 = 1.00)
 
 
 Tests 83-95: timing inverseTransform() with first n character of cyclic.bin
@@ -954,18 +949,25 @@ Tests 83-95: timing inverseTransform() with first n character of cyclic.bin
 
                  n    student  reference      ratio
 ---------------------------------------------------
-=> passed     1024       0.00       0.00       6.49
-=> passed     2048       0.00       0.00       7.20
-=> passed     4096       0.00       0.00       6.73
-=> passed     8192       0.00       0.00       9.33
-=> passed    16384       0.00       0.00       6.86
-=> passed    32768       0.01       0.00       6.93
-=> passed    65536       0.02       0.00       5.82
-=> passed   131072       0.04       0.01       6.13
-=> passed   262144       0.08       0.01       6.36
-=> passed   524288       0.18       0.04       4.79
+=> passed     1024       0.00       0.00       1.61
+=> passed     2048       0.00       0.00       1.62
+=> passed     4096       0.00       0.00       1.49
+=> passed     8192       0.00       0.00       1.38
+=> passed    16384       0.00       0.00       1.43
+=> passed    32768       0.00       0.00       1.33
+=> passed    65536       0.00       0.00       1.23
+=> passed   131072       0.01       0.00       1.20
+=> passed   262144       0.01       0.01       1.20
+=> passed   524288       0.03       0.03       1.12
+=> passed  1048576       0.06       0.05       1.23
+=> passed  2097152       0.14       0.12       1.14
+=> passed  4194304       0.29       0.25       1.19
+
+Estimated running time as a function of n (using last 6 measurements)
+    = 4.10e-09 * n^1.19  (R^2 = 1.00)
 
 
-Total: 0/95 tests passed: Could not complete tests, which results in a reported score of 0.
+Total: 93/95 tests passed!
+
+
 ================================================================
-

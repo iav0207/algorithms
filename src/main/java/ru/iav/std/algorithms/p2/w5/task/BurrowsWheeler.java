@@ -1,8 +1,8 @@
 package ru.iav.std.algorithms.p2.w5.task;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
-import java.util.TreeSet;
 
 import edu.princeton.cs.algs4.BinaryStdIn;
 import edu.princeton.cs.algs4.BinaryStdOut;
@@ -57,13 +57,13 @@ public class BurrowsWheeler {
         // read input
         int first = BinaryStdIn.readInt();
         List<Character> t = new ArrayList<>();
-        // noinspection unchecked
-        TreeSet<Integer>[] st = (TreeSet<Integer>[]) new TreeSet[R];
+        int[] st = new int[R];  // maps character to its least index in t[]
+        Arrays.fill(st, -1);
         while (!BinaryStdIn.isEmpty()) {
             char c = BinaryStdIn.readChar(W);
+            int idx = t.size();
             t.add(c);
-            if (st[c] == null) st[c] = new TreeSet<>();
-            st[c].add(t.size() - 1);
+            if (st[c] == -1) st[c] = idx;
         }
         int n = t.size();
 
@@ -74,8 +74,10 @@ public class BurrowsWheeler {
         // construct next[] array
         int[] next = new int[n];
         for (int i = 0; i < n; i++) {
-            // noinspection ConstantConditions
-            next[i] = st[sorted[i]].pollFirst();
+            char ci = sorted[i];
+            while (t.get(st[ci]) != ci) // means that st[ci] was previously shifted after usage (next comment)
+                st[ci]++;
+            next[i] = st[ci]++;     // start from the next index of char ci the next time
         }
 
         // build text using first, t[] and next[]
@@ -87,10 +89,13 @@ public class BurrowsWheeler {
         BinaryStdOut.close();
     }
 
+    /**
+     * Complexity O(R+N)
+     */
     private static char[] keyCountingSort(List<Character> t) {
-        int N = t.size();
+        int n = t.size();
         int[] count = new int[R + 1];   // shifted by one
-        char[] sorted = new char[N];
+        char[] sorted = new char[n];
 
         for (char ti : t)       count[ti + 1]++;                // counting frequencies
         for (int r = 0; r < R;  r++) count[r + 1] += count[r];  // cumulative array
