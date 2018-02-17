@@ -94,7 +94,8 @@ public class BurrowsWheeler {
             transform();
         } else if ("+".equals(in)) {
             inverseTransform();
+        } else {
+            throw new IllegalArgumentException(String.format("Unknown arg value: '%s'", in));
         }
-        throw new IllegalArgumentException(String.format("Unknown arg value: '%s'", in));
     }
 }

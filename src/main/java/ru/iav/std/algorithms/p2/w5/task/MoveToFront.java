@@ -84,7 +84,8 @@ public class MoveToFront {
             encode();
         } else if ("+".equals(in)) {
             decode();
+        } else {
+            throw new IllegalArgumentException(String.format("Unknown arg value: '%s'", in));
         }
-        throw new IllegalArgumentException(String.format("Unknown arg value: '%s'", in));
     }
 }
