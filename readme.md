@@ -1,8 +1,29 @@
 # Algorithms
 
+ - [Algorithms](#algorithms)
+     + [About](#about)
+         * [The course](#the-course)
+         * [The project](#the-project)
+     + [Part I](#part-i)
+         * [Task one: Percolation](#task-one-percolation)
+         * [Task two: Queues](#task-two-queues)
+         * [Task three: Collinear points](#task-three-collinear-points)
+         * [Task four: 8-Puzzle](#task-four-8-puzzle)
+     + [Part II](#part-ii)
+         * [Week one: Graphs](#week-one-graphs)
+         * [Task one: WordNet](#task-one-wordnet)
+         * [Week two: MSTs and shortest paths](#week-two-msts-and-shortest-paths)
+         * [Task two: Seam carving](#task-two-seam-carving)
+         * [Task three: Baseball elimination](#task-three-baseball-elimination)
+         * [Task four: Boggle](#task-four-boggle)
+         * [Task five: Burrows-Wheeler data compression](#task-five-burrows-wheeler-data-compression)
+
+## About
+
 ### The course
-This is the implementation of the assignment from the online course _Algorithms, Part I_ by Bob Sedgewick and Kevin Wayne.
-###### Links
+This is the implementation of the assignment from the online course _Algorithms_ by Bob Sedgewick and Kevin Wayne.
+
+#### Links
 - Course: https://www.coursera.org/learn/algorithms-part1/home/info
 - Textbook: https://algs4.cs.princeton.edu/home/
 - Library: https://algs4.cs.princeton.edu/code/
